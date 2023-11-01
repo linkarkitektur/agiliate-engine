@@ -1,0 +1,965 @@
+{
+  "constants": {
+    "governmentMinimumSquaremetersPerWorkSpace": 6,
+    "corridorAddonShare": 0.18,
+    "innerwallsAddonShare": 0.09
+  },
+  "spaces": [
+    {
+      "name": "work related area",
+      "shouldCalculateCorridor": true,
+      "shouldCalculateInnerwalls": true,
+      "result": {},
+      "spaces": [
+        {
+          "name": "flexible seats",
+          "result": {},
+          "spaces": [
+            {
+              "name": "touchdown – work related area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "seat",
+                "areaPerRole": 1.90,
+                "personsPerType": 1,
+                "minimumPersons": 4,
+                "minimumSquareMeters": 7.6,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false,
+                "requiresAdditionalStorage": true,
+                "surchargeInternalCorridorShare": 0.06,
+                "shouldCalculateNumberOfSeats": true
+              }
+            },
+            {
+              "name": "dock in – work related area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "seat",
+                "areaPerRole": 4.20,
+                "personsPerType": 1,
+                "minimumPersons": 2,
+                "minimumSquareMeters": 8.4,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": true,
+                "requiresAdditionalStorage": true,
+                "surchargeInternalCorridorShare": 0.31,
+                "shouldCalculateNumberOfSeats": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "fixed seats",
+          "result": {},
+          "spaces": [
+            {
+              "name": "cell office",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "room",
+                "areaPerRole": 8.0,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 8.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true
+              }
+            },
+            {
+              "name": "landscape",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "seat",
+                "areaPerRole": 5.44,
+                "personsPerType": 1,
+                "minimumPersons": 4,
+                "minimumSquareMeters": 21.8,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": true,
+                "requiresAdditionalStorage": true,
+                "surchargeInternalCorridorShare": 0.36,
+                "shouldCalculateNumberOfSeats": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "project seats",
+          "result": {},
+          "spaces": [
+            {
+              "name": "project room",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "room",
+                "areaPerRole": 6.0,
+                "personsPerType": 1,
+                "minimumPersons": 6,
+                "minimumSquareMeters": 36.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": true,
+                "shouldCalculateNumberOfRooms": true,
+                "shouldCalculateNumberOfSeats": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "quiet area / seats",
+          "result": {},
+          "spaces": [
+            {
+              "name": "focus room",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "room",
+                "areaPerRole": 6.0,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 6.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": false,
+                "requiresAdditionalStorage": true,
+                "shouldCalculateNumberOfRooms": true
+              }
+            },
+            {
+              "name": "quiet zone",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "seat",
+                "areaPerRole": 4.2,
+                "personsPerType": 1,
+                "minimumPersons": 4,
+                "minimumSquareMeters": 16.8,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": false,
+                "requiresAdditionalStorage": true,
+                "surchargeInternalCorridorShare": 0.36,
+                "shouldCalculateNumberOfSeats": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "social area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "coffee station",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "room",
+                "areaPerRole": 4.0,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 4.0,
+                "shouldCalculateCompensation": true,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false,
+                "unitsPerPerson": 0.02,
+                "shouldCalculateNumberOfRooms": true
+              }
+            },
+            {
+              "name": "mini kitchen lounge",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 1.2,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 1.2,
+                "shouldCalculateCompensation": true,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        },
+        {
+          "name": "meeting area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "multi room – work related area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "room",
+                "areaPerRole": 6.0,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 6.0,
+                "shouldCalculateCompensation": true,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true
+              }
+            },
+            {
+              "name": "meeting room",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "mini meeting room – work related area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 1.8,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 1.8,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "small meeting room – work related area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 2.2,
+                    "personsPerType": 1,
+                    "minimumPersons": 4,
+                    "minimumSquareMeters": 8.7,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "medium meeting room – work related area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 1.4,
+                    "personsPerType": 1,
+                    "minimumPersons": 8,
+                    "minimumSquareMeters": 11.0,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "large meeting room – work related area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 1.3,
+                    "personsPerType": 1,
+                    "minimumPersons": 16,
+                    "minimumSquareMeters": 21.0,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "support functions",
+          "result": {},
+          "spaces": [
+            {
+              "name": "reception area",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "reception – work related area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.14,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 10.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false
+                  }
+                },
+                {
+                  "name": "waiting zone – work related area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.06,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 4.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false
+                  }
+                }
+              ]
+            },
+            {
+              "name": "copy/archive/cleaning",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "copy archive",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.14,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 10.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "cleaning",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.02,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 2.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "personal storage – work related area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.7,
+                "personsPerType": 3,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 3.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "wardrobe – work related area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.21,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 2.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "restroom – work related area",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "toilet – work related area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 2.10,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 2.0,
+                    "unitsPerPerson": 0.067,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "hwc – work related area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 6.0,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 6.0,
+                    "unitsPerPerson": 0.01,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "special – work related area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "special – work related area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": null,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "shared area",
+      "shouldCalculateCorridor": true,
+      "shouldCalculateInnerwalls": true,
+      "result": {},
+      "spaces": [
+        {
+          "name": "flexible seats",
+          "result": {},
+          "spaces": [
+            {
+              "name": "touchdown – shared area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "seat",
+                "areaPerRole": 1.90,
+                "personsPerType": 1,
+                "minimumPersons": 4,
+                "minimumSquareMeters": 7.6,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false,
+                "requiresAdditionalStorage": true,
+                "surchargeInternalCorridorShare": 0.06,
+                "shouldCalculateNumberOfSeats": true
+              }
+            },
+            {
+              "name": "dock in – shared area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "seat",
+                "areaPerRole": 4.20,
+                "personsPerType": 1,
+                "minimumPersons": 2,
+                "minimumSquareMeters": 8.4,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": true,
+                "requiresAdditionalStorage": true,
+                "surchargeInternalCorridorShare": 0.31,
+                "shouldCalculateNumberOfSeats": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "social area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "lounge area – shared area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.95,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 40.0,
+                "shouldCalculateCompensation": true,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        },
+        {
+          "name": "project and meeting area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "project room – shared area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "room",
+                "areaPerRole": 6.0,
+                "personsPerType": 1,
+                "minimumPersons": 6,
+                "minimumSquareMeters": 36.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": true,
+                "shouldCalculateNumberOfRooms": true,
+                "shouldCalculateNumberOfSeats": true
+              }
+            },
+            {
+              "name": "multi room – shared area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "room",
+                "areaPerRole": 1.8,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 6.0,
+                "shouldCalculateCompensation": true,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true
+              }
+            },
+            {
+              "name": "meeting room",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "small meeting room – shared area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 2.2,
+                    "personsPerType": 1,
+                    "minimumPersons": 4,
+                    "minimumSquareMeters": 8.7,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "medium meeting room – shared area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 1.4,
+                    "personsPerType": 1,
+                    "minimumPersons": 8,
+                    "minimumSquareMeters": 11.0,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "large meeting room – shared area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 1.3,
+                    "personsPerType": 1,
+                    "minimumPersons": 16,
+                    "minimumSquareMeters": 21.0,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "support functions",
+          "result": {},
+          "spaces": [
+            {
+              "name": "reception area",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "reception – shared area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.14,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 10.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false
+                  }
+                },
+                {
+                  "name": "waiting zone – shared area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.35,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 20.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false
+                  }
+                }
+              ]
+            },
+            {
+              "name": "personal storage – shared area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.7,
+                "personsPerType": 3,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 3.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "wardrobe – shared area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.21,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 2.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "restroom – shared area",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "toilet – shared area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 2.10,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 2.0,
+                    "unitsPerPerson": 0.067,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "hwc – shared area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 6.0,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 6.0,
+                    "unitsPerPerson": 0.01,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "special – shared area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "special – shared area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": null,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "common area",
+      "shouldCalculateCorridor": true,
+      "shouldCalculateInnerwalls": true,
+      "result": {},
+      "spaces": [
+        {
+          "name": "canteen area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "canteen",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.72,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 100,
+                "shouldCalculateCompensation": true,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "kitchen",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.17,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 20,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        },
+        {
+          "name": "conference area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "auditorium",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 1.1,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 50,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "course",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.50,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 50,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "lobby",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.30,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 40,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "seatAreaPerSpot": 0.40,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        },
+        {
+          "name": "support functions",
+          "result": {},
+          "spaces": [
+            {
+              "name": "reception area",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "reception – common area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.14,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 20.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false
+                  }
+                },
+                {
+                  "name": "waiting zone – common area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.35,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 40.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false
+                  }
+                }
+              ]
+            },
+            {
+              "name": "stock area",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "stock archive – common area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.14,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 15.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "cleaning – common area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "person",
+                    "areaPerRole": 0.02,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 5.0,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "restroom – common area",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "toilet – common area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 2.10,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 2.0,
+                    "unitsPerPerson": 0.033,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "hwc – common area",
+                  "result": {},
+                  "constants": {
+                    "seatPersonRoom": "room",
+                    "areaPerRole": 6.0,
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "minimumSquareMeters": 6.0,
+                    "unitsPerPerson": 0.01,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "wardrobe – common area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 0.26,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 26.0,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "exercise room – common area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": "person",
+                "areaPerRole": 1.0,
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 20.0,
+                "unitsPerPerson": 0.20,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        },
+        {
+          "name": "special – common area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "special – common area",
+              "result": {},
+              "constants": {
+                "seatPersonRoom": null,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

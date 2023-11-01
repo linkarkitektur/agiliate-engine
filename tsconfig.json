@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "composite": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "lib": [
+      "esnext"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "bun-types",
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "types/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

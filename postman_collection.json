@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "ea84e19f-893b-4463-9400-6a99fd19272b",
+		"name": "Agiliate OSS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1849425",
+		"_collection_link": "https://meetrteam.postman.co/workspace/Team-Workspace~2b7cece5-f18f-4293-8e9d-f8467b285c02/collection/1849425-ea84e19f-893b-4463-9400-6a99fd19272b?action=share&source=collection_link&creator=1849425"
+	},
+	"item": [
+		{
+			"name": "Calculate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"variables\": {\n        \"accessToCoworking\": false,\n        \"accessToCanteen\": true,\n        \"accessToCourseSpace\": true,\n        \"accessToAuditorium\": true,\n        \"accessToCellOffice\": true,\n        \"accessToReception\": false,\n        \"accessToExercise\": true,\n        \"specialAreaOffice\": 80,\n        \"specialAreaShared\": 0,\n        \"specialAreaCommon\": 100,\n        \"seatsInAuditorium\": 50,\n        \"numberOfEmployees\": 330,\n        \"concurrencyAttendanceShare\": 1.0,\n        \"peakConcurrencyAttendanceShare\": 1.0,\n        \"overCapacityShare\": 0.0,\n        \"homeOfficeAverageShare\": 0.0,\n        \"shareOfEmployeesInAuditorium\": 0.30,\n        \"touchdownShare\": 0.0555,\n        \"dockinShare\": 0.2197,\n        \"coworkingShare\": 0.00,\n        \"cellOfficeShare\": 0.00,\n        \"landscapeShare\": 0.3630,\n        \"projectroomShare\": 0.1891,\n        \"focusroomShare\": 0.1054,\n        \"quietzoneShare\": 0.0672,\n        \"miniMeetingroomShare\": 0.2105,\n        \"smallMeetingroomShare\": 0.3017,\n        \"mediumMeetingroomShare\": 0.3600,\n        \"largeMeetingroomShare\": 0.1277\n    },\n    \"customSpaceConstants\": {\n        \"auditorium\": {\n            \"minimumSquareMeters\": 120\n        }\n    },\n    \"customConstants\": {\n        \"governmentMinimumSquaremetersPerWorkSpace\": 6\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/calculate",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:1337",
+			"type": "string"
+		}
+	]
+}

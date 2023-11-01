@@ -1,0 +1,30 @@
+{
+  "name": "agiliate-engine",
+  "version": "1.0.0",
+  "description": "This is the Open Source version of the Agiliate Engine.",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun install --no-save && bun run src/index.ts",
+    "start-with-redis": "bun install --no-save && USE_CACHE_REDIS=1 bun run src/index.ts",
+    "test": "bun test",
+    "lint": "bun eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bun-types": "latest",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "eslint": "^8.52.0",
+    "typescript": "^5.1.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.1.3",
+    "redis": "^4.6.10"
+  },
+  "dependencies": {
+    "redis": "^4.6.10"
+  }
+}
