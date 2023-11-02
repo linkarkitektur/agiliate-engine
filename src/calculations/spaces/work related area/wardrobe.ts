@@ -7,7 +7,7 @@ export default class WorkWardrobe extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation = (): number => {
-    const sharedWardrobe = new SharedWardrobe(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const sharedWardrobe = new SharedWardrobe(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor() - sharedWardrobe.calculateAreaExclCompensation()
   }
 }

@@ -10,6 +10,7 @@ export default class Dummy extends MainSpace {
   constructor(variables: IVariable, config: IConfig) {
     const space: ISpace = {
       name: "dummy",
+      className: "Dummy",
       result: {},
       constants: {
         seatPersonRoom: "person",
@@ -22,7 +23,7 @@ export default class Dummy extends MainSpace {
         adhereToGovernmentMinimum: false
       }
     }
-    super(space, variables, config)
+    super(variables, config)
     this.name = this.space.name
     this.space = space
     this.spaceConstants = space.constants

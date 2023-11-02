@@ -128,6 +128,7 @@ export default class Calculator {
   #addCustomSpace (name: string, result: ISpaceResult): ISpace {
     return {
       name,
+      className: 'Dummy',
       result,
       constants: {
         areaPerRole: 0,
@@ -344,7 +345,7 @@ export default class Calculator {
    */
   #calculateSpaceFirstRun (space: ISpace): ISpaceResult {
     const Space = getSpace(space.name)
-    const spaceCalculation: ISpaceCalculation = new Space(space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const spaceCalculation: ISpaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
     return {
       areaExclCompensation: spaceCalculation.calculateAreaExclCompensation(),
       employeesPerWorkplaceTypeUnadjusted: spaceCalculation.calculateEmployeesPerWorkplaceTypeUnadjusted(),
@@ -358,7 +359,7 @@ export default class Calculator {
    */
   #calculateSpaceSecondRun (space: ISpace): ISpaceResult {
     const Space = getSpace(space.name)
-    const spaceCalculation: ISpaceCalculation = new Space(space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const spaceCalculation: ISpaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
     return {
       notAdjustedAddonArea: spaceCalculation.calculateNotAdjustedAddonArea(this.totalWorkplaceArea, this.totalCompensationArea),
     }
@@ -371,7 +372,7 @@ export default class Calculator {
    */
   #calculateSpaceThirdRun (space: ISpace): ISpaceResult {
     const Space = getSpace(space.name)
-    const spaceCalculation: ISpaceCalculation = new Space(space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const spaceCalculation: ISpaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
     return {
       notAdjustedAddonPart: spaceCalculation.calculateNotAdjustedAddonPart(this.totalWorkplaceArea, this.totalCompensationArea),
       adjustedAddonArea: spaceCalculation.calculateAdjustedAddonArea(this.totalWorkplaceArea, this.totalCompensationArea, this.totalUnadjustedArea),
@@ -387,7 +388,7 @@ export default class Calculator {
    */
   #calculateSpaceFourthRun (space: ISpace): ISpaceResult {
     const Space = getSpace(space.name)
-    const spaceCalculation: ISpaceCalculation = new Space(space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const spaceCalculation: ISpaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
     return {
       adjustedAreaInclCompensationWithAdjustmentAndCompensation: spaceCalculation.calculateAdjustedAreaInclCompensationWithAdjustmentAndCompensation(),
       numberOfRooms: spaceCalculation.calculateNumberOfRooms(),

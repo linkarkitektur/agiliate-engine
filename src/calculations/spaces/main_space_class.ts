@@ -4,6 +4,7 @@ import { ISpaceConstant } from '../interfaces/space_constant'
 import { ISpaceCalculation } from '../interfaces/space_calculation'
 import { IConstant } from '../interfaces/constant'
 import { IVariable } from '../interfaces/variable'
+import { findSpace } from '../helpers'
 
 type TCustomSpaceConstants = {[key:string]:ISpaceConstant}
 
@@ -22,13 +23,16 @@ export default class MainSpace implements ISpaceCalculation {
 
   /**
    * Constructor for the main space class.
-   * @param {Ispace} space - The space to calculate
+   * @param {Ispace|string} space - The space to calculate
    * @param {IVariable} variables - The variables to use
    * @param {IConfig} config - The config to use
    * @param {TCustomSpaceConstants} [customSpaceConstants] - Custom space constants, optional
    * @param {IConstant} [customConstants] - Custom constants, optional
    */
-  constructor(space: ISpace, variables: IVariable, config: IConfig, customSpaceConstants?: TCustomSpaceConstants, customConstants?: IConstant) {
+  constructor(variables: IVariable, config: IConfig, customSpaceConstants?: TCustomSpaceConstants, customConstants?: IConstant, space?: ISpace) {
+    if (!space) {
+      space = findSpace(this.constructor.name, config.spaces)!
+    }
     this.name = space.name
     this.space = space
     this.spaceConstants = space.constants
@@ -153,7 +157,7 @@ export default class MainSpace implements ISpaceCalculation {
    */
   calculateNumberOfRooms (): number {
     if (this.spaceConstants.shouldCalculateNumberOfRooms) {
-      return Math.ceil(this.space.result.adjustedAreaInclCompensation! / this.spaceConstants.minimumSquareMeters!)
+      return Math.floor(this.space.result.adjustedAreaInclCompensation! / this.spaceConstants.minimumSquareMeters!)
     }
     return 0
   }

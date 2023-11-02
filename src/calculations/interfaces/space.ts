@@ -8,4 +8,5 @@ export interface ISpace {
   result: ISpaceResult // The result of the calculations for this space
   shouldCalculateCorridor?: boolean // Whether to calculate the corridor area needed for this space
   shouldCalculateInnerwalls?: boolean // Whether to calculate the inner walls area needed for this space
+  className: string // The name of the class of this space
 }

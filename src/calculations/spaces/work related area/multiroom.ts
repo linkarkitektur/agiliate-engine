@@ -10,10 +10,10 @@ export default class WorkMultiroom extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation = (): number => {
-    const workDockin = new WorkDockin(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const landscape = new Landscape(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const workTouchdown = new WorkTouchdown(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const focusroom = new Focusroom(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const landscape = new Landscape(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const workTouchdown = new WorkTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const focusroom = new Focusroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
 
     const touchdownDockinLandscapeSum = workTouchdown.calculateEmployeesPerWorkplaceTypeUnadjusted() + workDockin.calculateEmployeesPerWorkplaceTypeUnadjusted() + landscape.calculateEmployeesPerWorkplaceTypeUnadjusted()
 

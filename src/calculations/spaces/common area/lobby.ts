@@ -10,8 +10,8 @@ export default class Lobby extends MainSpace {
   calculateAreaExclCompensation = (): number => {
     if (this.variables.accessToAuditorium || this.variables.accessToCourseSpace) {
       // Get the area of the auditorium and the course space
-      const auditorium = new Auditorium(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const course = new Course(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+      const auditorium = new Auditorium(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+      const course = new Course(this.variables, this.config, this.customSpaceConstants, this.customConstants)
       const areaPerPerson = this.spaceConstants.areaPerRole / this.spaceConstants.personsPerType
 
       const x = auditorium.calculateAreaExclCompensation() / areaPerPerson

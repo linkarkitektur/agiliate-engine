@@ -6,6 +6,9 @@ import Landscape from './landscape'
 import Projectroom from './projectroom'
 import Focusroom from './focusroom'
 import Quietzone from './quietzone'
+import WorkMiniMeetingroom from './meetingroom_mini'
+import WorkSmallMeetingroom from './meetingroom_small'
+import WorkLargeMeetingroom from './meetingroom_large'
 import SharedMediumMeetingroom from '../shared area/meetingroom_medium'
 
 export default class WorkMediumMeetingroom extends MainSpace {
@@ -22,16 +25,19 @@ export default class WorkMediumMeetingroom extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation = (): number => {
-    // =SUM((AP4:AP10)*AR13)+(AB13)-(K27)
-    const workTouchdown = new WorkTouchdown(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const workDockin = new WorkDockin(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const cellOffice = new CellOffice(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const landscape = new Landscape(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const projectroom = new Projectroom(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const focusroom = new Focusroom(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const quietzone = new Quietzone(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const workTouchdown = new WorkTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const cellOffice = new CellOffice(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const landscape = new Landscape(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const projectroom = new Projectroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const focusroom = new Focusroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const quietzone = new Quietzone(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const addedPeakAreaSum = workTouchdown.calculateEmployeesPerWorkplaceTypeUnadjusted() + workDockin.calculateEmployeesPerWorkplaceTypeUnadjusted() + cellOffice.calculateEmployeesPerWorkplaceTypeUnadjusted() + landscape.calculateEmployeesPerWorkplaceTypeUnadjusted() + projectroom.calculateEmployeesPerWorkplaceTypeUnadjusted() + focusroom.calculateEmployeesPerWorkplaceTypeUnadjusted() + quietzone.calculateEmployeesPerWorkplaceTypeUnadjusted() 
-    const sharedMediumMeetingRoom = new SharedMediumMeetingroom(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    return addedPeakAreaSum * this.areaPerPersonExcludingCorridor() + this.addedPeakArea() - sharedMediumMeetingRoom.calculateAreaExclCompensation()
+    const sharedMediumMeetingRoom = new SharedMediumMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const workMiniMeetingroom = new WorkMiniMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const workSmallMeetingroom = new WorkSmallMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const workLargeMeetingroom = new WorkLargeMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const areaPerPersonExcludingCorridorSum = workMiniMeetingroom.areaPerPersonExcludingCorridor() + workSmallMeetingroom.areaPerPersonExcludingCorridor() + workLargeMeetingroom.areaPerPersonExcludingCorridor() + this.areaPerPersonExcludingCorridor()
+    return this.variables.mediumMeetingroomShare * addedPeakAreaSum * areaPerPersonExcludingCorridorSum + this.addedPeakArea() - sharedMediumMeetingRoom.calculateAreaExclCompensation()
   }
 }

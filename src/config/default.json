@@ -17,6 +17,7 @@
           "spaces": [
             {
               "name": "touchdown – work related area",
+              "className": "WorkTouchdown",
               "result": {},
               "constants": {
                 "seatPersonRoom": "seat",
@@ -34,6 +35,7 @@
             },
             {
               "name": "dock in – work related area",
+              "className": "WorkDockin",
               "result": {},
               "constants": {
                 "seatPersonRoom": "seat",
@@ -57,6 +59,7 @@
           "spaces": [
             {
               "name": "cell office",
+              "className": "CellOffice",
               "result": {},
               "constants": {
                 "seatPersonRoom": "room",
@@ -72,6 +75,7 @@
             },
             {
               "name": "landscape",
+              "className": "Landscape",
               "result": {},
               "constants": {
                 "seatPersonRoom": "seat",
@@ -95,6 +99,7 @@
           "spaces": [
             {
               "name": "project room",
+              "className": "Projectroom",
               "result": {},
               "constants": {
                 "seatPersonRoom": "room",
@@ -117,6 +122,7 @@
           "spaces": [
             {
               "name": "focus room",
+              "className": "Focusroom",
               "result": {},
               "constants": {
                 "seatPersonRoom": "room",
@@ -133,6 +139,7 @@
             },
             {
               "name": "quiet zone",
+              "className": "Quietzone",
               "result": {},
               "constants": {
                 "seatPersonRoom": "seat",
@@ -156,6 +163,7 @@
           "spaces": [
             {
               "name": "coffee station",
+              "className": "CoffeeStation",
               "result": {},
               "constants": {
                 "seatPersonRoom": "room",
@@ -172,6 +180,7 @@
             },
             {
               "name": "mini kitchen lounge",
+              "className": "MiniKitchenLounge",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -192,6 +201,7 @@
           "spaces": [
             {
               "name": "multi room – work related area",
+              "className": "WorkMultiroom",
               "result": {},
               "constants": {
                 "seatPersonRoom": "room",
@@ -211,6 +221,7 @@
               "spaces": [
                 {
                   "name": "mini meeting room – work related area",
+                  "className": "WorkMiniMeetingroom",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -226,6 +237,7 @@
                 },
                 {
                   "name": "small meeting room – work related area",
+                  "className": "WorkSmallMeetingroom",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -241,6 +253,7 @@
                 },
                 {
                   "name": "medium meeting room – work related area",
+                  "className": "WorkMediumMeetingroom",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -256,6 +269,7 @@
                 },
                 {
                   "name": "large meeting room – work related area",
+                  "className": "WorkLargeMeetingroom",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -283,6 +297,7 @@
               "spaces": [
                 {
                   "name": "reception – work related area",
+                  "className": "WorkReception",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -297,6 +312,7 @@
                 },
                 {
                   "name": "waiting zone – work related area",
+                  "className": "WorkWaitingZone",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -317,6 +333,7 @@
               "spaces": [
                 {
                   "name": "copy archive",
+                  "className": "CopyArchive",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -332,6 +349,7 @@
                 },
                 {
                   "name": "cleaning",
+                  "className": "Cleaning",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -349,6 +367,7 @@
             },
             {
               "name": "personal storage – work related area",
+              "className": "WorkPersonalStorage",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -363,6 +382,7 @@
             },
             {
               "name": "wardrobe – work related area",
+              "className": "WorkWardrobe",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -381,6 +401,7 @@
               "spaces": [
                 {
                   "name": "toilet – work related area",
+                  "className": "WorkToilet",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -397,6 +418,7 @@
                 },
                 {
                   "name": "hwc – work related area",
+                  "className": "WorkHwc",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -421,6 +443,7 @@
           "spaces": [
             {
               "name": "special – work related area",
+              "className": "WorkSpecial",
               "result": {},
               "constants": {
                 "seatPersonRoom": null,
@@ -445,6 +468,7 @@
           "spaces": [
             {
               "name": "touchdown – shared area",
+              "className": "SharedTouchdown",
               "result": {},
               "constants": {
                 "seatPersonRoom": "seat",
@@ -462,6 +486,7 @@
             },
             {
               "name": "dock in – shared area",
+              "className": "SharedDockin",
               "result": {},
               "constants": {
                 "seatPersonRoom": "seat",
@@ -485,6 +510,7 @@
           "spaces": [
             {
               "name": "lounge area – shared area",
+              "className": "SharedLounge",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -505,6 +531,7 @@
           "spaces": [
             {
               "name": "project room – shared area",
+              "className": "SharedProjectroom",
               "result": {},
               "constants": {
                 "seatPersonRoom": "room",
@@ -521,6 +548,7 @@
             },
             {
               "name": "multi room – shared area",
+              "className": "SharedMultiroom",
               "result": {},
               "constants": {
                 "seatPersonRoom": "room",
@@ -540,6 +568,7 @@
               "spaces": [
                 {
                   "name": "small meeting room – shared area",
+                  "className": "SharedSmallMeetingroom",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -555,6 +584,7 @@
                 },
                 {
                   "name": "medium meeting room – shared area",
+                  "className": "SharedMediumMeetingroom",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -570,6 +600,7 @@
                 },
                 {
                   "name": "large meeting room – shared area",
+                  "className": "SharedLargeMeetingroom",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -597,6 +628,7 @@
               "spaces": [
                 {
                   "name": "reception – shared area",
+                  "className": "SharedReception",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -611,6 +643,7 @@
                 },
                 {
                   "name": "waiting zone – shared area",
+                  "className": "SharedWaitingZone",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -627,6 +660,7 @@
             },
             {
               "name": "personal storage – shared area",
+              "className": "SharedPersonalStorage",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -641,6 +675,7 @@
             },
             {
               "name": "wardrobe – shared area",
+              "className": "SharedWardrobe",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -659,6 +694,7 @@
               "spaces": [
                 {
                   "name": "toilet – shared area",
+                  "className": "SharedToilet",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -675,6 +711,7 @@
                 },
                 {
                   "name": "hwc – shared area",
+                  "className": "SharedHwc",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -699,6 +736,7 @@
           "spaces": [
             {
               "name": "special – shared area",
+              "className": "SharedSpecial",
               "result": {},
               "constants": {
                 "seatPersonRoom": null,
@@ -723,6 +761,7 @@
           "spaces": [
             {
               "name": "canteen",
+              "className": "Canteen",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -737,6 +776,7 @@
             },
             {
               "name": "kitchen",
+              "className": "Kitchen",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -757,6 +797,7 @@
           "spaces": [
             {
               "name": "auditorium",
+              "className": "Auditorium",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -771,6 +812,7 @@
             },
             {
               "name": "course",
+              "className": "Course",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -785,6 +827,7 @@
             },
             {
               "name": "lobby",
+              "className": "Lobby",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -810,6 +853,7 @@
               "spaces": [
                 {
                   "name": "reception – common area",
+                  "className": "CommonReception",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -824,6 +868,7 @@
                 },
                 {
                   "name": "waiting zone – common area",
+                  "className": "CommonWaitingZone",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -844,6 +889,7 @@
               "spaces": [
                 {
                   "name": "stock archive – common area",
+                  "className": "CommonStockArchive",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -859,6 +905,7 @@
                 },
                 {
                   "name": "cleaning – common area",
+                  "className": "CommonCleaning",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "person",
@@ -880,6 +927,7 @@
               "spaces": [
                 {
                   "name": "toilet – common area",
+                  "className": "CommonToilet",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -896,6 +944,7 @@
                 },
                 {
                   "name": "hwc – common area",
+                  "className": "CommonHwc",
                   "result": {},
                   "constants": {
                     "seatPersonRoom": "room",
@@ -914,6 +963,7 @@
             },
             {
               "name": "wardrobe – common area",
+              "className": "CommonWardrobe",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -928,6 +978,7 @@
             },
             {
               "name": "exercise room – common area",
+              "className": "CommonExerciseRoom",
               "result": {},
               "constants": {
                 "seatPersonRoom": "person",
@@ -949,6 +1000,7 @@
           "spaces": [
             {
               "name": "special – common area",
+              "className": "CommonSpecial",
               "result": {},
               "constants": {
                 "seatPersonRoom": null,

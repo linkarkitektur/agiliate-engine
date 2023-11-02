@@ -8,7 +8,7 @@ export default class WorkTouchdown extends MainSpace {
    */
   sharePerWorkspaceType = (): number => {
     // We need the shared touchdown share for the calculation of the work touchdown share
-    const sharedTouchdown = new SharedTouchdown(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const sharedTouchdown = new SharedTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     return this.variables.touchdownShare - sharedTouchdown.sharePerWorkspaceType()
   }
 

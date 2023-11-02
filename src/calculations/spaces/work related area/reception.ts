@@ -8,7 +8,7 @@ export default class WorkReception extends MainSpace {
    */
   calculateAreaExclCompensation = (): number => {
     if (this.variables.accessToReception) {
-      const sharedReception = new SharedReception(this.space, this.variables, this.config, this.customSpaceConstants, this.customConstants)
+      const sharedReception = new SharedReception(this.variables, this.config, this.customSpaceConstants, this.customConstants)
       return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor() - sharedReception.calculateAreaExclCompensation()
     }
     return 0
