@@ -3,6 +3,8 @@ The Agiliate Engine is a sophisticated computing engine designed to calculate th
 
 Read this quick start file or the [documentation](./docs/index.md) to learn more about the Agiliate Engine.
 
+There is a simple client application demonstrating the use of the engine [here](https://linkarkitektur.github.io/agiliate-engine-client/).
+
 ## Configuration
 The application's configuration parameters are stored in the src/config/default.json file. These parameters can be modified to suit the specific needs of your company. The configuration file to use is defined in the constructor of the `Calculator` class in `src/calculator.js`. You can also change the variables and constants in the request, as shown in the example Postman collection, `postman_collection.json`.
 
