@@ -18,7 +18,7 @@ bun install
 to install the dependencies. If using Docker Compose, run
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 to start the application. Or use
