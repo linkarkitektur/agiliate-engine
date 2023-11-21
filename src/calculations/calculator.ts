@@ -101,14 +101,14 @@ export default class Calculator {
 
     return {
       totals: {
+        grossArea: Math.ceil(grossArea),
+        netArea: Math.ceil(netArea),
+        utilityFloorSpace: Math.ceil(utilityFloorSpace),
         unadjustedArea: Math.ceil(this.totalUnadjustedArea),
         workplaceArea: Math.ceil(this.totalWorkplaceArea),
         compensationArea: Math.ceil(this.totalCompensationArea),
         employeesPerWorkplaceTypeUnadjusted: this.totalEmployeesPerWorkplaceTypeUnadjusted,
         adjustedAreaInclCompensationWithAdjustmentAndCompensation: Math.ceil(this.totalAdjustedAreaInclCompensationWithAdjustmentAndCompensation),
-        utilityFloorSpace: Math.ceil(utilityFloorSpace),
-        netArea: Math.ceil(netArea),
-        grossArea: Math.ceil(grossArea),
         netAreaPerEmployee: Math.round(netAreaPerEmployee * 100) / 100,
         grossAreaPerEmployee: Math.round(grossAreaPerEmployee * 100) / 100,
         utilityFloorSpacePerEmployee: Math.round(utilityFloorSpacePerEmployee * 100) / 100,
