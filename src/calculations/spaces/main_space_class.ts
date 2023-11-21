@@ -5,8 +5,7 @@ import { ISpaceCalculation } from '../interfaces/space_calculation'
 import { IConstant } from '../interfaces/constant'
 import { IVariable } from '../interfaces/variable'
 import { findSpace } from '../helpers'
-
-type TCustomSpaceConstants = {[key:string]:ISpaceConstant}
+import { TCustomSpaceConstants } from '../types/custom_space_constant'
 
 /**
  * This is the main class for the spaces. It contains shared methods for all spaces.

@@ -4,10 +4,10 @@ import { ISpace } from './interfaces/space'
 import { IConfig } from './interfaces/config'
 import { ISpaceCalculation } from './interfaces/space_calculation'
 import { ISpaceResult } from './interfaces/space_result'
-import { ISpaceConstant } from './interfaces/space_constant'
 import { IVariable } from './interfaces/variable'
 import { IConstant } from './interfaces/constant'
 import { ICalculationResult } from './interfaces/calculationresult'
+import { TCustomSpaceConstants } from './types/custom_space_constant'
 import getSpace from './spaces'
 import Dummy from './spaces/dummy'
 
@@ -16,8 +16,8 @@ import Dummy from './spaces/dummy'
  */
 export default class Calculator {
   variables: IVariable
-  customSpaceConstants: ISpaceConstant
-  customConstants: IConstant
+  customSpaceConstants?: TCustomSpaceConstants
+  customConstants?: IConstant
   config: IConfig
   constants: IConstant
   totalWorkplaceArea: number = 0
@@ -34,7 +34,7 @@ export default class Calculator {
    * @param {IConstant} customConstants – Custom constants
    * @param {string} [configFile] – The config file to use
    */
-  constructor(variables: IVariable, customSpaceConstants: ISpaceConstant, customConstants: IConstant , configFile: string = 'default.json') {
+  constructor(variables: IVariable, customSpaceConstants: TCustomSpaceConstants|undefined, customConstants: IConstant|undefined , configFile: string = 'default.json') {
     this.variables = variables
     this.customSpaceConstants = customSpaceConstants
     this.customConstants = customConstants

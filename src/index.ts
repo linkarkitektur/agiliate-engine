@@ -1,9 +1,10 @@
-import { ISpaceConstant } from './calculations/interfaces/space_constant'
 import { IConstant } from './calculations/interfaces/constant'
 import { IVariable } from './calculations/interfaces/variable'
+import { IRequest } from './calculations/interfaces/request'
 import Calculator from './calculations/calculator'
 import redis from 'redis'
 import { RedisClientType } from '@redis/client'
+import { TCustomSpaceConstants } from './calculations/types/custom_space_constant'
 
 let redisClient: RedisClientType
 if (process.env.USE_CACHE_REDIS === '1') {
@@ -32,22 +33,16 @@ Bun.serve({
     const url = new URL(req.url)
     if (url.pathname === "/") return new Response("Agiliate is running", { headers })
     if (url.pathname === "/calculate") {
-      const jsonReq = await req.json()
+      const jsonReq: IRequest = await req.json() as IRequest
       if (process.env.CACHE === '1') {
-        const cachedResult = await redisClient.get(jsonReq)
+        const cachedResult = await redisClient.get(JSON.stringify(jsonReq))
         if (cachedResult) {
           return Response.json(JSON.parse(cachedResult), { headers })
         }
       }
-      const variables: IVariable = {
-        ...jsonReq.variables
-      }
-      const customSpaceConstants: ISpaceConstant = {
-        ...jsonReq?.customSpaceConstants
-      }
-      const customConstants: IConstant = {
-        ...jsonReq?.customConstants
-      }
+      const variables: IVariable = jsonReq.variables
+      const customSpaceConstants: TCustomSpaceConstants|undefined = jsonReq?.customSpaceConstants
+      const customConstants: IConstant|undefined = jsonReq?.customConstants
       const calculator = new Calculator(variables, customSpaceConstants, customConstants)
       const result = calculator.result()
       if (process.env.CACHE === '1')
