@@ -1,5 +1,18 @@
 export interface IConstant {
-  governmentMinimumSquaremetersPerWorkSpace: number // Minimum required square meters per workspace by regulation
-  corridorAddonShare: number // Share of corridor area
-  innerwallsAddonShare: number // Share of inner walls area
+  /**
+   * Minimum required square meters per workspace by regulation
+   */
+  governmentMinimumSquaremetersPerWorkSpace: number
+  /**
+   * Share of corridor area
+   * @minimum 0
+   * @maximum 1
+   */
+  corridorAddonShare: number
+  /**
+   * Share of inner walls area
+   * @minimum 0
+   * @maximum 1
+   */
+  innerwallsAddonShare: number 
 }

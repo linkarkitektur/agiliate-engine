@@ -1,32 +1,186 @@
 export interface IVariable {
-  accessToCanteen: boolean // Whether there is a need for access to a canteen
-  accessToAuditorium: boolean // Whether there is a need for access to an auditorium
-  seatsInAuditorium: number // The number of seats in the auditorium
-  shareOfEmployeesInAuditorium: number // The percentage of employees in the auditorium
-  accessToCourseSpace: boolean // Whether there is a need for access to a course space
-  accessToGym: boolean // Whether there is a need for access to a gym
-  accessToCellOffice: boolean // Whether there is a need for access to a cell office
-  accessToCoworking: boolean // Whether there is a need for access to a coworking space
-  accessToReception: boolean // Whether there is a need for access to a reception
-  specialAreaOffice: number // The area of the special office
-  specialAreaShared: number // The area of the shared space
-  specialAreaCommon: number // The area of the common space
-  accessToExercise: boolean // Whether there is a need for access to an exercise area
-  coworkingShare: number // The percentage of coworking space
-  touchdownShare: number // The percentage of touchdown space
-  dockinShare: number // The percentage of dock-in space
-  cellOfficeShare: number // The percentage of cell office space
-  landscapeShare: number // The percentage of landscape space
-  numberOfEmployees: number // The total number of employees
-  concurrencyAttendanceShare: number // The percentage of concurrent attendance
-  peakConcurrencyAttendanceShare: number // The peak percentage of concurrent attendance
-  overCapacityShare: number // The percentage of overcapacity
-  homeOfficeAverageShare: number // The average percentage of home office
-  projectroomShare: number // The percentage of project room space
-  focusroomShare: number // The percentage of focus room space
-  quietzoneShare: number // The percentage of quiet zone space
-  miniMeetingroomShare: number // The percentage of mini meeting room space
-  smallMeetingroomShare: number // The percentage of small meeting room space
-  mediumMeetingroomShare: number // The percentage of medium meeting room space
-  largeMeetingroomShare: number // The percentage of large meeting room space
+  /**
+   * Whether there is a need for access to a canteen.
+   */
+  accessToCanteen: boolean
+
+  /**
+   * Whether there is a need for access to an auditorium.
+   */
+  accessToAuditorium: boolean
+
+  /**
+   * The number of seats in the auditorium.
+   */
+  seatsInAuditorium: number
+
+  /**
+   * The share of employees in the auditorium.
+   * @minimum 0
+   * @maximum 1
+   */
+  shareOfEmployeesInAuditorium: number
+
+  /**
+   * Whether there is a need for access to a course space.
+   */
+  accessToCourseSpace: boolean
+
+  /**
+   * Whether there is a need for access to a gym.
+   */
+  accessToGym: boolean
+
+  /**
+   * Whether there is a need for access to a cell office.
+   */
+  accessToCellOffice: boolean
+
+  /**
+   * Whether there is a need for access to a coworking space.
+   */
+  accessToCoworking: boolean
+
+  /**
+   * Whether there is a need for access to a reception.
+   */
+  accessToReception: boolean
+
+  /**
+   * The area of the special office.
+   */
+  specialAreaOffice: number
+
+  /**
+   * The area of the special shared space.
+   */
+  specialAreaShared: number
+
+  /**
+   * The area of the special common space.
+   */
+  specialAreaCommon: number
+
+  /**
+   * Whether there is a need for access to an exercise area.
+   */
+  accessToExercise: boolean
+
+  /**
+   * The share of coworking space.
+   * @minimum 0
+   * @maximum 1
+   */
+  coworkingShare: number
+
+  /**
+   * The share of touchdown space.
+   * @required
+   * @minimum 0
+   * @maximum 1
+   */
+  touchdownShare: number
+
+  /**
+   * The share of dock-in space.
+   * @minimum 0
+   * @maximum 1
+   */
+  dockinShare: number
+
+  /**
+   * The share of cell office space.
+   * @minimum 0
+   * @maximum 1
+   */
+  cellOfficeShare: number
+
+  /**
+   * The share of landscape space.
+   * @minimum 0
+   * @maximum 1
+   */
+  landscapeShare: number
+
+  /**
+   * The total number of employees.
+   */
+  numberOfEmployees: number
+
+  /**
+   * The share of concurrent attendance.
+   * @minimum 0
+   * @maximum 1
+   */
+  concurrencyAttendanceShare: number
+
+  /**
+   * The peak share of concurrent attendance.
+   * @minimum 0
+   * @maximum 1
+   */
+  peakConcurrencyAttendanceShare: number
+
+  /**
+   * The share of overcapacity.
+   * @minimum 0
+   * @maximum 1
+   */
+  overCapacityShare: number
+
+  /**
+   * The average share of home office.
+   * @minimum 0
+   * @maximum 1
+   */
+  homeOfficeAverageShare: number
+
+  /**
+   * The share of project room space.
+   * @minimum 0
+   * @maximum 1
+   */
+  projectroomShare: number
+
+  /**
+   * The share of focus room space.
+   * @minimum 0
+   * @maximum 1
+   */
+  focusroomShare: number
+
+  /**
+   * The share of quiet zone space.
+   * @minimum 0
+   * @maximum 1
+   */
+  quietzoneShare: number
+
+  /**
+   * The share of mini meeting room space.
+   * @minimum 0
+   * @maximum 1
+   */
+  miniMeetingroomShare: number
+
+  /**
+   * The share of small meeting room space.
+   * @minimum 0
+   * @maximum 1
+   */
+  smallMeetingroomShare: number
+
+  /**
+   * The share of medium meeting room space.
+   * @minimum 0
+   * @maximum 1
+   */
+  mediumMeetingroomShare: number
+
+  /**
+   * The share of large meeting room space.
+   * @minimum 0
+   * @maximum 1
+   */
+  largeMeetingroomShare: number
 }
