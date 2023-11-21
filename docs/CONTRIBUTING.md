@@ -17,8 +17,8 @@ We use GitHub to host code, to track issues and feature requests, as well as acc
 5. Make sure your code lints.
 6. Let's get your changes merged!
 
-**Any contributions you make will be under the 0BSD license**
-In short, when you submit code changes, your submissions are understood to be under the same [0BSD license](https://opensource.org/license/0bsd/) that covers the project. Feel free to contact the maintainers if that's a concern.
+**Any contributions you make will be under the LGPL-3.0-only license**
+In short, when you submit code changes, your submissions are understood to be under the same [LGPL-3.0-only license](https://opensource.org/license/lgpl-3-0/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
 Please report [bugs and issues on GitHub](https://github.com/nodalit/agiliate-engine).
 
