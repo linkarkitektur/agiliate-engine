@@ -225,6 +225,7 @@ export default class Calculator {
     let childSum_adjustedAreaInclCompensation = 0
     let childSum_notAdjustedAddonArea = 0
     let childSum_adjustedAreaInclCompensationWithAdjustmentAndCompensation = 0
+    let childSum_numberOfRooms = 0
 
     if (space.spaces) {
       for (const child of space.spaces) {
@@ -233,6 +234,7 @@ export default class Calculator {
         childSum_adjustedAreaInclCompensation += r.adjustedAreaInclCompensation || 0
         childSum_notAdjustedAddonArea += r.notAdjustedAddonArea || 0
         childSum_adjustedAreaInclCompensationWithAdjustmentAndCompensation += r.adjustedAreaInclCompensationWithAdjustmentAndCompensation || 0
+        childSum_numberOfRooms += r.numberOfRooms || 0
       }
     }
   
@@ -241,13 +243,15 @@ export default class Calculator {
     space.result.adjustedAreaInclCompensation = space.result.adjustedAreaInclCompensation || childSum_adjustedAreaInclCompensation
     space.result.notAdjustedAddonArea = space.result.notAdjustedAddonArea || childSum_notAdjustedAddonArea
     space.result.adjustedAreaInclCompensationWithAdjustmentAndCompensation = space.result.adjustedAreaInclCompensationWithAdjustmentAndCompensation || childSum_adjustedAreaInclCompensationWithAdjustmentAndCompensation
+    space.result.numberOfRooms = space.result.numberOfRooms || childSum_numberOfRooms
   
     // Return the total sum
     return {
       areaExclCompensation: space.result.areaExclCompensation,
       adjustedAreaInclCompensation: space.result.adjustedAreaInclCompensation,
       notAdjustedAddonArea: space.result.notAdjustedAddonArea,
-      adjustedAreaInclCompensationWithAdjustmentAndCompensation: space.result.adjustedAreaInclCompensationWithAdjustmentAndCompensation
+      adjustedAreaInclCompensationWithAdjustmentAndCompensation: space.result.adjustedAreaInclCompensationWithAdjustmentAndCompensation,
+      numberOfRooms: space.result.numberOfRooms,
     }
   }
 
