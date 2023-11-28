@@ -27,18 +27,18 @@ where the `variables`, `customSpaceConstants`, `customConstants` and `config` ar
         "overCapacityShare": 0.0,
         "homeOfficeAverageShare": 0.0,
         "shareOfEmployeesInAuditorium": 0.30,
-        "touchdownShare": 0.0555,
-        "dockinShare": 0.2197,
+        "touchdownShare": 0.05,
+        "dockinShare": 0.21,
         "coworkingShare": 0.00,
         "cellOfficeShare": 0.00,
-        "landscapeShare": 0.3630,
-        "projectroomShare": 0.1891,
-        "focusroomShare": 0.1054,
-        "quietzoneShare": 0.0672,
-        "miniMeetingroomShare": 0.2105,
-        "smallMeetingroomShare": 0.3017,
-        "mediumMeetingroomShare": 0.3600,
-        "largeMeetingroomShare": 0.1277
+        "landscapeShare": 0.36,
+        "projectroomShare": 0.20,
+        "focusroomShare": 0.11,
+        "quietzoneShare": 0.07,
+        "miniMeetingroomShare": 0.21,
+        "smallMeetingroomShare": 0.30,
+        "mediumMeetingroomShare": 0.36,
+        "largeMeetingroomShare": 0.13
     },
     "customSpaceConstants": {
         "auditorium": {
