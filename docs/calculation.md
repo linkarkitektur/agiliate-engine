@@ -1,5 +1,5 @@
 # Calculation
-The [Calculator](../src/calculations/calculator.ts) class is the main class responsible for performing calculations. It is initialized with variables, custom space constants, custom constants, and an optional configuration file.
+The [Calculator](../src/calculations/calculator.ts) class is the main class responsible for performing calculations. It is initialized with variables, custom space constants, custom constants, and an optional configuration file. The defaults are stored in [default.json](../src/config/default.json) file – this file is used if no configuration file is provided. So, there are two possible ways to change the default constants: In the configuration file or by providing custom constants in the request body.
 
 ```typescript
 new Calculator(variables, customSpaceConstants, customConstants, config)
@@ -9,45 +9,45 @@ where the `variables`, `customSpaceConstants`, `customConstants` and `config` ar
 
 ```json
 {
-    "variables": {
-        "accessToCoworking": false,
-        "accessToCanteen": true,
-        "accessToCourseSpace": true,
-        "accessToAuditorium": true,
-        "accessToCellOffice": true,
-        "accessToReception": false,
-        "accessToExercise": true,
-        "specialAreaOffice": 80,
-        "specialAreaShared": 0,
-        "specialAreaCommon": 100,
-        "seatsInAuditorium": 50,
-        "numberOfEmployees": 330,
-        "concurrencyAttendanceShare": 1.0,
-        "peakConcurrencyAttendanceShare": 1.0,
-        "overCapacityShare": 0.0,
-        "homeOfficeAverageShare": 0.0,
-        "shareOfEmployeesInAuditorium": 0.30,
-        "touchdownShare": 0.05,
-        "dockinShare": 0.21,
-        "coworkingShare": 0.00,
-        "cellOfficeShare": 0.00,
-        "landscapeShare": 0.36,
-        "projectroomShare": 0.20,
-        "focusroomShare": 0.11,
-        "quietzoneShare": 0.07,
-        "miniMeetingroomShare": 0.21,
-        "smallMeetingroomShare": 0.30,
-        "mediumMeetingroomShare": 0.36,
-        "largeMeetingroomShare": 0.13
-    },
-    "customSpaceConstants": {
-        "auditorium": {
-            "minimumSquareMeters": 120
-        }
-    },
-    "customConstants": {
-        "governmentMinimumSquaremetersPerWorkSpace": 6
+  "variables": {
+    "accessToCoworking": false,
+    "accessToCanteen": true,
+    "accessToCourseSpace": true,
+    "accessToAuditorium": true,
+    "accessToCellOffice": true,
+    "accessToReception": false,
+    "accessToExercise": true,
+    "specialAreaOffice": 80,
+    "specialAreaShared": 0,
+    "specialAreaCommon": 100,
+    "seatsInAuditorium": 50,
+    "numberOfEmployees": 330,
+    "concurrencyAttendanceShare": 1.0,
+    "peakConcurrencyAttendanceShare": 1.0,
+    "overCapacityShare": 0.0,
+    "homeOfficeAverageShare": 0.0,
+    "shareOfEmployeesInAuditorium": 0.30,
+    "touchdownShare": 0.05,
+    "dockinShare": 0.21,
+    "coworkingShare": 0.00,
+    "cellOfficeShare": 0.00,
+    "landscapeShare": 0.36,
+    "projectroomShare": 0.20,
+    "focusroomShare": 0.11,
+    "quietzoneShare": 0.07,
+    "miniMeetingroomShare": 0.21,
+    "smallMeetingroomShare": 0.30,
+    "mediumMeetingroomShare": 0.36,
+    "largeMeetingroomShare": 0.13
+  },
+  "customSpaceConstants": {
+    "auditorium": {
+      "minimumSquareMeters": 120
     }
+  },
+  "customConstants": {
+    "governmentMinimumSquaremetersPerWorkSpace": 6
+  }
 }
 ```
 
