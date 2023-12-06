@@ -11,7 +11,7 @@ export default class SharedMultiroom extends MainSpace {
    * Calculates the area of shared multiroom.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     if (this.variables.accessToCoworking) {
       //=SUM((AP4:AP10)*AR26*AQ26)+(AB26)
       const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)

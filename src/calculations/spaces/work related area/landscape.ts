@@ -5,7 +5,7 @@ export default class Landscape extends MainSpace {
    * This method computes the share of this workspace type
    * @returns {number}
    */
-  sharePerWorkspaceType = (): number => {
+  sharePerWorkspaceType (): number {
     if (this.variables.accessToCellOffice) {
       return this.variables.landscapeShare
     } else {
@@ -18,7 +18,7 @@ export default class Landscape extends MainSpace {
    * Calculates the area of the landscape.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor() * this.sharePerWorkspaceType()
   }
 }

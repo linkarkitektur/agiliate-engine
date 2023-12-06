@@ -23,7 +23,7 @@ export default class WorkMiniMeetingroom extends MainSpace {
    * Calculates the area of the meeting room.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     const workTouchdown = new WorkTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const cellOffice = new CellOffice(this.variables, this.config, this.customSpaceConstants, this.customConstants)

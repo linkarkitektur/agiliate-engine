@@ -5,7 +5,7 @@ export default class CellOffice extends MainSpace {
    * This method computes the share of this workspace type
    * @returns {number}
    */
-  sharePerWorkspaceType = (): number => {
+  sharePerWorkspaceType (): number {
     if (this.variables.accessToCellOffice) {
       return this.variables.cellOfficeShare
     }
@@ -16,7 +16,7 @@ export default class CellOffice extends MainSpace {
    * Calculates the area of the cell.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor() * this.sharePerWorkspaceType()
   }
 }

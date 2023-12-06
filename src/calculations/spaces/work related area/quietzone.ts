@@ -5,7 +5,7 @@ export default class Quietzone extends MainSpace {
    * This method computes the share of this workspace type
    * @returns {number}
    */
-  sharePerWorkspaceType = (): number => {
+  sharePerWorkspaceType (): number {
     return this.variables.quietzoneShare
   }
 
@@ -13,7 +13,7 @@ export default class Quietzone extends MainSpace {
    * Calculates the area of the quiet zone.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor() * this.sharePerWorkspaceType()
   }
 }

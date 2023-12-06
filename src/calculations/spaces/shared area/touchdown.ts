@@ -5,7 +5,7 @@ export default class SharedTouchdown extends MainSpace {
    * This method computes the share of this workspace type
    * @returns {number}
    */
-  sharePerWorkspaceType = (): number => {
+  sharePerWorkspaceType (): number {
     if (this.variables.accessToCoworking) {
       return this.variables.touchdownShare * this.variables.coworkingShare
     }
@@ -16,7 +16,7 @@ export default class SharedTouchdown extends MainSpace {
    * Calculates the area of shared touchdown. 0 if there is no desire.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     if (this.variables.accessToCoworking) {
       return this.personsPerType() * this.areaPerPersonExcludingCorridor() + this.addedPeakArea()
     }

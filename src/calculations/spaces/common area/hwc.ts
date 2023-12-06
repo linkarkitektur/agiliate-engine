@@ -4,7 +4,7 @@ export default class CommonHwc extends MainSpace {
   /**
    * Area per person excluding corridor
    */
-  areaPerPersonExcludingCorridor = (): number => {
+  areaPerPersonExcludingCorridor (): number {
     return this.spaceConstants.areaPerRole / this.spaceConstants.personsPerType * this.spaceConstants.unitsPerPerson!
   }
 
@@ -12,7 +12,7 @@ export default class CommonHwc extends MainSpace {
    * Calculates the area of the common HWC
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()
   }
 }

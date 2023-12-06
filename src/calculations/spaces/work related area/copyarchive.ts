@@ -5,7 +5,7 @@ export default class CopyArchive extends MainSpace {
    * Calculates the area of the copy/archive
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()
   }
 }

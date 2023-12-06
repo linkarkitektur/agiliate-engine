@@ -4,7 +4,7 @@ export default class MiniKitchenLounge extends MainSpace {
   /**
    * Area per person excluding corridor
    */
-  areaPerPersonExcludingCorridor = (): number => {
+  areaPerPersonExcludingCorridor (): number {
     return this.spaceConstants.areaPerRole / this.spaceConstants.personsPerType
   }
 
@@ -12,7 +12,7 @@ export default class MiniKitchenLounge extends MainSpace {
    * Calculates the area of the zone.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor() + this.addedPeakArea()
   }
 }

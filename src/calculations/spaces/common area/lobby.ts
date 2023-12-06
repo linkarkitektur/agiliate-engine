@@ -7,7 +7,7 @@ export default class Lobby extends MainSpace {
    * Calculates the lobby area. 0 if there is no need.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     if (this.variables.accessToAuditorium || this.variables.accessToCourseSpace) {
       // Get the area of the auditorium and the course space
       const auditorium = new Auditorium(this.variables, this.config, this.customSpaceConstants, this.customConstants)

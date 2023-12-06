@@ -5,7 +5,7 @@ export default class CommonReception extends MainSpace {
    * Calculates the area of common area reception.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()
   }
 }

@@ -5,7 +5,7 @@ export default class CommonStockArchive extends MainSpace {
    * Calculates the area of stock/archive.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()
   }
 }

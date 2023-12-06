@@ -21,7 +21,7 @@ export default class SharedMediumMeetingroom extends MainSpace {
    * Calculates the area of the meeting room.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     if (this.variables.accessToCoworking) {
       const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
       const cellOffice = new CellOffice(this.variables, this.config, this.customSpaceConstants, this.customConstants)

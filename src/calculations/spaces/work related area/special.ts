@@ -5,7 +5,7 @@ export default class WorkSpecial extends MainSpace {
    * Calculates the area of the special rooms.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.variables.specialAreaOffice
   }
 }

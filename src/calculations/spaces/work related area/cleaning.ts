@@ -5,7 +5,7 @@ export default class Cleaning extends MainSpace {
    * Calculates the area of cleaning
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()
   }
 }

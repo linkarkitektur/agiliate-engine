@@ -9,7 +9,7 @@ export default class WorkMultiroom extends MainSpace {
    * Calculates the area of the multi room.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const landscape = new Landscape(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const workTouchdown = new WorkTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)

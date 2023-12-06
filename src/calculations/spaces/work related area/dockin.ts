@@ -6,7 +6,7 @@ export default class WorkDockin extends MainSpace {
    * This method computes the share of this workspace type
    * @returns {number}
    */
-  sharePerWorkspaceType = (): number => {
+  sharePerWorkspaceType (): number {
     // We need the shared dock in share for the calculation of the work dock in share
     const sharedDockin = new SharedDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     return this.variables.dockinShare - sharedDockin.sharePerWorkspaceType()
@@ -16,7 +16,7 @@ export default class WorkDockin extends MainSpace {
    * Calculates the area of touchdown. 0 if there is no need.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return (this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()*this.sharePerWorkspaceType())+(this.addedPeakArea()*this.sharePerWorkspaceType())
   }
 }

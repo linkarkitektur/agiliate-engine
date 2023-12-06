@@ -5,7 +5,7 @@ export default class CommonWaitingZone extends MainSpace {
    * Calculates the area of common waiting zone.
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()
   }
 }

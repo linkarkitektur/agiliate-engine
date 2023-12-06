@@ -10,7 +10,7 @@ export default class WorkPersonalStorage extends MainSpace {
    * Calculates the area of the personal storage
    * @returns {number}
    */
-  calculateAreaExclCompensation = (): number => {
+  calculateAreaExclCompensation (): number {
     const workTouchdown = new WorkTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const focusroom = new Focusroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
