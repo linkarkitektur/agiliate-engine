@@ -6,7 +6,7 @@ Read this quick start file or the [documentation](./docs/index.md) to learn more
 There is a simple client application demonstrating the use of the engine [here](https://linkarkitektur.github.io/agiliate-engine-client/).
 
 ## Configuration
-The application's configuration parameters are stored in the src/config/default.json file. These parameters can be modified to suit the specific needs of your company. The configuration file to use is defined in the constructor of the `Calculator` class in `src/calculator.js`. You can also change the variables and constants in the request, as shown in the example Postman collection, `postman_collection.json`.
+The application's configuration parameters are stored in the [default.json](../src/config/default.json) file. These parameters can be modified to suit the specific needs of your company. The configuration file to use is defined in the constructor of the `Calculator` class in `src/calculator.js`. You can also change the variables and constants in the request, as shown in the example Postman collection, `postman_collection.json`.
 
 ## Installation and requirements
 The application requires either [Bun](https://bun.sh/) or [Docker](https://www.docker.com/) to run. If using Bun run
