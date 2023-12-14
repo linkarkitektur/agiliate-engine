@@ -18,6 +18,7 @@ export interface ICalculationResult {
     grossAreaPerEmployee: number // Gross area per employee
     grossAreaPerDimensionedAttendance: number // Gross area per dimensioned attendance
     grossNetFactor: number // Gross net factor
+    dimensionedAttendance: number // Dimensioned attendance
   }
   /**
    * Object containing all spaces and detailed calculation results

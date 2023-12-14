@@ -114,6 +114,7 @@ export default class Calculator {
         utilityFloorSpacePerEmployee: Math.round(utilityFloorSpacePerEmployee * 100) / 100,
         grossAreaPerDimensionedAttendance: Math.round(grossAreaPerDimensionedAttendance * 100) / 100,
         grossNetFactor: Math.round(grossNetFactor * 100) / 100,
+        dimensionedAttendance: this.#dimensionedAttendance(),
       },
       spaces: spaceResults
     }
