@@ -4,7 +4,7 @@ The "Totals" output is a list of spacial metrics, including:
 - grossArea
 - netArea
 - adjustedAreaInclCompensationWithAdjustmentAndCompensation
-- unadjustedArea
+- unadjustedAddonArea
 - workplaceArea
 - compensationArea
 - employeesPerWorkplaceTypeUnadjusted
