@@ -26,8 +26,8 @@ Utility floor space minus the area of inner walls, showing usable space within.
 **adjustedAreaInclCompensationWithAdjustmentAndCompensation**:
 Workspace area after adding compensation and adjustments for extra space needs.
 
-**unadjustedArea**:
-Initial total space requirement, without adjustments or compensations.
+**unadjustedAddonArea**:
+The sum of of the unadjusted addon area for all spaces with constant `shouldCalculateCompensation` set to `true`.
 
 **workplaceArea**:
 Initial total area for workspaces, before any compensation or adjustments.

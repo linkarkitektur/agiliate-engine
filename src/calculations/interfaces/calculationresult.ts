@@ -5,7 +5,7 @@ export interface ICalculationResult {
    * Object containing various total values.
    */
   totals: {
-    unadjustedArea: number // Total amount of unadjusted area
+    unadjustedAddonArea: number // Total amount of unadjusted addon area
     workplaceArea: number // Total area dedicated to workplaces
     compensationArea: number // Total area used for compensation calculation
     employeesPerWorkplaceTypeUnadjusted: number // Total number of employees per unadjusted workplace type
