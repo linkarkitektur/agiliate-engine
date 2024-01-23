@@ -23,7 +23,7 @@ const headers = {
   'Access-Control-Allow-Headers': 'Content-Type',
 }
 
-const allowedVersions: string[] = ['1']
+const allowedVersions: string[] = ['v1']
 let version: string = allowedVersions[allowedVersions.length - 1]
 
 Bun.serve({
