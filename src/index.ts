@@ -23,6 +23,9 @@ const headers = {
   'Access-Control-Allow-Headers': 'Content-Type',
 }
 
+const versions: string[] = ['v1']
+const currentVersion: string = versions[versions.length - 1]
+
 Bun.serve({
   port: process.env.PORT,
   async fetch(req) {
@@ -32,7 +35,7 @@ Bun.serve({
     }
     const url = new URL(req.url)
     if (url.pathname === "/") return new Response("Agiliate is running", { headers })
-    if (url.pathname === "/calculate") {
+    if (url.pathname === "/calculate" || url.pathname === `/calculate/${currentVersion}`) {
       const jsonReq: IRequest = await req.json() as IRequest
       if (process.env.CACHE === '1') {
         const cachedResult = await redisClient.get(JSON.stringify(jsonReq))
@@ -43,7 +46,7 @@ Bun.serve({
       const variables: IVariable = jsonReq.variables
       const customSpaceConstants: TCustomSpaceConstants|undefined = jsonReq?.customSpaceConstants
       const customConstants: IConstant|undefined = jsonReq?.customConstants
-      const calculator = new Calculator(variables, customSpaceConstants, customConstants)
+      const calculator = new Calculator(variables, customSpaceConstants, customConstants, currentVersion)
       const result = calculator.result()
       if (process.env.CACHE === '1')
         redisClient.set(JSON.stringify(jsonReq), JSON.stringify(result))

@@ -4,7 +4,6 @@ services:
   agiliate-engine:
     build:
       context: .
-    container_name: agiliate-engine
     restart: unless-stopped
     working_dir: /app
     ports:

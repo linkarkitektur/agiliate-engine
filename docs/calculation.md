@@ -2,7 +2,7 @@
 The [Calculator](../src/calculations/calculator.ts) class is the main class responsible for performing calculations. It is initialized with variables, custom space constants, custom constants, and an optional configuration file. The defaults are stored in [default.json](../src/config/default.json) file – this file is used if no configuration file is provided. So, there are two possible ways to change the default constants: In the configuration file or by providing custom constants in the request body.
 
 ```typescript
-new Calculator(variables, customSpaceConstants, customConstants, config)
+new Calculator(variables, customSpaceConstants, customConstants, version, config)
 ```
 
 where the `variables`, `customSpaceConstants`, `customConstants` and `config` are in the JSON body of a POST request:

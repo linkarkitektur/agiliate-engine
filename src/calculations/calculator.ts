@@ -32,13 +32,14 @@ export default class Calculator {
    * @param {IVariable} variables – The variables to use
    * @param {ISpaceConstant} customSpaceConstants – Custom space constants
    * @param {IConstant} customConstants – Custom constants
+   * @param {string} version – Version
    * @param {string} [configFile] – The config file to use
    */
-  constructor(variables: IVariable, customSpaceConstants: TCustomSpaceConstants|undefined, customConstants: IConstant|undefined , configFile: string = 'default.json') {
+  constructor(variables: IVariable, customSpaceConstants: TCustomSpaceConstants|undefined, customConstants: IConstant|undefined, version: string, configFile: string = 'default.json') {
     this.variables = variables
     this.customSpaceConstants = customSpaceConstants
     this.customConstants = customConstants
-    this.config = JSON.parse(readFileSync(join(import.meta.dir, '..', 'config',  configFile), 'utf-8'))
+    this.config = JSON.parse(readFileSync(join(import.meta.dir, '..', `config/versions/${version}`,  configFile), 'utf-8'))
     // Merge custom constants with the default constants
     this.constants = {
       ...this.config.constants,
