@@ -34,7 +34,7 @@ Bun.serve({
       return res
     }
     const url = new URL(req.url)
-    if (url.searchParams.get('version') !== null) { // We have a version parameter
+    if (url.searchParams.get('version') !== null && allowedVersions.includes(url.searchParams.get('version') as string) ) { // We have a valid version parameter
       version = url.searchParams.get('version') as string
     }
     if (url.pathname === "/") return new Response("Agiliate is running", { headers })
