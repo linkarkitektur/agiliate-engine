@@ -22,7 +22,7 @@ export default class Calculator {
   constants: IConstant
   totalWorkplaceArea: number = 0
   totalCompensationArea: number = 0
-  totalUnadjustedArea: number = 0
+  totalUnadjustedAddonArea: number = 0
   totalEmployeesPerWorkplaceTypeUnadjusted: number = 0
   totalAdjustedAreaInclCompensationWithAdjustmentAndCompensation: number = 0
   allEmployeesPerWorkplaceTypeUnadjusted: number[] = []
@@ -67,7 +67,7 @@ export default class Calculator {
     spaceResults = this.#processSpacesSecond(spaceResults)
 
     // Get some more sums
-    this.#calculateTotalUnadjustedArea(spaceResults)
+    this.#calculateTotalUnadjustedAddonArea(spaceResults)
 
     // Get aggregate subspace results, third run
     spaceResults = this.#processSpacesThird(spaceResults)
@@ -106,7 +106,7 @@ export default class Calculator {
         netArea: Math.ceil(netArea),
         utilityFloorSpace: Math.ceil(utilityFloorSpace),
         adjustedAreaInclCompensationWithAdjustmentAndCompensation: Math.ceil(this.totalAdjustedAreaInclCompensationWithAdjustmentAndCompensation),
-        unadjustedArea: Math.ceil(this.totalUnadjustedArea),
+        unadjustedAddonArea: Math.ceil(this.totalUnadjustedAddonArea),
         workplaceArea: Math.ceil(this.totalWorkplaceArea),
         compensationArea: Math.ceil(this.totalCompensationArea),
         employeesPerWorkplaceTypeUnadjusted: this.totalEmployeesPerWorkplaceTypeUnadjusted,
@@ -381,8 +381,8 @@ export default class Calculator {
     const spaceCalculation: ISpaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
     return {
       notAdjustedAddonPart: spaceCalculation.calculateNotAdjustedAddonPart(this.totalWorkplaceArea, this.totalCompensationArea),
-      adjustedAddonArea: spaceCalculation.calculateAdjustedAddonArea(this.totalWorkplaceArea, this.totalCompensationArea, this.totalUnadjustedArea),
-      adjustedAreaInclCompensation: spaceCalculation.calculateAdjustedAreaInclCompensation(this.totalWorkplaceArea, this.totalCompensationArea, this.totalUnadjustedArea),
+      adjustedAddonArea: spaceCalculation.calculateAdjustedAddonArea(this.totalWorkplaceArea, this.totalCompensationArea, this.totalUnadjustedAddonArea),
+      adjustedAreaInclCompensation: spaceCalculation.calculateAdjustedAreaInclCompensation(this.totalWorkplaceArea, this.totalCompensationArea, this.totalUnadjustedAddonArea),
       employeesPerWorkplaceTypeAdjusted: spaceCalculation.calculateEmployeesPerWorkplaceTypeAdjusted(this.totalEmployeesPerWorkplaceTypeUnadjusted, this.allEmployeesPerWorkplaceTypeUnadjusted),
     }
   }
@@ -465,19 +465,19 @@ export default class Calculator {
    * @param {ISpace[]} spaces - The spaces to calculate
    * @returns {number} The total un-adjusted area
    */
-  #calculateTotalUnadjustedArea (spaces: ISpace[]): number {
+  #calculateTotalUnadjustedAddonArea (spaces: ISpace[]): number {
     for (const space of spaces) {
       // If this space has nested spaces, process those
       if (space.spaces) {
-        this.totalUnadjustedArea = this.#calculateTotalUnadjustedArea(space.spaces)
+        this.totalUnadjustedAddonArea = this.#calculateTotalUnadjustedAddonArea(space.spaces)
       } else {
         // Calculate the total area
         if (space.constants.shouldCalculateCompensation) {
-          this.totalUnadjustedArea += space.result.notAdjustedAddonArea ?? 0
+          this.totalUnadjustedAddonArea += space.result.notAdjustedAddonArea ?? 0
         }
       }
     }
-    return this.totalUnadjustedArea
+    return this.totalUnadjustedAddonArea
   }
 
   /**
