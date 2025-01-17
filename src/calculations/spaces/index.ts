@@ -11,6 +11,7 @@ import CellOffice from './workspace/celloffice'
 import Landscape from './workspace/landscape'
 import Projectroom from './workspace/projectroom'
 import Focusroom from './workspace/focusroom'
+import SharedFocusroom from './coworking/focusroom'
 import Quietzone from './workspace/quietzone'
 import CoffeeStation from './workspace/coffeestation'
 import MiniKitchenLounge from './workspace/minikitchenlounge'
@@ -21,6 +22,9 @@ import WorkMiniMeetingroom from './workspace/meetingroom_mini'
 import WorkSmallMeetingroom from './workspace/meetingroom_small'
 import WorkMediumMeetingroom from './workspace/meetingroom_medium'
 import WorkLargeMeetingroom from './workspace/meetingroom_large'
+import CommonSmallMeetingroom from './common area/meetingroom_small'
+import CommonMediumMeetingroom from './common area/meetingroom_medium'
+import CommonLargeMeetingroom from './common area/meetingroom_large'
 import SharedMultiroom from './coworking/multiroom'
 import WorkMultiroom from './workspace/multiroom'
 import WorkReception from './workspace/reception'
@@ -29,6 +33,7 @@ import WorkWaitingZone from './workspace/waitingzone'
 import SharedWaitingZone from './coworking/waitingzone'
 import CopyArchive from './workspace/copyarchive'
 import Cleaning from './workspace/cleaning'
+import SharedCleaning from './coworking/cleaning'
 import WorkPersonalStorage from './workspace/personalstorage'
 import SharedPersonalStorage from './coworking/personalstorage'
 import WorkWardrobe from './workspace/wardrobe'
@@ -52,16 +57,19 @@ import CommonSpecial from './common area/special'
 import SharedProjectroom from './coworking/projectroom'
 import SharedLounge from './coworking/lounge'
 import type MainSpace from './main_space_class'
+import TeamOffice from './coworking/TeamOffice'
+import CommonProjectroom from './common area/projectroom'
+import CommonLounge from './common area/lounge'
 
 /**
  * This function returns the correct space class based on the space name.
  * @param {string} spaceName - The name of the space
  */
 const getSpace = (spaceName: string): typeof MainSpace => {
-  if (spaceName === 'kitchen') return Kitchen
+  if (spaceName === 'commercial kitchen') return Kitchen
   if (spaceName === 'canteen') return Canteen
   if (spaceName === 'auditorium') return Auditorium
-  if (spaceName === 'course') return Course
+  if (spaceName === 'course room') return Course
   if (spaceName === 'anteroom area') return Anteroom
   if (spaceName === 'touchdown – workspace') return WorkTouchdown
   if (spaceName === 'touchdown – coworking') return SharedTouchdown
@@ -74,13 +82,16 @@ const getSpace = (spaceName: string): typeof MainSpace => {
   if (spaceName === 'quiet zone') return Quietzone
   if (spaceName === 'coffee station') return CoffeeStation
   if (spaceName === 'mini kitchen lounge') return MiniKitchenLounge
-  if (spaceName === 'small meeting room – coworking') return SharedSmallMeetingroom
-  if (spaceName === 'medium meeting room – coworking') return SharedMediumMeetingroom
-  if (spaceName === 'large meeting room – coworking') return SharedLargeMeetingroom
-  if (spaceName === 'mini meeting room – workspace') return WorkMiniMeetingroom
-  if (spaceName === 'small meeting room – workspace') return WorkSmallMeetingroom
-  if (spaceName === 'medium meeting room – workspace') return WorkMediumMeetingroom
-  if (spaceName === 'large meeting room – workspace') return WorkLargeMeetingroom
+  if (spaceName === 'small meeting room (4-6 people) – coworking') return SharedSmallMeetingroom
+  if (spaceName === 'medium meeting room (8-12 people) – coworking') return SharedMediumMeetingroom
+  if (spaceName === 'large meeting room (16-30 people) – coworking') return SharedLargeMeetingroom
+  if (spaceName === 'mini meeting room (1 person) – workspace') return WorkMiniMeetingroom
+  if (spaceName === 'small meeting room (4-6 people) – workspace') return WorkSmallMeetingroom
+  if (spaceName === 'medium meeting room (8-12 people) – workspace') return WorkMediumMeetingroom
+  if (spaceName === 'large meeting room (16-30 people) – workspace') return WorkLargeMeetingroom
+  if (spaceName === 'small meeting room (4-6 people) – common area') return CommonSmallMeetingroom
+  if (spaceName === 'medium meeting room (8-12 people) – common area') return CommonMediumMeetingroom
+  if (spaceName === 'large meeting room (16-30 people) – common area') return CommonLargeMeetingroom
   if (spaceName === 'multi room – coworking') return SharedMultiroom
   if (spaceName === 'multi room – workspace') return WorkMultiroom
   if (spaceName === 'reception – workspace') return WorkReception
@@ -89,10 +100,10 @@ const getSpace = (spaceName: string): typeof MainSpace => {
   if (spaceName === 'waiting zone – coworking') return SharedWaitingZone
   if (spaceName === 'copy & archive') return CopyArchive
   if (spaceName === 'cleaning') return Cleaning
-  if (spaceName === 'personal storage – workspace') return WorkPersonalStorage
-  if (spaceName === 'personal storage – coworking') return SharedPersonalStorage
-  if (spaceName === 'wardrobe – workspace') return WorkWardrobe
-  if (spaceName === 'wardrobe – coworking') return SharedWardrobe
+  if (spaceName === 'locker area – workspace') return WorkPersonalStorage
+  if (spaceName === 'locker area – coworking') return SharedPersonalStorage
+  if (spaceName === 'cloak room area – workspace') return WorkWardrobe
+  if (spaceName === 'cloak room area – coworking') return SharedWardrobe
   if (spaceName === 'toilet – workspace') return WorkToilet
   if (spaceName === 'toilet – coworking') return SharedToilet
   if (spaceName === 'hwc – workspace') return WorkHwc
@@ -111,6 +122,11 @@ const getSpace = (spaceName: string): typeof MainSpace => {
   if (spaceName === 'special – common area') return CommonSpecial
   if (spaceName === 'project room – coworking') return SharedProjectroom
   if (spaceName === 'lounge area – coworking') return SharedLounge
+  if (spaceName === 'team office – coworking') return TeamOffice
+  if (spaceName === 'focus room – coworking') return SharedFocusroom
+  if (spaceName === 'cleaning – coworking') return SharedCleaning
+  if (spaceName === 'project room – common area') return CommonProjectroom
+  if (spaceName === 'lounge area – common area') return CommonLounge
   throw new Error(`Space ${spaceName} not found`)
 }
 
