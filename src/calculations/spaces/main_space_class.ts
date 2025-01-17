@@ -1,11 +1,11 @@
-import { ISpace } from '../interfaces/space'
-import { IConfig } from '../interfaces/config'
-import { ISpaceConstant } from '../interfaces/space_constant'
-import { ISpaceCalculation } from '../interfaces/space_calculation'
-import { IConstant } from '../interfaces/constant'
-import { IVariable } from '../interfaces/variable'
+import type { ISpace } from '../interfaces/space'
+import type { IConfig } from '../interfaces/config'
+import type { ISpaceConstant } from '../interfaces/space_constant'
+import type { ISpaceCalculation } from '../interfaces/space_calculation'
+import type { IConstant } from '../interfaces/constant'
+import type { IVariable } from '../interfaces/variable'
 import { findSpace } from '../helpers'
-import { TCustomSpaceConstants } from '../types/custom_space_constant'
+import type { TCustomSpaceConstants } from '../types/custom_space_constant'
 
 /**
  * This is the main class for the spaces. It contains shared methods for all spaces.
@@ -55,11 +55,46 @@ export default class MainSpace implements ISpaceCalculation {
   }
 
   /**
-   * Calculates the area per person for this space.
+   * Calculates the minimum area per person excluding corridor
    * @returns {number}
    */
-  areaPerPersonExcludingCorridor(): number {
-    return this.spaceConstants.areaPerRole / this.spaceConstants.personsPerType
+  minAreaPerPersonExcludingCorridor(): number {
+    return this.areaPerFunction() / this.spaceConstants.personsPerType
+  }
+
+  /**
+   * Calculates the area per person not using compensation factor
+   * @returns {number}
+   */
+  areaPerPersonWithoutCompensationFactor(): number {
+    if (this.minAreaPerPersonExcludingCorridor() < this.constants.governmentMinimumSquaremetersPerWorkSpace) {
+      return this.constants.governmentMinimumSquaremetersPerWorkSpace
+    }
+    return this.minAreaPerPersonExcludingCorridor()
+  }
+
+  /**
+   * Calculates the area per function for the space.
+   */
+  areaPerFunction(): number {
+    if (this.spaceConstants.areaPerFunction !== undefined) {
+      return this.spaceConstants.areaPerFunction
+    }
+    const baseArea = this.spaceConstants.lengthWidth * (this.spaceConstants.lengthDepth + this.spaceConstants.lengthBack)
+    return baseArea * (1 + this.spaceConstants.markupInternalSpaceShare)
+  }
+
+  /**
+   * The minimum square meters required for this space
+   */
+  minimumSquareMeters(): number {
+    if (this.spaceConstants.minimumSquareMeters !== undefined) {
+      return this.spaceConstants.minimumSquareMeters
+    }
+    if (this.spaceConstants.minimumPersons !== undefined) {
+      return this.spaceConstants.minimumPersons * this.areaPerFunction()
+    }
+    return 0
   }
 
   /**
@@ -69,13 +104,13 @@ export default class MainSpace implements ISpaceCalculation {
   #peakAttendance (): number {
     return this.variables.numberOfEmployees * this.variables.peakConcurrencyAttendanceShare
   }
-  
+
   /**
    * This method calculates the added peak area for this space.
    * @returns {number}
    */
   addedPeakArea (): number {
-    return this.#diffPeak() * this.areaPerPersonExcludingCorridor()
+    return this.#diffPeak() * this.minAreaPerPersonExcludingCorridor()
   }
 
   /**
@@ -102,18 +137,19 @@ export default class MainSpace implements ISpaceCalculation {
   sharePerWorkspaceType (): number {
     return 0
   }
-  
+
   /**
    * This method calculates the dimensioned attendance for this space.
    * @todo Write detailed description of this method
    * @returns {number}
+   * @is_in_new_excel
    */
   dimensionedAttendance (): number {
     return (this.variables.numberOfEmployees * this.variables.concurrencyAttendanceShare) +
       (this.variables.numberOfEmployees * this.variables.concurrencyAttendanceShare * this.variables.overCapacityShare) -
       (this.variables.numberOfEmployees * this.variables.homeOfficeAverageShare)
   }
-  
+
   /**
    * This method calculates the difference between peak attendance and dimensioned attendance.
    * @returns {number}
@@ -135,10 +171,14 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   #remainderArea (): number {
-    if (this.spaceConstants.seatPersonRoom === 'seat') {
-      return this.space.result.adjustedAreaInclCompensation! - (this.#areaPerSeatUnAdjusted() * this.calculateNumberOfSeats())
-    } else if (this.spaceConstants.seatPersonRoom === 'room') {
-      return this.space.result.adjustedAreaInclCompensation! - (this.spaceConstants.minimumSquareMeters! * this.calculateNumberOfRooms())
+    if (this.space.result.adjustedAreaInclCompensation === undefined) {
+      return 0
+    }
+    if (this.spaceConstants.personRoomWorkstation === 'person') {
+      return this.space.result.adjustedAreaInclCompensation - (this.#areaPerSeatUnAdjusted() * this.calculateNumberOfSeats())
+    }
+    if (this.spaceConstants.personRoomWorkstation === 'room') {
+      return this.space.result.adjustedAreaInclCompensation - (this.minimumSquareMeters() * this.calculateNumberOfRooms())
     }
     return 0
   }
@@ -156,7 +196,7 @@ export default class MainSpace implements ISpaceCalculation {
    */
   calculateNumberOfRooms (): number {
     if (this.spaceConstants.shouldCalculateNumberOfRooms) {
-      return Math.floor(this.space.result.adjustedAreaInclCompensation! / this.spaceConstants.minimumSquareMeters!)
+      return Math.floor(this.space.result.adjustedAreaInclCompensation! / this.minimumSquareMeters())
     }
     return 0
   }
@@ -268,7 +308,7 @@ export default class MainSpace implements ISpaceCalculation {
   /**
    * Calculates the adjusted area including adjustment and compensation.
    */
-  calculateAdjustedAreaInclCompensationWithAdjustmentAndCompensation (): number {
+  calculateAdjustedAreaInclCompensationWithAdjustmentAndCompensation(): number {
     return this.space.result.adjustedAreaInclCompensation! - this.#remainderArea()
   }
 
@@ -276,7 +316,7 @@ export default class MainSpace implements ISpaceCalculation {
    * Calculates the area excluding compensation. Not implemented in this class.
    * @returns {number}
    */
-  calculateAreaExclCompensation (): number {
+  calculateAreaExclCompensation(): number {
     return 0
   }
 }

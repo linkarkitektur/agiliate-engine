@@ -5,7 +5,7 @@ export default class CommonExerciseRoom extends MainSpace {
    * Area per person excluding corridor
    */
   areaPerPersonExcludingCorridor (): number {
-    return this.spaceConstants.areaPerRole / this.spaceConstants.personsPerType * this.spaceConstants.unitsPerPerson!
+    return this.areaPerFunction() / this.spaceConstants.personsPerType * this.spaceConstants.unitsPerPerson!
   }
 
   /**
@@ -14,7 +14,7 @@ export default class CommonExerciseRoom extends MainSpace {
    */
   calculateAreaExclCompensation (): number {
     if (this.variables.accessToExercise) {
-      return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()
+      return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor()
     }
     return 0
   }

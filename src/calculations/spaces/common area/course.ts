@@ -7,7 +7,7 @@ export default class Course extends MainSpace {
    */
   calculateAreaExclCompensation (): number {
     if (this.variables.accessToCourseSpace) {
-      return this.dimensionedAttendance() * this.spaceConstants.areaPerRole / this.spaceConstants.personsPerType
+      return this.dimensionedAttendance() * this.areaPerFunction() / this.spaceConstants.personsPerType
     }
     return 0
   }

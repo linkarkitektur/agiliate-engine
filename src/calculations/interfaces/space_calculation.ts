@@ -10,4 +10,6 @@ export interface ISpaceCalculation {
   dimensionedAttendance: () => number // Function to calculate the dimensioned attendance
   calculateNumberOfRooms: () => number // Function to calculate the number of rooms, if applicable
   calculateNumberOfSeats: () => number // Function to calculate the number of seats, if applicable
+  areaPerPersonWithoutCompensationFactor: () => number // The area per person excluding the compensation factor
+  areaPerFunction: () => number // The area per function
 }

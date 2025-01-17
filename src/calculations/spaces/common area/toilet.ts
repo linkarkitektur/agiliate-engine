@@ -5,7 +5,7 @@ export default class CommonToilet extends MainSpace {
    * Area per person excluding corridor
    */
   areaPerPersonExcludingCorridor (): number {
-    return this.spaceConstants.areaPerRole / this.spaceConstants.personsPerType * this.spaceConstants.unitsPerPerson!
+    return this.areaPerFunction() / this.spaceConstants.personsPerType * this.spaceConstants.unitsPerPerson!
   }
 
   /**
@@ -13,6 +13,6 @@ export default class CommonToilet extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {
-    return this.dimensionedAttendance() * this.areaPerPersonExcludingCorridor()
+    return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor()
   }
 }

@@ -13,11 +13,10 @@ export default class Dummy extends MainSpace {
       className: "Dummy",
       result: {},
       constants: {
-        seatPersonRoom: "person",
-        areaPerRole: 0,
+        personRoomWorkstation: "person",
+        areaPerFunction: 0,
         personsPerType: 1,
         minimumPersons: 1,
-        minimumSquareMeters: 0,
         shouldCalculateCompensation: false,
         countsTowardsWorkspaceArea: false,
         adhereToGovernmentMinimum: false

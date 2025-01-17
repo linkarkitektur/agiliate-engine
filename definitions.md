@@ -1,0 +1,157 @@
+### Contains translations of cells in Excel to JavaScript
+
+Sheets in Excel:
+
+- Tenant profile sheet
+  General consideration: Do we need the booleans for share types? If > 0 true else false?
+  - Touchdown share (TD): O5 (implemented as touchdownShare)
+  - Dock-in share (DI): O6 (implemented as dockinShare)
+  - Cell Office share (CK): O7 (implemented as cellOfficeShare)
+  - Open landscape share (LO): O8 (implemented as landscapeShare)
+  - Projectroom share (PR): O9 (implemented as projectroomShare)
+  - Focusroom share (FR): O10 (implemented as focusroomShare)
+  - Quiet zone share (SS): O11 (implemented as quietzoneShare)
+  - Mini / digital meeting room share (MM): O13 (implemented as miniMeetingroomShare)
+  - Small meeting room share (SM): O14 (implemented as smallMeetingroomShare)
+  - Medium meeting room share (MM): O15 (implemented as mediumMeetingroomShare)
+  - Large meeting room share (LM): O16 (implemented as largeMeetingroomShare)
+  - Number of employees: V5 (implemented as numberOfEmployees)
+  - Occupancy share: V7 (implemented as concurrencyAttendanceShare) (check if this is still correct with calculations)
+  - Workstation capacity share: V8 (implemented as workstationCapacityShare) (new variable)
+  - Over capacity share: V9 (implemented as overCapacityShare)
+  - Peak capacity share: V10 (implemented as peakConcurrencyAttendanceShare)
+  - Work from home share (WFH): (implemented as homeOfficeAverageShare)
+  - Add peak markup to workstation capacity [Y/N]: AA8 (implemented as addPeakMarkupToWorkstationCapacityShare) (new variable)
+  - Compensation factor for workstations [Y/N]: V13 (implemented as useCompensationFactorForWorkstations) (new variable)
+  - Tenant reception [Y/N]: V16 (implemented as accessToTenantReception) (new variable) (old variable was accessToReception)
+  - Common area reception [Y/N]: V17 (implemented as accessToCommonAreaReception) (new variable) (old variable was accessToReception)
+  - Canteen [Y/N]: V19 (implemented as accessToCanteen)
+  - Shared use of canteen [Y/N]: Z19 (implemented as sharedUseOfCanteen) (new variable)
+  - Auditorium [Y/N]: V20 (implemented as accessToAuditorium)
+  - Number of seats in auditorium: Z20 (implemented as seatsInAuditorium)
+  - Course room [Y/N]: V21 (implemented as accessToCourseSpace)
+  - Number of seats in course room: Z21 (implemented as seatsInCourseSpace) (new variable)
+  - Fitness room [Y/N]: V22 (implemented as accessToExercise)
+  - Cell office [Y/N]: V23 (implemented as accessToCellOffice)
+  - Shared project- & meeting rooms in Common area [Y/N]: V25 (implemented as accessToCommonAreaProjectAndMeetingRooms) (new variable)
+	- Coworking [Y/N]: V27 (implemented as accessToCoworking)
+	- Share of access to project- & meeting rooms in Common area: Z25 (implemented as accessToCommonAreaProjectAndMeetingRoomsShare) (new variable)
+	- Share of access to Coworking: Z27 (implemented as coworkingShare)
+  - Custom functions [Y/N]: V29 (not needed, like Z28, Z29 and Z30, implemented in areas below already)
+    - specialAreaOffice
+    - specialAreaShared
+    - specialAreaCommon
+
+- Workspace distribution motor sheet
+  - J11 = Tenant profile sheet!O5 (Touchdown share (TD))
+  - K11 = Tenant profile sheet!O6 (Dock-in share (DI))
+  - L11 = Tenant profile sheet!O7 (Cell Office share (CK))
+  - M11 = Tenant profile sheet!O8 (Open landspace share (LO))
+  - N11 = Tenant profile sheet!O9 (Projectroom share (PR))
+  - O11 = Tenant profile sheet!O10 (Focusroom share (FR))
+  - P11 = Tenant profile sheet!O11 (Quiet zone share (SS))
+  - Flexible share = J11 + K11
+  - Static share = L11 + M11
+  - Collaboration share = N11
+  - Concentration / focus share = O11 + P11
+  - Q15 = SUM(J15:P15)
+  - J18 = J11 + K11
+  - B20 = 1
+  - B21 = 1
+  - B22 = 1
+  - B23 = 1
+  - J15 = J16 = J18 * B20
+  - L15 = L16 = L18 * B21
+  - N15 = N16 = N18 * B22
+  - O15 = O16 = O18 * B23
+  - J14 = Flexible share intermediate calculation = J15/Q15
+  - L14 = Static share intermediate calculation = L15/Q15
+  - N14 = Collaboration share intermediate calculation = N15/Q15
+  - O14 = Concentration intermediate calculation = O15/Q15
+  - J12 = Touchdown share (TD) for Main engine sheet = (J14*J11) / (J11+K11)
+  - K12 = Dock-in share (DI) for Main engine sheet = (J14*K11) / (J11+K11)
+  - L12 = Cell Office share (CK) for Main engine sheet = (L14*L11) / (L11+M11)
+  - M12 = Open landspace share (LO) for Main engine sheet = (L14*M11) / (L11+M11)
+  - N12 = Projectroom share (PR) for Main engine sheet = N14
+  - O12 = Focusroom share (FR) for Main engine sheet = (O14*O11) / (O11+P11)
+  - P12 = Quiet zone share (SS) for Main engine sheet = (O14*P11) / (O11+P11)
+
+- Room constants sheet
+  - Calculation per workstation / person / room [J2:J73] – current TS constant "seatPersonRoom" (seat -> workstation) - is now "personRoomWorkstation"
+  - Area per function [O2:O73] – current TS constant "areaPerRole" (room -> function)
+  - Number of persons per workstation/ room (No.) [P2:P73] – current TS constant "personsPerType"
+  - Number of units per person (fraction) [Q2:Q73] – current "unitsPerPerson"
+  - Min. amount of persons per unit (No.) [R2:R73] – current "minimumPersons"
+  - Min. area (m2) [S2:S73] – current "minimumSquareMeters"
+  - Markup for locker area  (X) [T2:T73] – current "surchargeInternalCorridorShare"
+  - Requires minimum 6 m2 (X) [U2:U73] – current "adhereToGovernmentMinimum"
+  - Subject to compensation factor (X) [V2:V73] – current "shouldCalculateCompensation"
+  - Min. area per person excl. walkway (m2) [W2:W73] – new (but almost always the same as "areaPerRole")
+  - Area per person not using compensation factor (m2) [Y2:Y73] – new
+
+- Room program sheet (some examples)
+  - [J4:J81] = Non-adjusted area per seat (m2)
+  - [L4:L81] = Adjusted og Non adjuested  # of seats (No.) taken from Main engine sheet = IF (D4>0 AND Tenant profile sheet!AA8 == Y) THEN Main engine sheet!AI6 ELSE IF (D4>0 AND Tenant profile sheet!AA8 == N) THEN Main engine sheet!AK6 ELSE 0
+  - P4 = Room constants sheet!R2
+  - [M4:M81] = # of seats (No.) = IF (L4 > 0) THEN MAX(L4;P4) ELSE 0 (This means it takes the max of the adjusted/ non-adjusted number of seats and the room constants minimum number of seats)
+  - Flexible workspace
+    - Touchdown
+      - Q4 = Room constants sheet!S2
+      - D4 = Non- adjusted area (BRA) (m2) = Main engine sheet!L6
+      - H4 = Area per function (m2) = F4
+      - K4 = Area per seat (m2) (not changed) = IF (F4 > 0) THEN F4/M4 ELSE 0
+      - L4 = Adjusted or Non adjuested # of seats (No.) taken from Main engine sheet = IF (Tenant profile sheet!AA8 == Y AND D4>0) THEN Main engine sheet!AI6 ELSE IF (Tenant profile sheet!AA8 == N AND D4>0) THEN Main engine sheet!AK6 ELSE 0
+      - J4 = Non- adjusted area per seat (m2) = IF (D4>0) THEN Room constants sheet!W2 ELSE 0
+      - M4 = # of seats (No.) = IF (L4>0) THEN MAX(L4;Room constants sheet!R2) ELSE 0
+      - E4 = Non adjusted rest area (m2) = D4 - MAX(J4*L4;J4*M4)
+      - F4 = Total area (m2) = IF (D4 > 0) THEN MAX(Q4;Main engine sheet!K6) ELSE 0
+  - Project workspace
+    - Project room
+      - D8 = Non- adjusted area (BRA) (m2) = Main engine sheet!L10
+      - E8 = Non adjusted rest area (m2) = D8 - (I8 * N8) (not changed)
+      - F8 = Total area (m2) = IF (D8 > 0) THEN MAX(Q8;Main engine sheet!K10) ELSE 0
+      - H8 = Area per function (m2) = I8 * N8
+      - I8 = Area per room (m2) = IF D8 > 0 THEN Q8 ELSE 0
+      - J8 = Non- adjusted area per seat (m2) = IF (D8 > 0) THEN D8/L8 ELSE 0
+      - K8 = Area per seat (m2) = IF (F8 > 0) THEN F8/M8 ELSE 0
+      - L8 = Adjusted og Non adjuested  # of seats (No.) taken from Main engine sheet = IF (D8 > 0) THEN Main engine sheet!AK10 ELSE 0
+      - M8 = # of seats (No.) = IF (L8 > 0) THEN MAX(L8;Room constants sheet!R6) ELSE 0
+      - Q8 = Minimum area of function (m2) = Room constants sheet!S6
+      - P8 = Minimum of units per function = Room constants sheet!R6
+  - Meeting room areas
+    - Meeting rooms
+      - D14 = Non- adjusted area (BRA) (m2) = Main engine sheet!L15
+        - Small (4-6 pers)
+
+
+
+- Main engine sheet
+  - [V6:V56] = Number of employees (No.) = Tenant profile sheet!V5
+  - [Y6:Y56] = Peak capacity share (%) = Tenant profile sheet!V10
+  - [AE6:AE56] = Peak employees (No.) = V6*Y6
+  - [AA6:AA56] = Work from home (%) = Tenant profile sheet!V11
+  - [Z6:Z56] = Over capacity (%) = Tenant profile sheet!V9
+  - [X6:X56] = Undercoverage (%) = Workstation capacity share = Tenant profile sheet!V8 (Is this right?)
+  - [AC6:AC56] = Non adjusted workstation capacity - i.e.  (No.) = (V6*X6) + (V6*X6*Z6) - (V6*AA6)
+  - [AG6:AG56] = Divergence Peak/ Workstation capacity (No.) = AE6-AC6 (ER DEN DET SAMME hele vejen ned?)
+  - [AK6:AK56] =
+  - [AJ6:AJ56] = Markup employees per type of workstation at peak (No.) = AG6 * AM6
+  - AL67 = SUM(AL6:AL66)
+  - AK68 = Missing sqm = AC6 - AL67
+  - AB6 = Occupancy employees (No.) = previously dimensionedAttendance = (V6 * W6) + (V6 *W6 * Z6) - (V6 * AA6) (implemented as dimensionedAttendance)
+  - Work space
+    - Flexible workspace
+      - Touchdown
+        - AN6 = Area per employee = IF (Tenant profile sheet!V13 == Y) THEN Room constants sheet'!W2 ELSE Room constants sheet'!Y2
+        - AL6 = Non- adjusted employees per type of workstation (No.) = AC6*AM6
+        - AM6 = Share per type of workstation (%) = Workspace distribution motor sheet!J12 - AM24
+        - AK6 = Some kind of adjustment if missing sqm = IF (AK68!=0 AND AL6 == MAX(AL6:AL66)) THEN (AC6*AM6)+AK68 ELSE AC6*AM6
+        - AJ6 = Markup employees per type of workstation at peak (No.) = AG6*AM6
+        - AI6 = Adjusted employees per type of workstation (No.) = AJ6+AK6
+        - M6 = Area excluding compensation = IF (Tenant profile sheet!AA8 == Y) THEN AI6*AN6 ELSE AL6*AN6
+        - L6 = Area incl. compensation factor (m2) = ROUND(Area excluding compensation) (round up to 1 if it is between 0 and 1)
+        - K6 = Area incl. compensation factor adjusted for room program (m2) = Area incl. compensation factor (m2) - Room program sheet!E4
+  - Coworking
+    - Flexible workspace
+      - Touchdown
+        - AM24 = Share per type of workstation (%) = IF (Tenant profile sheet!V27 == Y) THEN (Workspace distribution motor sheet!J12 * Tenant profile sheet!Z27

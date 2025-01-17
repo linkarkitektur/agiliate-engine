@@ -62,7 +62,7 @@ export default class Calculator {
     this.#calculateTotalWorkplaceArea(spaceResults)
     this.#calculateTotalCompensationArea(spaceResults)
     this.#calculateTotalEmployeesPerWorkspaceTypeUnadjusted(spaceResults)
-    
+
     // Get aggregate subspace results, second run
     spaceResults = this.#processSpacesSecond(spaceResults)
 
@@ -76,7 +76,7 @@ export default class Calculator {
     spaceResults = this.#processSpacesFourth(spaceResults)
 
     this.#calculateTotalAdjustedAreaInclCompensationAndAdjustment(spaceResults)
-    
+
     // Get aggregate subspace results, second run (not checked yet! maybe another sumresults function only calculating the needed)
     for (const space of spaceResults) {
       space.result = this.#sumResults(space)
@@ -133,7 +133,6 @@ export default class Calculator {
       className: 'Dummy',
       result,
       constants: {
-        areaPerRole: 0,
         personsPerType: 0,
         shouldCalculateCompensation: false,
         adhereToGovernmentMinimum: false,
@@ -239,14 +238,14 @@ export default class Calculator {
         childSum_numberOfRooms += r.numberOfRooms || 0
       }
     }
-  
+
     // Use the sum if we don't already have a result
     space.result.areaExclCompensation = space.result.areaExclCompensation || childSum_areaExclCompensation
     space.result.adjustedAreaInclCompensation = space.result.adjustedAreaInclCompensation || childSum_adjustedAreaInclCompensation
     space.result.notAdjustedAddonArea = space.result.notAdjustedAddonArea || childSum_notAdjustedAddonArea
     space.result.adjustedAreaInclCompensationWithAdjustmentAndCompensation = space.result.adjustedAreaInclCompensationWithAdjustmentAndCompensation || childSum_adjustedAreaInclCompensationWithAdjustmentAndCompensation
     space.result.numberOfRooms = space.result.numberOfRooms || childSum_numberOfRooms
-  
+
     // Return the total sum
     return {
       areaExclCompensation: space.result.areaExclCompensation,
@@ -267,7 +266,7 @@ export default class Calculator {
 
   /**
    * Loop through all spaces and calculate the first run
-   * @param {ISpace[]} spaces 
+   * @param {ISpace[]} spaces
    * @returns {ISpace[]}
    */
   #processSpacesFirst(spaces: ISpace[]): ISpace[] {

@@ -7,7 +7,7 @@ export default class Auditorium extends MainSpace {
    */
   calculateAreaExclCompensation (): number {
     if (this.variables.accessToAuditorium) {
-      return this.spaceConstants.areaPerRole / this.spaceConstants.personsPerType * this.variables.seatsInAuditorium
+      return this.areaPerFunction() / this.spaceConstants.personsPerType * this.variables.seatsInAuditorium
     }
     return 0
   }
