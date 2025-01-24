@@ -4,8 +4,8 @@ export default class SharedToilet extends MainSpace {
   /**
    * Area per person excluding corridor
    */
-  areaPerPersonExcludingCorridor (): number {
-    return this.areaPerFunction() / this.spaceConstants.personsPerType * this.spaceConstants.unitsPerPerson!
+  minAreaPerPersonExcludingCorridor (): number {
+    return this.areaPerFunction() / this.spaceConstants.personsPerType * (this.spaceConstants.unitsPerPerson || 1) * this.constants.usageRatioCommonArea
   }
 
   /**
@@ -18,4 +18,5 @@ export default class SharedToilet extends MainSpace {
     }
     return 0
   }
+
 }

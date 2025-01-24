@@ -4,15 +4,16 @@ export default class CommonHwc extends MainSpace {
   /**
    * Area per person excluding corridor
    */
-  areaPerPersonExcludingCorridor (): number {
-    return this.areaPerFunction() / this.spaceConstants.personsPerType * this.spaceConstants.unitsPerPerson!
+  minAreaPerPersonExcludingCorridor (): number {
+    return this.areaPerFunction() / this.spaceConstants.personsPerType * (this.spaceConstants.unitsPerPerson || 1) * this.constants.usageRatioCommonArea
   }
 
   /**
-   * Calculates the area of the common HWC
+   * Calculates the area of the shared toilet.
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor()
   }
+
 }

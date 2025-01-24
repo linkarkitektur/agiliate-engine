@@ -14,5 +14,11 @@ export interface IConstant {
    * @minimum 0
    * @maximum 1
    */
-  innerwallsAddonShare: number 
+  innerwallsAddonShare: number
+  /**
+   * Usage ratio common area
+   * @minimum 0
+   * @maximum 1
+   */
+  usageRatioCommonArea: number
 }
