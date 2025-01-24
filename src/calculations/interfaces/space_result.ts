@@ -11,4 +11,6 @@ export interface ISpaceResult {
   utilityFloorSpace?: number // The utility floor space of the space
   numberOfRooms?: number // The number of rooms, if applicable
   numberOfSeats?: number // The number of seats, if applicable
+  nonAdjustedRestArea?: number // The non-adjusted rest area
+  adjustmentForMissingSquareMeters?: number // The missing adjustment
 }

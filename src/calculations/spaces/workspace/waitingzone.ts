@@ -7,9 +7,9 @@ export default class WorkWaitingZone extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {
-    if (this.variables.accessToReception) {
+    if (this.variables.accessToTenantReception) {
       const sharedWaitingZone = new SharedWaitingZone(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor() - sharedWaitingZone.calculateAreaExclCompensation()
+      return this.dimensionedAttendance() * this.areaPerEmployee() - sharedWaitingZone.calculateAreaExclCompensation()
     }
     return 0
   }

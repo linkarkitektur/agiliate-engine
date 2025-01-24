@@ -6,48 +6,50 @@
   },
   "spaces": [
     {
-      "name": "work related area",
+      "name": "workspace",
       "shouldCalculateCorridor": true,
       "shouldCalculateInnerwalls": true,
       "result": {},
       "spaces": [
         {
-          "name": "flexible seats",
+          "name": "flexible workspace",
           "result": {},
           "spaces": [
             {
-              "name": "touchdown – work related area",
+              "name": "touchdown – workspace",
               "className": "WorkTouchdown",
               "result": {},
               "constants": {
+                "lengthWidth": 1,
+                "lengthDepth": 0.6,
+                "lengthBack": 1.2,
+                "markupInternalSpaceShare": 0.06,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 1.90,
                 "personsPerType": 1,
                 "minimumPersons": 4,
-                "minimumSquareMeters": 7.6,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false,
                 "requiresAdditionalStorage": true,
-                "surchargeInternalCorridorShare": 0.06,
                 "shouldCalculateNumberOfSeats": true
               }
             },
             {
-              "name": "dock in – work related area",
+              "name": "dock in – workspace",
               "className": "WorkDockin",
               "result": {},
               "constants": {
+                "lengthWidth": 1.6,
+                "lengthDepth": 0.8,
+                "lengthBack": 1.2,
+                "markupInternalSpaceShare": 0.31,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 4.20,
                 "personsPerType": 1,
                 "minimumPersons": 2,
-                "minimumSquareMeters": 8.4,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": true,
                 "requiresAdditionalStorage": true,
-                "surchargeInternalCorridorShare": 0.31,
                 "shouldCalculateNumberOfSeats": true
               }
             }
@@ -62,15 +64,15 @@
               "className": "CellOffice",
               "result": {},
               "constants": {
+                "areaPerFunction": 8.0,
                 "personRoomWorkstation": "room",
-                "areaPerRole": 8.0,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 8.0,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": false,
-                "shouldCalculateNumberOfRooms": true
+                "shouldCalculateNumberOfRooms": true,
+                "shouldCalculateNumberOfSeats": true
               }
             },
             {
@@ -78,16 +80,17 @@
               "className": "Landscape",
               "result": {},
               "constants": {
+                "lengthWidth": 2.0,
+                "lengthDepth": 0.8,
+                "lengthBack": 1.2,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 5.44,
                 "personsPerType": 1,
                 "minimumPersons": 4,
-                "minimumSquareMeters": 21.8,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": true,
                 "requiresAdditionalStorage": true,
-                "surchargeInternalCorridorShare": 0.36,
+                "markupInternalSpaceShare": 0.36,
                 "shouldCalculateNumberOfSeats": true
               }
             }
@@ -102,11 +105,10 @@
               "className": "Projectroom",
               "result": {},
               "constants": {
+                "areaPerFunction": 6.0,
                 "personRoomWorkstation": "room",
-                "areaPerRole": 6.0,
                 "personsPerType": 1,
                 "minimumPersons": 6,
-                "minimumSquareMeters": 36.0,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": true,
@@ -125,11 +127,12 @@
               "className": "Focusroom",
               "result": {},
               "constants": {
+                "lengthWidth": 2.4,
+                "lengthDepth": 2.5,
+                "lengthBack": 0,
                 "personRoomWorkstation": "room",
-                "areaPerRole": 6.0,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 6.0,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": false,
@@ -142,16 +145,17 @@
               "className": "Quietzone",
               "result": {},
               "constants": {
+                "lengthWidth": 1.6,
+                "lengthDepth": 0.8,
+                "lengthBack": 1.2,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 4.2,
                 "personsPerType": 1,
                 "minimumPersons": 4,
-                "minimumSquareMeters": 16.8,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": false,
                 "requiresAdditionalStorage": true,
-                "surchargeInternalCorridorShare": 0.36,
+                "markupInternalSpaceShare": 0.31,
                 "shouldCalculateNumberOfSeats": true
               }
             }
@@ -166,15 +170,14 @@
               "className": "CoffeeStation",
               "result": {},
               "constants": {
+                "areaPerFunction": 4.0,
                 "personRoomWorkstation": "room",
-                "areaPerRole": 4.0,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 4.0,
                 "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false,
-                "unitsPerPerson": 0.02,
+                "unitsPerPerson": 0.013,
                 "shouldCalculateNumberOfRooms": true
               }
             },
@@ -183,11 +186,10 @@
               "className": "MiniKitchenLounge",
               "result": {},
               "constants": {
+                "areaPerFunction": 1.4,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 1.2,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 1.2,
                 "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
@@ -200,15 +202,16 @@
           "result": {},
           "spaces": [
             {
-              "name": "multi room – work related area",
+              "name": "multi room – workspace",
               "className": "WorkMultiroom",
               "result": {},
               "constants": {
+                "lengthWidth": 2.4,
+                "lengthDepth": 2.5,
+                "lengthBack": 0,
                 "personRoomWorkstation": "room",
-                "areaPerRole": 6.0,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 6.0,
                 "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false,
@@ -220,15 +223,16 @@
               "result": {},
               "spaces": [
                 {
-                  "name": "mini meeting room – work related area",
+                  "name": "mini meeting room (1 person) – workspace",
                   "className": "WorkMiniMeetingroom",
                   "result": {},
                   "constants": {
-                    "personRoomWorkstation": "room",
-                    "areaPerRole": 1.8,
+                    "lengthWidth": 1.2,
+                    "lengthDepth": 1.5,
+                    "lengthBack": 0,
+                    "personRoomWorkstation": "workstation",
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 1.8,
                     "shouldCalculateCompensation": true,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -236,15 +240,14 @@
                   }
                 },
                 {
-                  "name": "small meeting room – work related area",
+                  "name": "small meeting room (4-6 people) – workspace",
                   "className": "WorkSmallMeetingroom",
                   "result": {},
                   "constants": {
-                    "personRoomWorkstation": "room",
-                    "areaPerRole": 2.2,
+                    "areaPerFunction": 2.18,
+                    "personRoomWorkstation": "workstation",
                     "personsPerType": 1,
                     "minimumPersons": 4,
-                    "minimumSquareMeters": 8.7,
                     "shouldCalculateCompensation": true,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -252,15 +255,14 @@
                   }
                 },
                 {
-                  "name": "medium meeting room – work related area",
+                  "name": "medium meeting room (8-12 people) – workspace",
                   "className": "WorkMediumMeetingroom",
                   "result": {},
                   "constants": {
-                    "personRoomWorkstation": "room",
-                    "areaPerRole": 1.4,
+                    "areaPerFunction": 1.38,
+                    "personRoomWorkstation": "workstation",
                     "personsPerType": 1,
                     "minimumPersons": 8,
-                    "minimumSquareMeters": 11.0,
                     "shouldCalculateCompensation": true,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -268,15 +270,14 @@
                   }
                 },
                 {
-                  "name": "large meeting room – work related area",
+                  "name": "large meeting room (16-30 people) – workspace",
                   "className": "WorkLargeMeetingroom",
                   "result": {},
                   "constants": {
-                    "personRoomWorkstation": "room",
-                    "areaPerRole": 1.3,
+                    "areaPerFunction": 1.31,
+                    "personRoomWorkstation": "workstation",
                     "personsPerType": 1,
                     "minimumPersons": 16,
-                    "minimumSquareMeters": 21.0,
                     "shouldCalculateCompensation": true,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -296,30 +297,30 @@
               "result": {},
               "spaces": [
                 {
-                  "name": "reception – work related area",
+                  "name": "reception – workspace",
                   "className": "WorkReception",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.1,
+                    "minimumSquareMeters": 8.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.14,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 10.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false
                   }
                 },
                 {
-                  "name": "waiting zone – work related area",
+                  "name": "waiting zone – workspace",
                   "className": "WorkWaitingZone",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.06,
+                    "minimumSquareMeters": 4.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.06,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 4.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false
@@ -328,19 +329,19 @@
               ]
             },
             {
-              "name": "copy/archive/cleaning",
+              "name": "maintenance",
               "result": {},
               "spaces": [
                 {
-                  "name": "copy archive",
+                  "name": "copy & archive",
                   "className": "CopyArchive",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.25,
+                    "minimumSquareMeters": 8.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.14,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 10.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -352,11 +353,11 @@
                   "className": "Cleaning",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.04,
+                    "minimumSquareMeters": 2.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.02,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 2.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -366,49 +367,51 @@
               ]
             },
             {
-              "name": "personal storage – work related area",
+              "name": "locker area – workspace",
               "className": "WorkPersonalStorage",
               "result": {},
               "constants": {
+                "lengthWidth": 0.4,
+                "lengthDepth": 0.6,
+                "lengthBack": 1.2,
+                "markupInternalSpaceShare": 0.0,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 0.7,
                 "personsPerType": 3,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 3.0,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
               }
             },
             {
-              "name": "wardrobe – work related area",
+              "name": "cloak room area – workspace",
               "className": "WorkWardrobe",
               "result": {},
               "constants": {
+                "areaPerFunction": 0.21,
+                "minimumSquareMeters": 2.0,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 0.21,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 2.0,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
               }
             },
             {
-              "name": "restroom – work related area",
+              "name": "restroom – workspace",
               "result": {},
               "spaces": [
                 {
-                  "name": "toilet – work related area",
+                  "name": "toilet – workspace",
                   "className": "WorkToilet",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 2.10,
+                    "minimumSquareMeters": 2.0,
                     "personRoomWorkstation": "room",
-                    "areaPerRole": 2.10,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 2.0,
                     "unitsPerPerson": 0.067,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
@@ -417,15 +420,15 @@
                   }
                 },
                 {
-                  "name": "hwc – work related area",
+                  "name": "hwc – workspace",
                   "className": "WorkHwc",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 6.0,
+                    "minimumSquareMeters": 6.0,
                     "personRoomWorkstation": "room",
-                    "areaPerRole": 6.0,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 6.0,
                     "unitsPerPerson": 0.01,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
@@ -438,11 +441,11 @@
           ]
         },
         {
-          "name": "special – work related area",
+          "name": "special – workspace",
           "result": {},
           "spaces": [
             {
-              "name": "special – work related area",
+              "name": "special – workspace",
               "className": "WorkSpecial",
               "result": {},
               "constants": {
@@ -457,70 +460,74 @@
       ]
     },
     {
-      "name": "shared area",
+      "name": "coworking",
       "shouldCalculateCorridor": true,
       "shouldCalculateInnerwalls": true,
       "result": {},
       "spaces": [
         {
-          "name": "flexible seats",
+          "name": "flexible workspace",
           "result": {},
           "spaces": [
             {
-              "name": "touchdown – shared area",
+              "name": "touchdown – coworking",
               "className": "SharedTouchdown",
               "result": {},
               "constants": {
+                "lengthWidth": 1.0,
+                "lengthDepth": 0.6,
+                "lengthBack": 1.2,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 1.90,
                 "personsPerType": 1,
                 "minimumPersons": 4,
-                "minimumSquareMeters": 7.6,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false,
                 "requiresAdditionalStorage": true,
-                "surchargeInternalCorridorShare": 0.06,
+                "markupInternalSpaceShare": 0.06,
                 "shouldCalculateNumberOfSeats": true
               }
             },
             {
-              "name": "dock in – shared area",
+              "name": "dock in – coworking",
               "className": "SharedDockin",
               "result": {},
               "constants": {
+                "lengthWidth": 1.6,
+                "lengthDepth": 0.8,
+                "lengthBack": 1.2,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 4.20,
                 "personsPerType": 1,
                 "minimumPersons": 2,
-                "minimumSquareMeters": 8.4,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": true,
                 "requiresAdditionalStorage": true,
-                "surchargeInternalCorridorShare": 0.31,
+                "markupInternalSpaceShare": 0.31,
                 "shouldCalculateNumberOfSeats": true
               }
             }
           ]
         },
         {
-          "name": "social area",
+          "name": "static workspace",
           "result": {},
           "spaces": [
             {
-              "name": "lounge area – shared area",
-              "className": "SharedLounge",
+              "name": "team office – coworking",
+              "className": "TeamOffice",
               "result": {},
               "constants": {
+                "lengthWidth": 2.0,
+                "lengthDepth": 0.8,
+                "lengthBack": 1.2,
+                "markupInternalSpaceShare": 0.36,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 0.95,
                 "personsPerType": 1,
-                "minimumPersons": 1,
-                "minimumSquareMeters": 40.0,
-                "shouldCalculateCompensation": true,
-                "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "minimumPersons": 4,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": true
               }
             }
           ]
@@ -530,15 +537,14 @@
           "result": {},
           "spaces": [
             {
-              "name": "project room – shared area",
+              "name": "project room – coworking",
               "className": "SharedProjectroom",
               "result": {},
               "constants": {
+                "areaPerFunction": 6.0,
                 "personRoomWorkstation": "room",
-                "areaPerRole": 6.0,
                 "personsPerType": 1,
                 "minimumPersons": 6,
-                "minimumSquareMeters": 36.0,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": true,
@@ -547,16 +553,16 @@
               }
             },
             {
-              "name": "multi room – shared area",
+              "name": "multi room – coworking",
               "className": "SharedMultiroom",
               "result": {},
               "constants": {
+                "lengthWidth": 2.4,
+                "lengthDepth": 2.5,
                 "personRoomWorkstation": "room",
-                "areaPerRole": 1.8,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 6.0,
-                "shouldCalculateCompensation": true,
+                "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false,
                 "shouldCalculateNumberOfRooms": true
@@ -567,15 +573,14 @@
               "result": {},
               "spaces": [
                 {
-                  "name": "small meeting room – shared area",
+                  "name": "small meeting room (4-6 people) – coworking",
                   "className": "SharedSmallMeetingroom",
                   "result": {},
                   "constants": {
-                    "personRoomWorkstation": "room",
-                    "areaPerRole": 2.2,
+                    "areaPerFunction": 2.18,
+                    "personRoomWorkstation": "workstation",
                     "personsPerType": 1,
                     "minimumPersons": 4,
-                    "minimumSquareMeters": 8.7,
                     "shouldCalculateCompensation": true,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -583,15 +588,14 @@
                   }
                 },
                 {
-                  "name": "medium meeting room – shared area",
+                  "name": "medium meeting room (8-12 people) – coworking",
                   "className": "SharedMediumMeetingroom",
                   "result": {},
                   "constants": {
-                    "personRoomWorkstation": "room",
-                    "areaPerRole": 1.4,
+                    "areaPerFunction": 1.38,
+                    "personRoomWorkstation": "workstation",
                     "personsPerType": 1,
                     "minimumPersons": 8,
-                    "minimumSquareMeters": 11.0,
                     "shouldCalculateCompensation": true,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -599,15 +603,14 @@
                   }
                 },
                 {
-                  "name": "large meeting room – shared area",
+                  "name": "large meeting room (16-30 people) – coworking",
                   "className": "SharedLargeMeetingroom",
                   "result": {},
                   "constants": {
-                    "personRoomWorkstation": "room",
-                    "areaPerRole": 1.3,
+                    "areaPerFunction": 1.31,
+                    "personRoomWorkstation": "workstation",
                     "personsPerType": 1,
                     "minimumPersons": 16,
-                    "minimumSquareMeters": 21.0,
                     "shouldCalculateCompensation": true,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -615,6 +618,45 @@
                   }
                 }
               ]
+            },
+            {
+              "name": "focus room – coworking",
+              "className": "SharedFocusroom",
+              "result": {},
+              "constants": {
+                "lengthWidth": 2.4,
+                "lengthDepth": 2.5,
+                "lengthBack": 0,
+                "personRoomWorkstation": "room",
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": false,
+                "requiresAdditionalStorage": true,
+                "shouldCalculateNumberOfRooms": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "social area",
+          "result": {},
+          "spaces": [
+            {
+              "name": "lounge area – coworking",
+              "className": "SharedLounge",
+              "result": {},
+              "constants": {
+                "areaPerFunction": 1.4,
+                "personRoomWorkstation": "person",
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 40,
+                "shouldCalculateCompensation": true,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
             }
           ]
         },
@@ -627,30 +669,30 @@
               "result": {},
               "spaces": [
                 {
-                  "name": "reception – shared area",
+                  "name": "reception – coworking",
                   "className": "SharedReception",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.1,
+                    "minimumSquareMeters": 10.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.14,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 10.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false
                   }
                 },
                 {
-                  "name": "waiting zone – shared area",
+                  "name": "waiting zone – coworking",
                   "className": "SharedWaitingZone",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.06,
+                    "minimumSquareMeters": 20.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.35,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 20.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false
@@ -659,49 +701,89 @@
               ]
             },
             {
-              "name": "personal storage – shared area",
-              "className": "SharedPersonalStorage",
-              "result": {},
-              "constants": {
-                "personRoomWorkstation": "person",
-                "areaPerRole": 0.7,
-                "personsPerType": 3,
-                "minimumPersons": 1,
-                "minimumSquareMeters": 3.0,
-                "shouldCalculateCompensation": false,
-                "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
-              }
-            },
-            {
-              "name": "wardrobe – shared area",
-              "className": "SharedWardrobe",
-              "result": {},
-              "constants": {
-                "personRoomWorkstation": "person",
-                "areaPerRole": 0.21,
-                "personsPerType": 1,
-                "minimumPersons": 1,
-                "minimumSquareMeters": 2.0,
-                "shouldCalculateCompensation": false,
-                "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
-              }
-            },
-            {
-              "name": "restroom – shared area",
+              "name": "maintenance",
               "result": {},
               "spaces": [
                 {
-                  "name": "toilet – shared area",
+                  "name": "copy & archive – coworking",
+                  "className": "SharedCopyArchive",
+                  "result": {},
+                  "constants": {
+                    "areaPerFunction": 0.10,
+                    "minimumSquareMeters": 10.0,
+                    "personRoomWorkstation": "person",
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "cleaning – coworking",
+                  "className": "SharedCleaning",
+                  "result": {},
+                  "constants": {
+                    "areaPerFunction": 0.07,
+                    "minimumSquareMeters": 2.0,
+                    "personRoomWorkstation": "person",
+                    "personsPerType": 1,
+                    "minimumPersons": 1,
+                    "shouldCalculateCompensation": false,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "locker area – coworking",
+              "className": "SharedPersonalStorage",
+              "result": {},
+              "constants": {
+                "lengthWidth": 0.4,
+                "lengthDepth": 0.6,
+                "lengthBack": 1.2,
+                "markupInternalSpaceShare": 0.0,
+                "personRoomWorkstation": "person",
+                "personsPerType": 3,
+                "minimumPersons": 1,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "cloak room area – coworking",
+              "className": "SharedWardrobe",
+              "result": {},
+              "constants": {
+                "areaPerFunction": 0.21,
+                "minimumSquareMeters": 2.0,
+                "personRoomWorkstation": "person",
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "restroom – coworking",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "toilet – coworking",
                   "className": "SharedToilet",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 2.10,
+                    "minimumSquareMeters": 2.0,
                     "personRoomWorkstation": "room",
-                    "areaPerRole": 2.10,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 2.0,
                     "unitsPerPerson": 0.067,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
@@ -710,15 +792,15 @@
                   }
                 },
                 {
-                  "name": "hwc – shared area",
+                  "name": "hwc – coworking",
                   "className": "SharedHwc",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 6.0,
+                    "minimumSquareMeters": 6.0,
                     "personRoomWorkstation": "room",
-                    "areaPerRole": 6.0,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 6.0,
                     "unitsPerPerson": 0.01,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
@@ -731,11 +813,11 @@
           ]
         },
         {
-          "name": "special – shared area",
+          "name": "special – coworking",
           "result": {},
           "spaces": [
             {
-              "name": "special – shared area",
+              "name": "special – coworking",
               "className": "SharedSpecial",
               "result": {},
               "constants": {
@@ -756,6 +838,94 @@
       "result": {},
       "spaces": [
         {
+          "name": "Project-, meeting room areas & social space",
+          "result": {},
+          "spaces": [
+            {
+              "name": "project room – common area",
+              "className": "CommonProjectroom",
+              "result": {},
+              "constants": {
+                "areaPerFunction": 6.0,
+                "personRoomWorkstation": "room",
+                "personsPerType": 1,
+                "minimumPersons": 6,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": true,
+                "adhereToGovernmentMinimum": true,
+                "shouldCalculateNumberOfRooms": true,
+                "shouldCalculateNumberOfSeats": true
+              }
+            },
+            {
+              "name": "meeting room – common area",
+              "result": {},
+              "spaces": [
+                {
+                  "name": "small meeting room (4-6 people) – common area",
+                  "className": "CommonSmallMeetingroom",
+                  "result": {},
+                  "constants": {
+                    "areaPerFunction": 2.18,
+                    "personRoomWorkstation": "workstation",
+                    "personsPerType": 1,
+                    "minimumPersons": 4,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "medium meeting room (8-12 people) – common area",
+                  "className": "CommonMediumMeetingroom",
+                  "result": {},
+                  "constants": {
+                    "areaPerFunction": 1.38,
+                    "personRoomWorkstation": "workstation",
+                    "personsPerType": 1,
+                    "minimumPersons": 8,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                },
+                {
+                  "name": "large meeting room (16-30 people) – common area",
+                  "className": "CommonLargeMeetingroom",
+                  "result": {},
+                  "constants": {
+                    "areaPerFunction": 1.31,
+                    "personRoomWorkstation": "workstation",
+                    "personsPerType": 1,
+                    "minimumPersons": 16,
+                    "shouldCalculateCompensation": true,
+                    "countsTowardsWorkspaceArea": false,
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "lounge area – common area",
+              "className": "CommonLounge",
+              "result": {},
+              "constants": {
+                "areaPerFunction": 1.4,
+                "personRoomWorkstation": "person",
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "minimumSquareMeters": 40,
+                "shouldCalculateCompensation": true,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            }
+          ]
+        },
+        {
           "name": "canteen area",
           "result": {},
           "spaces": [
@@ -764,26 +934,26 @@
               "className": "Canteen",
               "result": {},
               "constants": {
+                "areaPerFunction": 1.9,
+                "minimumSquareMeters": 90,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 0.72,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 100,
                 "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
               }
             },
             {
-              "name": "kitchen",
+              "name": "commercial kitchen",
               "className": "Kitchen",
               "result": {},
               "constants": {
+                "areaPerFunction": 0.29,
+                "minimumSquareMeters": 20,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 0.17,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 20,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
@@ -800,41 +970,41 @@
               "className": "Auditorium",
               "result": {},
               "constants": {
+                "areaPerFunction": 1.1,
+                "minimumSquareMeters": 50,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 1.1,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 50,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
               }
             },
             {
-              "name": "course",
+              "name": "course room",
               "className": "Course",
               "result": {},
               "constants": {
+                "areaPerFunction": 1.8,
+                "minimumSquareMeters": 36,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 0.50,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 50,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
               }
             },
             {
-              "name": "lobby",
-              "className": "Lobby",
+              "name": "anteroom area",
+              "className": "Anteroom",
               "result": {},
               "constants": {
+                "areaPerFunction": 0.20,
+                "minimumSquareMeters": 20,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 0.30,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 40,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "seatAreaPerSpot": 0.40,
@@ -856,11 +1026,11 @@
                   "className": "CommonReception",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.1,
+                    "minimumSquareMeters": 10.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.14,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 20.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false
@@ -871,11 +1041,11 @@
                   "className": "CommonWaitingZone",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.06,
+                    "minimumSquareMeters": 20.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.35,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 40.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false
@@ -884,19 +1054,19 @@
               ]
             },
             {
-              "name": "stock area",
+              "name": "maintenance",
               "result": {},
               "spaces": [
                 {
-                  "name": "stock archive – common area",
-                  "className": "CommonStockArchive",
+                  "name": "copy & archive – common area",
+                  "className": "CommonCopyArchive",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.14,
+                    "minimumSquareMeters": 12.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.14,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 15.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -908,11 +1078,11 @@
                   "className": "CommonCleaning",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 0.05,
+                    "minimumSquareMeters": 2.0,
                     "personRoomWorkstation": "person",
-                    "areaPerRole": 0.02,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 5.0,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
                     "adhereToGovernmentMinimum": false,
@@ -930,11 +1100,11 @@
                   "className": "CommonToilet",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 2.10,
+                    "minimumSquareMeters": 2.0,
                     "personRoomWorkstation": "room",
-                    "areaPerRole": 2.10,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 2.0,
                     "unitsPerPerson": 0.033,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
@@ -947,11 +1117,11 @@
                   "className": "CommonHwc",
                   "result": {},
                   "constants": {
+                    "areaPerFunction": 6.0,
+                    "minimumSquareMeters": 6.0,
                     "personRoomWorkstation": "room",
-                    "areaPerRole": 6.0,
                     "personsPerType": 1,
                     "minimumPersons": 1,
-                    "minimumSquareMeters": 6.0,
                     "unitsPerPerson": 0.01,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
@@ -966,11 +1136,11 @@
               "className": "CommonWardrobe",
               "result": {},
               "constants": {
+                "areaPerFunction": 0.26,
+                "minimumSquareMeters": 26.0,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 0.26,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 26.0,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
@@ -981,11 +1151,11 @@
               "className": "CommonExerciseRoom",
               "result": {},
               "constants": {
+                "areaPerFunction": 1.0,
+                "minimumSquareMeters": 20.0,
                 "personRoomWorkstation": "person",
-                "areaPerRole": 1.0,
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "minimumSquareMeters": 20.0,
                 "unitsPerPerson": 0.20,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,

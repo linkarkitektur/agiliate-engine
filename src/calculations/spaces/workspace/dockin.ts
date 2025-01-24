@@ -12,11 +12,18 @@ export default class WorkDockin extends MainSpace {
     return this.variables.dockinShare - sharedDockin.sharePerWorkspaceType()
   }
 
+  calculateEmployeesPerWorkplaceTypeAdjusted(): number {
+    return this.markupEmployeesAtPeak() + (this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType())
+  }
+
   /**
    * Calculates the area of touchdown. 0 if there is no need.
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {
-    return (this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor()*this.sharePerWorkspaceType())+(this.addedPeakArea()*this.sharePerWorkspaceType())
+    if (this.variables.addPeakMarkupToWorkstationCapacityShare) {
+      return (this.space.result.employeesPerWorkplaceTypeAdjusted || 0) * this.areaPerEmployee()
+    }
+    return this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType() * this.areaPerEmployee()
   }
 }

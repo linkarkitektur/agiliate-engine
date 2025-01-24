@@ -9,11 +9,12 @@ export default class Quietzone extends MainSpace {
     return this.variables.quietzoneShare
   }
 
-  /**
-   * Calculates the area of the quiet zone.
-   * @returns {number}
-   */
+  calculateEmployeesPerWorkplaceTypeAdjusted(): number {
+    return this.space.result.adjustmentForMissingSquareMeters || 1
+  }
+
   calculateAreaExclCompensation (): number {
-    return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor() * this.sharePerWorkspaceType()
+    // console.log(this.areaPerFunction())
+    return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
   }
 }

@@ -16,7 +16,7 @@ export default class WorkPersonalStorage extends MainSpace {
     const focusroom = new Focusroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const quietzone = new Quietzone(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const sharedPersonalStorage = new SharedPersonalStorage(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    const addedPeakAreaSum = workTouchdown.calculateEmployeesPerWorkplaceTypeUnadjusted() + workDockin.calculateEmployeesPerWorkplaceTypeUnadjusted() + focusroom.calculateEmployeesPerWorkplaceTypeUnadjusted() + quietzone.calculateEmployeesPerWorkplaceTypeUnadjusted()
-    return addedPeakAreaSum * this.minAreaPerPersonExcludingCorridor() - sharedPersonalStorage.calculateAreaExclCompensation()
+    const employeesPerWorkplaceTypeUnadjusted = workTouchdown.calculateEmployeesPerWorkplaceTypeUnadjusted() + workDockin.calculateEmployeesPerWorkplaceTypeUnadjusted() + focusroom.calculateEmployeesPerWorkplaceTypeUnadjusted() + quietzone.calculateEmployeesPerWorkplaceTypeUnadjusted()
+    return employeesPerWorkplaceTypeUnadjusted * this.areaPerEmployee() - sharedPersonalStorage.calculateAreaExclCompensation()
   }
 }

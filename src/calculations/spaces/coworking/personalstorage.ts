@@ -1,4 +1,6 @@
 import MainSpace from '../main_space_class'
+import SharedTouchdown from './touchdown'
+import SharedDockin from './dockin'
 
 export default class SharedPersonalStorage extends MainSpace {
   /**
@@ -7,7 +9,9 @@ export default class SharedPersonalStorage extends MainSpace {
    */
   calculateAreaExclCompensation (): number {
     if (this.variables.accessToCoworking) {
-      return this.calculateEmployeesPerWorkplaceTypeUnadjusted() * this.sharePerWorkspaceType() * this.minAreaPerPersonExcludingCorridor()
+      const sharedTouchdown = new SharedTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+      const sharedDockin = new SharedDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+      return (sharedTouchdown.calculateEmployeesPerWorkplaceTypeUnadjusted() + sharedDockin.calculateEmployeesPerWorkplaceTypeUnadjusted()) * this.areaPerEmployee()
     }
     return 0
   }

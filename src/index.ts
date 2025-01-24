@@ -1,10 +1,10 @@
-import { IConstant } from './calculations/interfaces/constant'
-import { IVariable } from './calculations/interfaces/variable'
-import { IRequest } from './calculations/interfaces/request'
+import type { IConstant } from './calculations/interfaces/constant'
+import type { IVariable } from './calculations/interfaces/variable'
+import type { IRequest } from './calculations/interfaces/request'
 import Calculator from './calculations/calculator'
 import redis from 'redis'
-import { RedisClientType } from '@redis/client'
-import { TCustomSpaceConstants } from './calculations/types/custom_space_constant'
+import type { RedisClientType } from '@redis/client'
+import type { TCustomSpaceConstants } from './calculations/types/custom_space_constant'
 
 let redisClient: RedisClientType
 if (process.env.USE_CACHE_REDIS === '1') {

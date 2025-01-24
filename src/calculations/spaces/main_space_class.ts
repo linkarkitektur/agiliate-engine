@@ -6,6 +6,7 @@ import type { IConstant } from '../interfaces/constant'
 import type { IVariable } from '../interfaces/variable'
 import { findSpace } from '../helpers'
 import type { TCustomSpaceConstants } from '../types/custom_space_constant'
+import { main } from 'bun'
 
 /**
  * This is the main class for the spaces. It contains shared methods for all spaces.
@@ -28,7 +29,8 @@ export default class MainSpace implements ISpaceCalculation {
    * @param {TCustomSpaceConstants} [customSpaceConstants] - Custom space constants, optional
    * @param {IConstant} [customConstants] - Custom constants, optional
    */
-  constructor(variables: IVariable, config: IConfig, customSpaceConstants?: TCustomSpaceConstants, customConstants?: IConstant, space?: ISpace) {
+  constructor(variables: IVariable, config: IConfig, customSpaceConstants?: TCustomSpaceConstants, customConstants?: IConstant, setSpace?: ISpace) {
+    let space = setSpace
     if (!space) {
       space = findSpace(this.constructor.name, config.spaces)!
     }
@@ -63,6 +65,15 @@ export default class MainSpace implements ISpaceCalculation {
   }
 
   /**
+   * Area per employee
+   * AN6 in Main engine sheet
+   * @returns {number}
+   */
+  areaPerEmployee(): number {
+    return this.variables.useCompensationFactorForWorkstations ? this.minAreaPerPersonExcludingCorridor() : this.areaPerPersonWithoutCompensationFactor()
+  }
+
+  /**
    * Calculates the area per person not using compensation factor
    * @returns {number}
    */
@@ -80,8 +91,8 @@ export default class MainSpace implements ISpaceCalculation {
     if (this.spaceConstants.areaPerFunction !== undefined) {
       return this.spaceConstants.areaPerFunction
     }
-    const baseArea = this.spaceConstants.lengthWidth * (this.spaceConstants.lengthDepth + this.spaceConstants.lengthBack)
-    return baseArea * (1 + this.spaceConstants.markupInternalSpaceShare)
+    const baseArea = (this.spaceConstants.lengthWidth || 0) * ((this.spaceConstants.lengthDepth || 0) + (this.spaceConstants.lengthBack || 0))
+    return baseArea * (1 + (this.spaceConstants.markupInternalSpaceShare || 0))
   }
 
   /**
@@ -110,7 +121,7 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   addedPeakArea (): number {
-    return this.#diffPeak() * this.minAreaPerPersonExcludingCorridor()
+    return this.diffPeak() * this.minAreaPerPersonExcludingCorridor()
   }
 
   /**
@@ -123,11 +134,14 @@ export default class MainSpace implements ISpaceCalculation {
 
   /**
    * This method gets number of person per workspace type, adjusted
-   * @todo Missing implementation
+   * Implemented as AI6 in Excel: Adjusted employees per type of workstation
+   * AI6 = AJ6 + AK6 where:
+   * AJ6 = Markup employees per type at peak
+   * AK6 = Adjustment if missing sqm
    * @returns {number}
    */
   personsPerTypeAdjusted (): number {
-    return 0
+    // return this.markupEmployeesAtPeak() + this.adjustmentForMissingSquareMeters()
   }
 
   /**
@@ -151,11 +165,21 @@ export default class MainSpace implements ISpaceCalculation {
   }
 
   /**
+   * This method calculates the non adjusted workstation capacity
+   * @returns {number}
+   */
+  nonAdjustedWorkstationCapacity (): number {
+    return (this.variables.numberOfEmployees * this.variables.workstationCapacityShare) +
+      (this.variables.numberOfEmployees * this.variables.concurrencyAttendanceShare * this.variables.overCapacityShare) -
+      (this.variables.numberOfEmployees * this.variables.homeOfficeAverageShare)
+  }
+
+  /**
    * This method calculates the difference between peak attendance and dimensioned attendance.
    * @returns {number}
    */
-  #diffPeak (): number {
-    return this.#peakAttendance() - this.dimensionedAttendance()
+  diffPeak (): number {
+    return this.#peakAttendance() - this.nonAdjustedWorkstationCapacity()
   }
 
   /**
@@ -167,6 +191,41 @@ export default class MainSpace implements ISpaceCalculation {
   }
 
   /**
+   * Calculates non-adjusted rest area
+   * E4 = D4 - MAX(J4*L4;J4*M4)
+   */
+  calculateNonAdjustedRestArea(numberOfSeats: number): number {
+    const nonAdjustedArea = this.space.result.areaExclCompensation || 0
+
+    if (nonAdjustedArea <= 0) {
+      return 0
+    }
+
+    const nonAdjustedAreaPerSeat = this.minAreaPerPersonExcludingCorridor()
+    const minSeats = this.spaceConstants.minimumPersons || 0
+    const adjustedNumberOfSeats = numberOfSeats > 0 ? Math.max(numberOfSeats, minSeats) : 0
+    const areaNeeded = nonAdjustedAreaPerSeat * Math.max(numberOfSeats, adjustedNumberOfSeats)
+    return nonAdjustedArea - areaNeeded
+  }
+
+  /**
+   * Calculates missing adjustment
+   * @todo is this used?
+   * AK6 = IF (AK68!=0 AND AL6 == MAX(AL6:AL66)) THEN (AC6*AM6)+AK68 ELSE AC6*AM6
+   */
+  calculateMissingAdjustment(totalEmployeesPerWorkplaceTypeUnadjusted: number, allEmployeesPerWorkplaceTypeUnadjusted: number[]): number {
+    // Check if this has max employees and needs adjustment
+    const myUnadjustedCount = this.calculateEmployeesPerWorkplaceTypeUnadjusted()
+    const isMaxEmployee = myUnadjustedCount === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)
+    const missingEmployees = totalEmployeesPerWorkplaceTypeUnadjusted - this.dimensionedAttendance()
+    let missingAdjustment = 0
+    if (missingEmployees > 0 && isMaxEmployee) {
+      missingAdjustment = missingEmployees
+    }
+    return missingAdjustment
+  }
+
+  /**
    * Calculate remainder area for space.
    * @returns {number}
    */
@@ -175,7 +234,8 @@ export default class MainSpace implements ISpaceCalculation {
       return 0
     }
     if (this.spaceConstants.personRoomWorkstation === 'person') {
-      return this.space.result.adjustedAreaInclCompensation - (this.#areaPerSeatUnAdjusted() * this.calculateNumberOfSeats())
+      return 0
+      // return this.space.result.adjustedAreaInclCompensation - (this.#areaPerSeatUnAdjusted() * this.calculateNumberOfSeats())
     }
     if (this.spaceConstants.personRoomWorkstation === 'room') {
       return this.space.result.adjustedAreaInclCompensation - (this.minimumSquareMeters() * this.calculateNumberOfRooms())
@@ -184,9 +244,11 @@ export default class MainSpace implements ISpaceCalculation {
   }
 
   #areaPerSeatUnAdjusted (): number {
+    /*
     if (this.space.result.adjustedAreaInclCompensation! > 0 && this.calculateNumberOfSeats() > 0) {
       return Math.round(this.space.result.adjustedAreaInclCompensation! / this.calculateNumberOfSeats() * 10) / 10
     }
+    */
     return 0
   }
 
@@ -196,20 +258,53 @@ export default class MainSpace implements ISpaceCalculation {
    */
   calculateNumberOfRooms (): number {
     if (this.spaceConstants.shouldCalculateNumberOfRooms) {
-      return Math.floor(this.space.result.adjustedAreaInclCompensation! / this.minimumSquareMeters())
+      return Math.ceil((this.space.result.adjustedAreaInclCompensation || 0) / this.minimumSquareMeters())
     }
     return 0
   }
 
   /**
-   * Calculates number of seats.
+   * Calculates adjustment for missing square meters (AK6 in Excel)
+   * Formula: IF (AK68!=0 AND AL6 == MAX(AL6:AL66)) THEN (AC6*AM6)+AK68 ELSE AC6*AM6
+   * @todo Spørg Pontus om denne (fejler ved max pt... eller gør den?)
+   */
+  calculateAdjustmentForMissingSquareMeters(allEmployeesPerWorkplaceTypeUnadjusted: number[], totalEmployeesPerWorkplaceTypeUnadjusted: number): number {
+    const myUnadjustedCount = this.calculateEmployeesPerWorkplaceTypeUnadjusted()
+    const isMaxEmployee = myUnadjustedCount === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)
+    const baseCount = this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType()
+
+    if (isMaxEmployee) {
+      // AK68 = Missing sqm = missingEmployees
+      const missingEmployees = this.nonAdjustedWorkstationCapacity() - totalEmployeesPerWorkplaceTypeUnadjusted
+      return Math.round(baseCount + missingEmployees)
+    }
+
+    return Math.round(baseCount)
+  }
+
+  /**
+   * Calculates number of seats based on either:
+   * - employeesPerWorkplaceTypeAdjusted if addPeakMarkupToWorkstationCapacityShare is true
+   * - adjustmentForMissingSquareMeters if not
+   * Always takes maximum between calculated value and minimumPersons
    * @returns {number}
    */
-  calculateNumberOfSeats (): number {
-    if (this.spaceConstants.shouldCalculateNumberOfSeats) {
-      return Math.round((this.space.result.employeesPerWorkplaceTypeAdjusted || 0) + this.#employeesPerSeatTypeInPeak())
+   calculateNumberOfSeats(allEmployeesPerWorkplaceTypeUnadjusted: number[], totalEmployeesPerWorkplaceTypeUnadjusted: number): number {
+    if (!this.spaceConstants.shouldCalculateNumberOfSeats) {
+      return 0
     }
-    return 0
+
+    let seatCount: number
+    if (this.variables.addPeakMarkupToWorkstationCapacityShare) {
+      seatCount = this.space.result.employeesPerWorkplaceTypeAdjusted || 0
+    } else {
+      seatCount = this.calculateAdjustmentForMissingSquareMeters(
+        allEmployeesPerWorkplaceTypeUnadjusted,
+        totalEmployeesPerWorkplaceTypeUnadjusted
+      )
+    }
+
+    return Math.round(Math.max(seatCount, this.spaceConstants.minimumPersons || 0))
   }
 
   /**
@@ -217,7 +312,7 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   #employeesPerSeatTypeInPeak (): number {
-    return Math.round(this.#diffPeak() * this.sharePerWorkspaceType())
+    return Math.round(this.diffPeak() * this.sharePerWorkspaceType())
   }
 
   /**
@@ -260,21 +355,22 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   calculateEmployeesPerWorkplaceTypeUnadjusted (): number {
-    return Math.round(this.dimensionedAttendance() * this.sharePerWorkspaceType())
+    return Math.round(this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType())
   }
 
   /**
    * Calculates employees per workplace type, adjusted
+   * @todo wrong now? Does it need Math.ceil to be right?
    * @param {number} totalEmployeesPerWorkplaceTypeUnadjusted - The total number of employees per workplace type, unadjusted
    */
   calculateEmployeesPerWorkplaceTypeAdjusted (totalEmployeesPerWorkplaceTypeUnadjusted: number, allEmployeesPerWorkplaceTypeUnadjusted: number[]): number {
     if (totalEmployeesPerWorkplaceTypeUnadjusted > this.dimensionedAttendance() && this.calculateEmployeesPerWorkplaceTypeUnadjusted() === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)) {
       return this.calculateEmployeesPerWorkplaceTypeUnadjusted() - (totalEmployeesPerWorkplaceTypeUnadjusted - this.dimensionedAttendance())
-    } else if (totalEmployeesPerWorkplaceTypeUnadjusted < this.dimensionedAttendance() && this.calculateEmployeesPerWorkplaceTypeUnadjusted() === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)) {
-      return this.calculateEmployeesPerWorkplaceTypeUnadjusted() + (this.dimensionedAttendance() - totalEmployeesPerWorkplaceTypeUnadjusted)
-    } else {
-      return this.calculateEmployeesPerWorkplaceTypeUnadjusted()
     }
+    if (totalEmployeesPerWorkplaceTypeUnadjusted < this.dimensionedAttendance() && this.calculateEmployeesPerWorkplaceTypeUnadjusted() === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)) {
+      return this.calculateEmployeesPerWorkplaceTypeUnadjusted() + (this.dimensionedAttendance() - totalEmployeesPerWorkplaceTypeUnadjusted)
+    }
+    return this.calculateEmployeesPerWorkplaceTypeUnadjusted()
   }
 
   /**
@@ -302,7 +398,7 @@ export default class MainSpace implements ISpaceCalculation {
     if (this.spaceConstants.shouldCalculateCompensation) {
       return this.calculateAdjustedAddonArea(totalWorkplaceArea, totalCompensationArea, totalUnadjustedArea) + this.space.result.areaExclCompensation!
     }
-    return this.space.result.areaExclCompensation!
+    return this.space.result.areaExclCompensation || 0
   }
 
   /**
@@ -319,4 +415,35 @@ export default class MainSpace implements ISpaceCalculation {
   calculateAreaExclCompensation(): number {
     return 0
   }
+
+  /**
+   * Calculates the number of employees at peak
+   * @returns {number}
+   */
+  markupEmployeesAtPeak(): number {
+    return this.diffPeak() * this.sharePerWorkspaceType()
+  }
+
+  /**
+   * Calculates Divergence Peak/ Workstation capacity
+   * AE6-AC6
+   * @returns {number}
+   */
+  divergencePeakWorkstationCapacity(): number {
+    return this.#peakAttendance() - this.dimensionedAttendance()
+  }
+
+  /**
+   * Calculates markup peak area
+   * @param {number} areaPerEmployee - The area per employee, optional parameter
+   */
+  markupPeakArea(areaPerEmployee?: number): number {
+    if (this.divergencePeakWorkstationCapacity() > 0) {
+      return this.markupEmployeesAtPeak() * (areaPerEmployee || this.areaPerEmployee())
+    }
+    return 0
+  }
+
+
+
 }

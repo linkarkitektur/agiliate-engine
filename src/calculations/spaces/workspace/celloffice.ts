@@ -1,10 +1,6 @@
 import MainSpace from '../main_space_class'
 
 export default class CellOffice extends MainSpace {
-  /**
-   * This method computes the share of this workspace type
-   * @returns {number}
-   */
   sharePerWorkspaceType (): number {
     if (this.variables.accessToCellOffice) {
       return this.variables.cellOfficeShare
@@ -12,11 +8,14 @@ export default class CellOffice extends MainSpace {
     return 0
   }
 
-  /**
-   * Calculates the area of the cell.
-   * @returns {number}
-   */
+  calculateEmployeesPerWorkplaceTypeAdjusted(): number {
+    // return (this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType())
+    // return Math.round((this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType()))
+    return this.space.result.adjustmentForMissingSquareMeters || 1
+  }
+
   calculateAreaExclCompensation (): number {
-    return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor() * this.sharePerWorkspaceType()
+    // console.log(this.calculateEmployeesPerWorkplaceTypeAdjusted(), this.areaPerEmployee())
+    return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
   }
 }

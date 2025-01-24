@@ -1,7 +1,7 @@
 import MainSpace from './main_space_class'
-import { ISpace } from '../interfaces/space'
-import { IConfig } from '../interfaces/config'
-import { IVariable } from '../interfaces/variable'
+import type { ISpace } from '../interfaces/space'
+import type { IConfig } from '../interfaces/config'
+import type { IVariable } from '../interfaces/variable'
 
 export default class Dummy extends MainSpace {
   /**

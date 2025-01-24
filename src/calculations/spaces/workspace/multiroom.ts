@@ -5,10 +5,7 @@ import Landscape from './landscape'
 import Focusroom from './focusroom'
 
 export default class WorkMultiroom extends MainSpace {
-  /**
-   * Calculates the area of the multi room.
-   * @returns {number}
-   */
+  // =IF((AL6+AL7+AL9)/(15*2)*AN14>M11;SUM(((AL6+AL7+AL9)/15*2)*AN14)-(M11);SUM((AL6+AL7+AL9)/15*2)*AN14)
   calculateAreaExclCompensation (): number {
     const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const landscape = new Landscape(this.variables, this.config, this.customSpaceConstants, this.customConstants)
@@ -19,8 +16,7 @@ export default class WorkMultiroom extends MainSpace {
 
     if (touchdownDockinLandscapeSum / 15 * 2 * this.minAreaPerPersonExcludingCorridor() > focusroom.calculateAreaExclCompensation()) {
       return touchdownDockinLandscapeSum / 15 * 2 * this.minAreaPerPersonExcludingCorridor() - focusroom.calculateAreaExclCompensation()
-    } else {
-      return touchdownDockinLandscapeSum / 15 * 2 * this.minAreaPerPersonExcludingCorridor()
     }
+    return touchdownDockinLandscapeSum / 15 * 2 * this.minAreaPerPersonExcludingCorridor()
   }
 }

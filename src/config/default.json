@@ -21,7 +21,7 @@
               "result": {},
               "constants": {
                 "lengthWidth": 1,
-                "lengthDepth": 1.6,
+                "lengthDepth": 0.6,
                 "lengthBack": 1.2,
                 "markupInternalSpaceShare": 0.06,
                 "personRoomWorkstation": "person",
@@ -71,7 +71,8 @@
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": false,
-                "shouldCalculateNumberOfRooms": true
+                "shouldCalculateNumberOfRooms": true,
+                "shouldCalculateNumberOfSeats": true
               }
             },
             {
@@ -513,7 +514,7 @@
           "result": {},
           "spaces": [
             {
-              "name": "team office – shared area",
+              "name": "team office – coworking",
               "className": "TeamOffice",
               "result": {},
               "constants": {

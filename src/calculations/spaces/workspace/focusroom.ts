@@ -1,4 +1,5 @@
 import MainSpace from '../main_space_class'
+import SharedFocusroom from '../coworking/focusroom'
 
 export default class Focusroom extends MainSpace {
   /**
@@ -6,14 +7,15 @@ export default class Focusroom extends MainSpace {
    * @returns {number}
    */
   sharePerWorkspaceType (): number {
-    return this.variables.focusroomShare
+    const coworkingFocusroom = new SharedFocusroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    return this.variables.focusroomShare - coworkingFocusroom.sharePerWorkspaceType()
   }
 
-  /**
-   * Calculates the area of the project room.
-   * @returns {number}
-   */
+  calculateEmployeesPerWorkplaceTypeAdjusted(): number {
+    return this.space.result.adjustmentForMissingSquareMeters || 1
+  }
+
   calculateAreaExclCompensation (): number {
-    return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor() * this.sharePerWorkspaceType()
+    return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
   }
 }

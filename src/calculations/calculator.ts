@@ -1,13 +1,13 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { ISpace } from './interfaces/space'
-import { IConfig } from './interfaces/config'
-import { ISpaceCalculation } from './interfaces/space_calculation'
-import { ISpaceResult } from './interfaces/space_result'
-import { IVariable } from './interfaces/variable'
-import { IConstant } from './interfaces/constant'
-import { ICalculationResult } from './interfaces/calculationresult'
-import { TCustomSpaceConstants } from './types/custom_space_constant'
+import type { ISpace } from './interfaces/space'
+import type { IConfig } from './interfaces/config'
+import type { ISpaceCalculation } from './interfaces/space_calculation'
+import type { ISpaceResult } from './interfaces/space_result'
+import type { IVariable } from './interfaces/variable'
+import type { IConstant } from './interfaces/constant'
+import type { ICalculationResult } from './interfaces/calculationresult'
+import type { TCustomSpaceConstants } from './types/custom_space_constant'
 import getSpace from './spaces'
 import Dummy from './spaces/dummy'
 
@@ -20,11 +20,11 @@ export default class Calculator {
   customConstants?: IConstant
   config: IConfig
   constants: IConstant
-  totalWorkplaceArea: number = 0
-  totalCompensationArea: number = 0
-  totalUnadjustedAddonArea: number = 0
-  totalEmployeesPerWorkplaceTypeUnadjusted: number = 0
-  totalAdjustedAreaInclCompensationWithAdjustmentAndCompensation: number = 0
+  totalWorkplaceArea = 0
+  totalCompensationArea = 0
+  totalUnadjustedAddonArea = 0
+  totalEmployeesPerWorkplaceTypeUnadjusted = 0
+  totalAdjustedAreaInclCompensationWithAdjustmentAndCompensation = 0
   allEmployeesPerWorkplaceTypeUnadjusted: number[] = []
 
   /**
@@ -52,8 +52,15 @@ export default class Calculator {
    * @returns {ICalculationResult} The result of the calculation
    */
   result (): ICalculationResult {
+    // Initialize the employee counts
+    this.#initializeEmployeeCounts(this.config.spaces)
+
+    this.#calculateTotalEmployeesPerWorkspaceTypeUnadjusted(this.config.spaces)
+
+    // Calculate the results for pre run
+    let spaceResults = this.#processSpacesPreRun(this.config.spaces)
     // Get the results for all spaces, first run
-    let spaceResults = this.#processSpacesFirst(this.config.spaces)
+    this.#processSpacesFirst(spaceResults)
     // Get aggregate subspace results, first run
     for (const space of spaceResults) {
       space.result = this.#sumResults(space)
@@ -61,7 +68,7 @@ export default class Calculator {
     // Get some aggregate summed results
     this.#calculateTotalWorkplaceArea(spaceResults)
     this.#calculateTotalCompensationArea(spaceResults)
-    this.#calculateTotalEmployeesPerWorkspaceTypeUnadjusted(spaceResults)
+    // this.#calculateTotalEmployeesPerWorkspaceTypeUnadjusted(spaceResults)
 
     // Get aggregate subspace results, second run
     spaceResults = this.#processSpacesSecond(spaceResults)
@@ -269,13 +276,33 @@ export default class Calculator {
    * @param {ISpace[]} spaces
    * @returns {ISpace[]}
    */
+  #processSpacesPreRun(spaces: ISpace[]): ISpace[] {
+    for (const space of spaces) {
+      // If this space has nested spaces, process those
+      if (space.spaces) {
+        this.#processSpacesPreRun(space.spaces)
+      } else {
+        space.result = this.#calculateSpacePreRun(space)
+      }
+    }
+    return spaces
+  }
+
+  /**
+   * Loop through all spaces and calculate the first run
+   * @param {ISpace[]} spaces
+   * @returns {ISpace[]}
+   */
   #processSpacesFirst(spaces: ISpace[]): ISpace[] {
     for (const space of spaces) {
       // If this space has nested spaces, process those
       if (space.spaces) {
         this.#processSpacesFirst(space.spaces)
       } else {
-        space.result = this.#calculateSpaceFirstRun(space)
+        space.result = {
+          ... space.result,
+          ... this.#calculateSpaceFirstRun(space)
+        }
       }
     }
     return spaces
@@ -344,6 +371,24 @@ export default class Calculator {
   }
 
   /**
+   * Calculates a space based on the pre run
+   * @param {ISpace} space - The space to calculate
+   * @returns {ISpaceResult} The calculated result object
+   */
+  #calculateSpacePreRun (space: ISpace): ISpaceResult {
+    const Space = getSpace(space.name)
+    const spaceCalculation: ISpaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
+    return {
+      employeesPerWorkplaceTypeUnadjusted: spaceCalculation.calculateEmployeesPerWorkplaceTypeUnadjusted(),
+      // Is this needed?
+      adjustmentForMissingSquareMeters: spaceCalculation.calculateAdjustmentForMissingSquareMeters(
+        this.allEmployeesPerWorkplaceTypeUnadjusted,
+        this.totalEmployeesPerWorkplaceTypeUnadjusted
+      )
+    }
+  }
+
+  /**
    * Calculates a space based on the first run
    * @param {ISpace} space - The space to calculate
    * @returns {ISpaceResult} The calculated result object
@@ -352,8 +397,15 @@ export default class Calculator {
     const Space = getSpace(space.name)
     const spaceCalculation: ISpaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
     return {
+      /*
+      employeesPerWorkplaceTypeAdjusted: spaceCalculation.calculateEmployeesPerWorkplaceTypeAdjusted(
+        this.totalEmployeesPerWorkplaceTypeUnadjusted,
+        this.allEmployeesPerWorkplaceTypeUnadjusted
+      ),
+      */
+      // areaExclCompensation: Math.round(spaceCalculation.calculateAreaExclCompensation()),
       areaExclCompensation: spaceCalculation.calculateAreaExclCompensation(),
-      employeesPerWorkplaceTypeUnadjusted: spaceCalculation.calculateEmployeesPerWorkplaceTypeUnadjusted(),
+      // employeesPerWorkplaceTypeUnadjusted: spaceCalculation.calculateEmployeesPerWorkplaceTypeUnadjusted(),
     }
   }
 
@@ -365,7 +417,13 @@ export default class Calculator {
   #calculateSpaceSecondRun (space: ISpace): ISpaceResult {
     const Space = getSpace(space.name)
     const spaceCalculation: ISpaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
+    const numberOfSeats = spaceCalculation.calculateNumberOfSeats(
+      this.allEmployeesPerWorkplaceTypeUnadjusted,
+      this.totalEmployeesPerWorkplaceTypeUnadjusted
+    )
     return {
+      nonAdjustedRestArea: spaceCalculation.calculateNonAdjustedRestArea(numberOfSeats),
+      numberOfSeats: numberOfSeats,
       notAdjustedAddonArea: spaceCalculation.calculateNotAdjustedAddonArea(this.totalWorkplaceArea, this.totalCompensationArea),
     }
   }
@@ -382,7 +440,7 @@ export default class Calculator {
       notAdjustedAddonPart: spaceCalculation.calculateNotAdjustedAddonPart(this.totalWorkplaceArea, this.totalCompensationArea),
       adjustedAddonArea: spaceCalculation.calculateAdjustedAddonArea(this.totalWorkplaceArea, this.totalCompensationArea, this.totalUnadjustedAddonArea),
       adjustedAreaInclCompensation: spaceCalculation.calculateAdjustedAreaInclCompensation(this.totalWorkplaceArea, this.totalCompensationArea, this.totalUnadjustedAddonArea),
-      employeesPerWorkplaceTypeAdjusted: spaceCalculation.calculateEmployeesPerWorkplaceTypeAdjusted(this.totalEmployeesPerWorkplaceTypeUnadjusted, this.allEmployeesPerWorkplaceTypeUnadjusted),
+      // employeesPerWorkplaceTypeAdjusted: spaceCalculation.calculateEmployeesPerWorkplaceTypeAdjusted(this.totalEmployeesPerWorkplaceTypeUnadjusted, this.allEmployeesPerWorkplaceTypeUnadjusted),
     }
   }
 
@@ -397,7 +455,6 @@ export default class Calculator {
     return {
       adjustedAreaInclCompensationWithAdjustmentAndCompensation: spaceCalculation.calculateAdjustedAreaInclCompensationWithAdjustmentAndCompensation(),
       numberOfRooms: spaceCalculation.calculateNumberOfRooms(),
-      numberOfSeats: spaceCalculation.calculateNumberOfSeats(),
     }
   }
 
@@ -512,5 +569,19 @@ export default class Calculator {
    */
   #calculateInnerwallArea (areaExclCompensation: number): number {
     return areaExclCompensation * this.constants.innerwallsAddonShare
+  }
+
+  #initializeEmployeeCounts(spaces: ISpace[]): void {
+    for (const space of spaces) {
+      if (space.spaces) {
+        this.#initializeEmployeeCounts(space.spaces)
+      } else {
+        const Space = getSpace(space.name)
+        const spaceCalculation = new Space(this.variables, this.config, this.customSpaceConstants, this.customConstants, space)
+        const count = spaceCalculation.calculateEmployeesPerWorkplaceTypeUnadjusted()
+        this.totalEmployeesPerWorkplaceTypeUnadjusted += count
+        this.allEmployeesPerWorkplaceTypeUnadjusted.push(count)
+      }
+    }
   }
 }
