@@ -1080,7 +1080,7 @@
                   "className": "CommonCleaning",
                   "result": {},
                   "constants": {
-                    "areaPerFunction": 0.05,
+                    "areaPerFunction": 0.02,
                     "minimumSquareMeters": 2.0,
                     "personRoomWorkstation": "person",
                     "personsPerType": 1,
@@ -1138,8 +1138,8 @@
               "className": "CommonWardrobe",
               "result": {},
               "constants": {
-                "areaPerFunction": 0.26,
-                "minimumSquareMeters": 26.0,
+                "areaPerFunction": 0.05,
+                "minimumSquareMeters": 2.0,
                 "personRoomWorkstation": "person",
                 "personsPerType": 1,
                 "minimumPersons": 1,

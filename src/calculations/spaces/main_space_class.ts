@@ -419,6 +419,15 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   divergencePeakWorkstationCapacity(): number {
+    return this.#peakAttendance() - this.nonAdjustedWorkstationCapacity()
+  }
+
+  /**
+   * Calculates Divergence Peak/ occupancy number
+   * AE6-AB6
+   * @returns {number}
+   */
+  divergencePeakOccupancy(): number {
     return this.#peakAttendance() - this.dimensionedAttendance()
   }
 

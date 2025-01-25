@@ -6,6 +6,6 @@ export default class CommonCleaning extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {
-    return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor()
+    return this.dimensionedAttendance() * this.areaPerEmployee()
   }
 }
