@@ -7,7 +7,7 @@ export default class Kitchen extends MainSpace {
    */
   calculateAreaExclCompensation (): number {
     if (this.variables.accessToCanteen) {
-      return this.areaPerFunction() * this.variables.numberOfEmployees
+      return this.dimensionedAttendance() * this.areaPerEmployee()
     }
     return 0
   }

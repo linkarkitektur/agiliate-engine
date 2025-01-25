@@ -21,4 +21,10 @@ export interface IConstant {
    * @maximum 1
    */
   usageRatioCommonArea: number
+  /**
+   * Seatings ratio common area
+   * @minimum 0
+   * @maximum ?
+   */
+  seatingRatioCommonArea: number
 }

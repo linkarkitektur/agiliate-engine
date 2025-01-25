@@ -9,7 +9,7 @@ export default class SharedLounge extends MainSpace {
     // T31 = markupPeakArea
     if (this.variables.accessToCoworking) {
       // return (this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor() * this.sharePerWorkspaceType()) + (this.addedPeakArea() * this.sharePerWorkspaceType())
-      return (this.dimensionedAttendance() * this.areaPerEmployee() * this.sharePerWorkspaceType()) +
+      return (this.dimensionedAttendance() * this.areaPerEmployee() * this.variables.coworkingShare) +
       (this.markupPeakArea() * this.sharePerWorkspaceType())
     }
     return 0

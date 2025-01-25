@@ -133,18 +133,6 @@ export default class MainSpace implements ISpaceCalculation {
   }
 
   /**
-   * This method gets number of person per workspace type, adjusted
-   * Implemented as AI6 in Excel: Adjusted employees per type of workstation
-   * AI6 = AJ6 + AK6 where:
-   * AJ6 = Markup employees per type at peak
-   * AK6 = Adjustment if missing sqm
-   * @returns {number}
-   */
-  personsPerTypeAdjusted (): number {
-    // return this.markupEmployeesAtPeak() + this.adjustmentForMissingSquareMeters()
-  }
-
-  /**
    * This method computes the share of this workspace type.
    * @returns {number}
    */
@@ -362,6 +350,7 @@ export default class MainSpace implements ISpaceCalculation {
    * Calculates employees per workplace type, adjusted
    * @todo wrong now? Does it need Math.ceil to be right?
    * @param {number} totalEmployeesPerWorkplaceTypeUnadjusted - The total number of employees per workplace type, unadjusted
+   * @todo check if function in touchdown is the correct one generally
    */
   calculateEmployeesPerWorkplaceTypeAdjusted (totalEmployeesPerWorkplaceTypeUnadjusted: number, allEmployeesPerWorkplaceTypeUnadjusted: number[]): number {
     if (totalEmployeesPerWorkplaceTypeUnadjusted > this.dimensionedAttendance() && this.calculateEmployeesPerWorkplaceTypeUnadjusted() === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)) {

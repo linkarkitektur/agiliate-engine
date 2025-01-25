@@ -6,6 +6,7 @@ export default class SharedCopyArchive extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {
-    return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor()
+    // AB6*AN33*AM33
+    return this.dimensionedAttendance() * this.areaPerEmployee() * this.variables.coworkingShare
   }
 }

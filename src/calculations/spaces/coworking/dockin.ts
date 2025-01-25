@@ -1,25 +1,23 @@
 import MainSpace from '../main_space_class'
 
 export default class SharedDockin extends MainSpace {
-  /**
-   * This method computes the share of this workspace type
-   * @returns {number}
-   */
-  sharePerWorkspaceType (): number {
-    if (this.variables.accessToCoworking) {
-      return this.variables.dockinShare * this.variables.coworkingShare
-    }
-    return 0
+  sharePerWorkspaceType(): number {
+    return this.variables.dockinShare * this.variables.coworkingShare
   }
 
-  /**
-   * Calculates the area of shared dockin. 0 if there is no desire.
-   * @returns {number}
-   */
-  calculateAreaExclCompensation (): number {
-    if (this.variables.accessToCoworking) {
-      return this.personsPerType() * this.minAreaPerPersonExcludingCorridor() + this.addedPeakArea()
+  calculateEmployeesPerWorkplaceTypeAdjusted(): number {
+    return this.markupEmployeesAtPeak() + (this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType())
+  }
+
+  calculateAreaExclCompensation(): number {
+    if (!this.variables.accessToCoworking) {
+      return 0
     }
-    return 0
+
+    if (this.variables.addPeakMarkupToWorkstationCapacityShare) {
+      return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
+    }
+
+    return this.calculateEmployeesPerWorkplaceTypeUnadjusted() * this.areaPerEmployee()
   }
 }

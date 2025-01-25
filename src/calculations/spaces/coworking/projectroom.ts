@@ -10,8 +10,9 @@ export default class SharedProjectroom extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {
-    if (this.variables.accessToReception) {
-      return this.calculateEmployeesPerWorkplaceTypeUnadjusted() * this.minAreaPerPersonExcludingCorridor()
+    if (this.variables.accessToCoworking) {
+      // AL27*AN27
+      return this.calculateEmployeesPerWorkplaceTypeUnadjusted() * this.areaPerEmployee()
     }
     return 0
   }

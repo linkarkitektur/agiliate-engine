@@ -3,7 +3,8 @@
     "governmentMinimumSquaremetersPerWorkSpace": 6,
     "corridorAddonShare": 0.18,
     "innerwallsAddonShare": 0.09,
-    "usageRatioCommonArea": 0.33
+    "usageRatioCommonArea": 0.33,
+    "seatingRatioCommonArea": 0.33
   },
   "spaces": [
     {

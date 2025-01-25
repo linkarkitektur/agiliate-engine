@@ -1,12 +1,5 @@
 import MainSpace from '../main_space_class'
-import WorkDockin from './dockin'
-import CellOffice from '../workspace/celloffice'
-import Landscape from '../workspace/landscape'
-import Projectroom from '../workspace/projectroom'
-import Focusroom from '../workspace/focusroom'
-import Quietzone from '../workspace/quietzone'
-import SharedSmallMeetingroom from './meetingroom_small'
-import SharedLargeMeetingroom from './meetingroom_large'
+import SharedMeetingroom from './meetingroom'
 
 export default class SharedMediumMeetingroom extends MainSpace {
   /**
@@ -17,24 +10,8 @@ export default class SharedMediumMeetingroom extends MainSpace {
     return this.areaPerFunction() / this.spaceConstants.personsPerType * this.variables.mediumMeetingroomShare
   }
 
-  /**
-   * Calculates the area of the meeting room.
-   * @returns {number}
-   */
   calculateAreaExclCompensation (): number {
-    if (this.variables.accessToCoworking) {
-      const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const cellOffice = new CellOffice(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const landscape = new Landscape(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const projectroom = new Projectroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const focusroom = new Focusroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const quietzone = new Quietzone(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const addedPeakAreaSum = workDockin.calculateEmployeesPerWorkplaceTypeUnadjusted() + cellOffice.calculateEmployeesPerWorkplaceTypeUnadjusted() + landscape.calculateEmployeesPerWorkplaceTypeUnadjusted() + projectroom.calculateEmployeesPerWorkplaceTypeUnadjusted() + focusroom.calculateEmployeesPerWorkplaceTypeUnadjusted() + quietzone.calculateEmployeesPerWorkplaceTypeUnadjusted()
-      const sharedSmallMeetingroom = new SharedSmallMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const sharedLargeMeetingroom = new SharedLargeMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-      const areaPerPersonExcludingCorridorSum = sharedSmallMeetingroom.areaPerPersonExcludingCorridor() + sharedLargeMeetingroom.areaPerPersonExcludingCorridor() + this.minAreaPerPersonExcludingCorridor()
-      return this.variables.mediumMeetingroomShare * addedPeakAreaSum * areaPerPersonExcludingCorridorSum * this.variables.coworkingShare + this.addedPeakArea()
-    }
-    return 0
+    const sharedMeetingroom = new SharedMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants, this.space)
+    return this.variables.mediumMeetingroomShare * sharedMeetingroom.calculateAreaExclCompensation()
   }
 }

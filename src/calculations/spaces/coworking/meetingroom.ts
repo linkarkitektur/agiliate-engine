@@ -6,6 +6,7 @@ import Landscape from '../workspace/landscape'
 import Projectroom from '../workspace/projectroom'
 import Focusroom from '../workspace/focusroom'
 import Quietzone from '../workspace/quietzone'
+import SharedMultiroom from './multiroom'
 import SharedSmallMeetingroom from './meetingroom_small'
 import SharedMediumMeetingroom from './meetingroom_medium'
 import SharedLargeMeetingroom from './meetingroom_large'
@@ -23,6 +24,7 @@ export default class SharedMeetingroom extends MainSpace {
     const projectroom = new Projectroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const focusroom = new Focusroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const quietzone = new Quietzone(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    const sharedMultiroom = new SharedMultiroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const sharedSmallMeetingroom = new SharedSmallMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const sharedMediumMeetingroom = new SharedMediumMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const sharedLargeMeetingroom = new SharedLargeMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants)
@@ -39,8 +41,10 @@ export default class SharedMeetingroom extends MainSpace {
       sharedLargeMeetingroom.minAreaPerPersonExcludingCorridor() * this.variables.largeMeetingroomShare / totalShare
     const meetingRoomAreaTotal = employeesPerWorkplaceTypeUnadjusted *
       areaPerEmployee *
-      this.sharePerWorkspaceType() +
-      this.markupPeakArea(areaPerEmployee)
+      this.variables.coworkingShare +
+      this.markupPeakArea(areaPerEmployee) -
+      sharedMultiroom.calculateAreaExclCompensation()
+    // SUM((AL6:AL12)*AN29*AM29)+(T29)-(M28);"0")
     return meetingRoomAreaTotal
   }
 }

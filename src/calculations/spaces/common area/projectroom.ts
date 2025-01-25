@@ -7,4 +7,13 @@ export default class CommonProjectroom extends MainSpace {
     }
     return 0
   }
+
+  calculateEmployeesPerWorkplaceTypeAdjusted(): number {
+    return this.space.result.adjustmentForMissingSquareMeters || 1
+  }
+
+  calculateAreaExclCompensation (): number {
+    // AI40*AN40
+    return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
+  }
 }
