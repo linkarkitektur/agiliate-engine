@@ -91,7 +91,7 @@ export interface IVariable {
   /**
    * Whether there is a need for access to an exercise area.
    */
-  accessToExercise: boolean
+  accessToFitness: boolean
 
   /**
    * The share of coworking space.

@@ -14,6 +14,25 @@ export default class Projectroom extends MainSpace {
   }
 
   calculateAreaExclCompensation (): number {
+    // =SUM(AI10*AN10)
     return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
+  }
+
+  /**
+   * Calculates adjustment for missing square meters (AK6 in Excel)
+   * Formula: IF (AK68!=0 AND AL6 == MAX(AL6:AL66)) THEN (AC6*AM6)+AK68 ELSE AC6*AM6
+   * @todo Spørg Pontus om denne (fejler ved max pt... eller gør den?)
+   */
+  calculateAdjustmentForMissingSquareMeters(allEmployeesPerWorkplaceTypeUnadjusted: number[], totalEmployeesPerWorkplaceTypeUnadjusted: number): number {
+    const myUnadjustedCount = this.calculateEmployeesPerWorkplaceTypeUnadjusted()
+    const isMaxEmployee = myUnadjustedCount === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)
+    const baseCount = this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType()
+
+    if (isMaxEmployee) {
+      const missingEmployees = this.nonAdjustedWorkstationCapacity() - totalEmployeesPerWorkplaceTypeUnadjusted
+      return Math.round(baseCount + missingEmployees)
+    }
+
+    return Math.round(baseCount)
   }
 }

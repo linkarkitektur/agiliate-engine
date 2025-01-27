@@ -1,8 +1,8 @@
 export interface ISpaceResult {
   areaExclCompensation?: number // The area excluding compensation
-  notAdjustedAddonArea?: number // The not adjusted add-on area
+  notAdjustedMarkupArea?: number // The not adjusted add-on area
   notAdjustedAddonPart?: number // The not adjusted add-on part
-  adjustedAddonArea?: number // The adjusted add-on area
+  adjustedMarkupArea?: number // The adjusted add-on area
   adjustedAreaInclCompensation?: number // The adjusted area including compensation
   adjustedAreaInclCompensationWithAdjustmentAndCompensation?: number // The adjusted area including compensation with adjustment and compensation
   employeesPerWorkplaceTypeUnadjusted?: number // The unadjusted number of employees per workplace type
@@ -13,4 +13,5 @@ export interface ISpaceResult {
   numberOfSeats?: number // The number of seats, if applicable
   nonAdjustedRestArea?: number // The non-adjusted rest area
   adjustmentForMissingSquareMeters?: number // The missing adjustment
+  walkwayAdjustedAreaInclCompensation?: number // The adjusted area used for calculating the walkway
 }

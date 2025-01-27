@@ -2,6 +2,9 @@ import MainSpace from '../main_space_class'
 
 export default class SharedProjectroom extends MainSpace {
   sharePerWorkspaceType (): number {
+    if (!this.variables.accessToCoworking) {
+      return 0
+    }
     return this.variables.projectroomShare * this.variables.coworkingShare
   }
 

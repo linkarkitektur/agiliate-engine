@@ -4,6 +4,9 @@ import SharedTouchdown from '../coworking/touchdown'
 export default class WorkTouchdown extends MainSpace {
   sharePerWorkspaceType (): number {
     // We need the shared touchdown share for the calculation of the work touchdown share
+    if (!this.variables.accessToCoworking) {
+      return this.variables.touchdownShare
+    }
     const sharedTouchdown = new SharedTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     return this.variables.touchdownShare - sharedTouchdown.sharePerWorkspaceType()
   }

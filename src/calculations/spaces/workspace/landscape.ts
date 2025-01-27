@@ -1,11 +1,10 @@
 import MainSpace from '../main_space_class'
+import TeamOffice from '../coworking/teamoffice'
 
 export default class Landscape extends MainSpace {
   sharePerWorkspaceType (): number {
-    if (this.variables.accessToCellOffice) {
-      return this.variables.landscapeShare
-    }
-    return this.variables.landscapeShare + this.variables.cellOfficeShare
+    const teamOffice = new TeamOffice(this.variables, this.config, this.customSpaceConstants, this.customConstants)
+    return this.variables.landscapeShare - teamOffice.sharePerWorkspaceType()
   }
 
   calculateEmployeesPerWorkplaceTypeAdjusted(): number {

@@ -1148,7 +1148,7 @@
             },
             {
               "name": "exercise room – common area",
-              "className": "CommonExerciseRoom",
+              "className": "CommonFitnessRoom",
               "result": {},
               "constants": {
                 "areaPerFunction": 1.0,

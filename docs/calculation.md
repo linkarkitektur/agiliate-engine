@@ -16,7 +16,7 @@ where the `variables`, `customSpaceConstants`, `customConstants` and `config` ar
     "accessToAuditorium": true,
     "accessToCellOffice": true,
     "accessToReception": false,
-    "accessToExercise": true,
+    "accessToFitness": true,
     "specialAreaOffice": 80,
     "specialAreaShared": 0,
     "specialAreaCommon": 100,

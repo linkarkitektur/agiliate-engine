@@ -25,7 +25,6 @@ import WorkLargeMeetingroom from './workspace/meetingroom_large'
 import CommonSmallMeetingroom from './common area/meetingroom_small'
 import CommonMediumMeetingroom from './common area/meetingroom_medium'
 import CommonLargeMeetingroom from './common area/meetingroom_large'
-import CommonMeetingroom from './common area/meetingroom'
 import SharedMultiroom from './coworking/multiroom'
 import WorkMultiroom from './workspace/multiroom'
 import WorkReception from './workspace/reception'
@@ -52,15 +51,16 @@ import CommonCleaning from './common area/cleaning'
 import CommonToilet from './common area/toilet'
 import CommonHwc from './common area/hwc'
 import CommonWardrobe from './common area/wardrobe'
-import CommonExerciseRoom from './common area/exerciseroom'
+import CommonFitnessRoom from './common area/fitnessroom'
 import SharedSpecial from './coworking/special'
 import CommonSpecial from './common area/special'
 import SharedProjectroom from './coworking/projectroom'
 import SharedLounge from './coworking/lounge'
 import type MainSpace from './main_space_class'
-import TeamOffice from './coworking/TeamOffice'
+import TeamOffice from './coworking/teamoffice'
 import CommonProjectroom from './common area/projectroom'
 import CommonLounge from './common area/lounge'
+import CommonChangingRoom from './common area/changingroom'
 
 /**
  * This function returns the correct space class based on the space name.
@@ -118,7 +118,7 @@ const getSpace = (spaceName: string): typeof MainSpace => {
   if (spaceName === 'toilet – common area') return CommonToilet
   if (spaceName === 'hwc – common area') return CommonHwc
   if (spaceName === 'wardrobe – common area') return CommonWardrobe
-  if (spaceName === 'exercise room – common area') return CommonExerciseRoom
+  if (spaceName === 'fitness room – common area') return CommonFitnessRoom
   if (spaceName === 'special – coworking') return SharedSpecial
   if (spaceName === 'special – common area') return CommonSpecial
   if (spaceName === 'project room – coworking') return SharedProjectroom
@@ -128,6 +128,7 @@ const getSpace = (spaceName: string): typeof MainSpace => {
   if (spaceName === 'cleaning – coworking') return SharedCleaning
   if (spaceName === 'project room – common area') return CommonProjectroom
   if (spaceName === 'lounge area – common area') return CommonLounge
+  if (spaceName === 'changing room – common area') return CommonChangingRoom
   throw new Error(`Space ${spaceName} not found`)
 }
 

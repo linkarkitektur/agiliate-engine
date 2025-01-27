@@ -7,6 +7,7 @@ export interface IConstant {
    * Share of corridor area
    * @minimum 0
    * @maximum 1
+   * @deprecated
    */
   corridorAddonShare: number
   /**
@@ -27,4 +28,34 @@ export interface IConstant {
    * @maximum ?
    */
   seatingRatioCommonArea: number
+  /**
+   * Share of workspace walkway
+   * @minimum 0
+   * @maximum 1
+   */
+  walkwayShareWorkspace: number
+  /**
+   * Share of coworking walkway
+   * @minimum 0
+   * @maximum 1
+   */
+  walkwayShareCoworking: number
+  /**
+   * Share of common area walkway
+   * @minimum 0
+   * @maximum 1
+   */
+  walkwayShareCommonArea: number
+  /**
+   * Share of communication area
+   * @minimum 0
+   * @maximum 1
+   */
+  communicationAreaShare: number
+  /**
+   * Share of technical area
+   * @minimum 0
+   * @maximum 1
+   */
+  technicalAreaShare: number
 }

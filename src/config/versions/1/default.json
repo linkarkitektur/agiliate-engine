@@ -1,10 +1,14 @@
 {
   "constants": {
     "governmentMinimumSquaremetersPerWorkSpace": 6,
-    "corridorAddonShare": 0.18,
-    "innerwallsAddonShare": 0.09,
+    "walkwayShareWorkspace": 0.29,
+    "walkwayShareCoworking": 0.14,
+    "walkwayShareCommonArea": 0.12,
+    "innerwallsAddonShare": 0.08,
     "usageRatioCommonArea": 0.33,
-    "seatingRatioCommonArea": 0.33
+    "seatingRatioCommonArea": 0.33,
+    "communicationAreaShare": 0.10,
+    "technicalAreaShare": 0.29
   },
   "spaces": [
     {
@@ -564,7 +568,7 @@
                 "personRoomWorkstation": "room",
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "shouldCalculateCompensation": false,
+                "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false,
                 "shouldCalculateNumberOfRooms": true
@@ -941,7 +945,7 @@
                 "personRoomWorkstation": "person",
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "shouldCalculateCompensation": true,
+                "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
               }
@@ -1149,8 +1153,8 @@
               }
             },
             {
-              "name": "exercise room – common area",
-              "className": "CommonExerciseRoom",
+              "name": "fitness room – common area",
+              "className": "CommonFitnessRoom",
               "result": {},
               "constants": {
                 "areaPerFunction": 1.0,
@@ -1159,6 +1163,21 @@
                 "personsPerType": 1,
                 "minimumPersons": 1,
                 "unitsPerPerson": 0.20,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "changing room – common area",
+              "className": "CommonChangingRoom",
+              "result": {},
+              "constants": {
+                "areaPerFunction": 0.26,
+                "minimumSquareMeters": 26.0,
+                "personRoomWorkstation": "person",
+                "personsPerType": 1,
+                "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false

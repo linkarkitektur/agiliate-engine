@@ -15,6 +15,9 @@ export default class CellOffice extends MainSpace {
   }
 
   calculateAreaExclCompensation (): number {
+    if (!this.variables.accessToCellOffice) {
+      return 0
+    }
     // console.log(this.calculateEmployeesPerWorkplaceTypeAdjusted(), this.areaPerEmployee())
     return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
   }

@@ -8,6 +8,9 @@ export default class WorkDockin extends MainSpace {
    */
   sharePerWorkspaceType (): number {
     // We need the shared dock in share for the calculation of the work dock in share
+    if (!this.variables.accessToCoworking) {
+      return this.variables.dockinShare
+    }
     const sharedDockin = new SharedDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     return this.variables.dockinShare - sharedDockin.sharePerWorkspaceType()
   }

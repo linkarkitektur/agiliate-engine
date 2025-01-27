@@ -7,7 +7,7 @@ export default class SharedReception extends MainSpace {
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {
-    if ( this.variables.accessToCoworking && this.variables.accessToTenantReception) {
+    if (this.variables.accessToCoworking && this.variables.accessToTenantReception) {
       return this.dimensionedAttendance() * this.areaPerEmployee() * this.variables.coworkingShare
     }
     return 0
