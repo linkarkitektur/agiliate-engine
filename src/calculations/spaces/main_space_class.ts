@@ -94,6 +94,28 @@ export default class MainSpace implements ISpaceCalculation {
     return baseArea * (1 + (this.spaceConstants.markupInternalSpaceShare || 0))
   }
 
+  totalAreaPerFunction(): number {
+    return 0
+  }
+
+  /**
+   * Calculates the non adjusted area per function for the space
+   */
+  nonAdjustedAreaPerFunction(): number {
+    // =ROUND(HOVEDMOTOR!AB6*'ROM LISTE'!W9;0)
+    return Math.round(this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor())
+  }
+
+  /**
+   * Area per room
+   */
+  areaPerRoom(): number {
+    if (this.space.result.areaExclCompensation !== undefined && this.space.result.areaExclCompensation > 0) {
+      return this.minimumSquareMeters()
+    }
+    return 0
+  }
+
   /**
    * The minimum square meters required for this space
    */
@@ -173,7 +195,7 @@ export default class MainSpace implements ISpaceCalculation {
    * This method calculates the government required area for this space.
    * @returns {number}
    */
-  #governmentRequiredArea (): number {
+  governmentRequiredArea (): number {
     return this.dimensionedAttendance() * this.constants.governmentMinimumSquaremetersPerWorkSpace
   }
 
@@ -181,7 +203,8 @@ export default class MainSpace implements ISpaceCalculation {
    * Calculates non-adjusted rest area
    * E4 = D4 - MAX(J4*L4;J4*M4)
    */
-  calculateNonAdjustedRestArea(numberOfSeats: number, numberOfRooms: number): number {
+  // calculateNonAdjustedRestArea(numberOfSeats: number, numberOfRooms: number): number {
+  calculateNonAdjustedRestArea(): number {
     const nonAdjustedArea = this.space.result.areaExclCompensation || 0
 
     if (nonAdjustedArea <= 0) {
@@ -189,28 +212,24 @@ export default class MainSpace implements ISpaceCalculation {
     }
 
     if (this.space.constants.personRoomWorkstation === 'person') {
+      if (this.space.constants.hasAreaPerRoom === false) {
+        return 0
+      }
       // D4 - MAX(J4*L4;J4*M4)
+      const numberOfSeats = this.space.result.numberOfSeats || 0
       const nonAdjustedAreaPerSeat = this.minAreaPerPersonExcludingCorridor()
       const minSeats = this.spaceConstants.minimumPersons || 0
       const adjustedNumberOfSeats = numberOfSeats > 0 ? Math.max(numberOfSeats, minSeats) : 0
       const areaNeeded = nonAdjustedAreaPerSeat * Math.max(numberOfSeats, adjustedNumberOfSeats)
       return nonAdjustedArea - areaNeeded
     }
-    if (this.space.constants.personRoomWorkstation === 'room') {
+    if (this.space.constants.personRoomWorkstation === 'room' || this.space.constants.personRoomWorkstation === 'workstation') {
       // =SUM(D13-(I13*N13))
-      return (this.space.result.areaExclCompensation || 0) - (this.areaPerFunction() * numberOfRooms)
-    }
-    if (this.space.constants.personRoomWorkstation === 'workstation') {
-      // =SUM(D14)-(I14*N14)-(I15*N15)-(I16*N16)-(I17*N17) (kun møderum?)
-    }
-
-    if (this.space.name === 'multi room – workspace') {
-      // console.log(this.space.result.areaExclCompensation, this.space.result.adjustedAreaInclCompensation, numberOfSeats)
+      //
+      const numberOfRooms = this.space.result.numberOfRooms || 0
+      return (this.space.result.adjustedAreaInclCompensation || 0) - (this.areaPerRoom() * numberOfRooms)
     }
     return 0
-
-
-
   }
 
   /**
@@ -261,11 +280,18 @@ export default class MainSpace implements ISpaceCalculation {
    * Calculates number of rooms
    * @returns {number}
    */
-  calculateNumberOfRooms (): number {
-    if (this.spaceConstants.shouldCalculateNumberOfRooms) {
-      return Math.ceil((this.space.result.areaExclCompensation || 0) / this.minimumSquareMeters())
+  calculateNumberOfRooms (allEmployeesPerWorkplaceTypeUnadjusted: number[], totalEmployeesPerWorkplaceTypeUnadjusted: number): number {
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
     }
-    return 0
+
+    const adjustmentForMissingSquareMeters = this.calculateAdjustmentForMissingSquareMeters(
+      allEmployeesPerWorkplaceTypeUnadjusted,
+      totalEmployeesPerWorkplaceTypeUnadjusted
+    )
+
+    return Math.ceil(adjustmentForMissingSquareMeters / (this.spaceConstants.minimumPersons || 1))
+    // return Math.ceil((this.space.result.areaExclCompensation || 0) / this.minimumSquareMeters())
   }
 
   /**
@@ -297,6 +323,9 @@ export default class MainSpace implements ISpaceCalculation {
     if (!this.spaceConstants.shouldCalculateNumberOfSeats) {
       return 0
     }
+    if (this.space.result.areaExclCompensation === 0) {
+      return 0
+    }
 
     let seatCount: number
     if (this.variables.addPeakMarkupToWorkstationCapacityShare) {
@@ -326,10 +355,9 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   calculateNotAdjustedAddonPart (totalWorkplaceArea: number, totalCompensationArea: number): number {
-    if (this.spaceConstants.shouldCalculateCompensation && totalWorkplaceArea < this.#governmentRequiredArea()) {
+    if (this.spaceConstants.shouldCalculateCompensation && totalWorkplaceArea < this.governmentRequiredArea()) {
       // =IF(S67<S70;SUM((S70/S67)*(R13/R67));"0")
-      //console.log(totalWorkplaceArea)
-      return (this.#governmentRequiredArea() / totalWorkplaceArea) * (this.space.result.areaExclCompensation! / totalCompensationArea)
+      return (this.governmentRequiredArea() / totalWorkplaceArea) * (this.space.result.areaExclCompensation! / totalCompensationArea)
     }
     return 0
   }
@@ -341,7 +369,8 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   calculateNotAdjustedMarkupArea (totalWorkplaceArea: number, totalCompensationArea: number): number {
-    if (this.spaceConstants.shouldCalculateCompensation && totalWorkplaceArea < this.#governmentRequiredArea()) {
+    // =IF(S67<S70;SUM(Q13*R13);"0")
+    if (this.spaceConstants.shouldCalculateCompensation && totalWorkplaceArea < this.governmentRequiredArea()) {
       return this.calculateNotAdjustedAddonPart(totalWorkplaceArea, totalCompensationArea) * (this.space.result.areaExclCompensation || 0)
     }
     return 0
@@ -353,7 +382,7 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   #differenceGovernnmentRequiredAreaWorkplaceArea (totalWorkplaceArea: number): number {
-    return this.#governmentRequiredArea() - totalWorkplaceArea
+    return this.governmentRequiredArea() - totalWorkplaceArea
   }
 
   /**
@@ -389,10 +418,7 @@ export default class MainSpace implements ISpaceCalculation {
    */
   calculateAdjustedMarkupArea (totalWorkplaceArea: number, totalCompensationArea: number, totalUnadjustedArea: number): number {
     // (P13/P67)*S71
-    if (this.spaceConstants.shouldCalculateCompensation && totalWorkplaceArea < this.#governmentRequiredArea()) {
-      if (this.space.name === 'multi room – workspace') {
-        // console.log(this.calculateNotAdjustedMarkupArea(totalWorkplaceArea, totalCompensationArea), totalUnadjustedArea)
-      }
+    if (this.spaceConstants.shouldCalculateCompensation && totalWorkplaceArea < this.governmentRequiredArea()) {
       return this.calculateNotAdjustedMarkupArea(totalWorkplaceArea, totalCompensationArea) /
       totalUnadjustedArea *
       this.#differenceGovernnmentRequiredAreaWorkplaceArea(totalWorkplaceArea)
@@ -408,11 +434,20 @@ export default class MainSpace implements ISpaceCalculation {
    * @returns {number}
    */
   calculateAdjustedAreaInclCompensation(totalWorkplaceArea: number, totalCompensationArea: number, totalUnadjustedArea: number): number {
+    if (this.space.result.areaExclCompensation === undefined) {
+      return 0
+    }
     if (this.spaceConstants.shouldCalculateCompensation) {
       const compensationAreaInclMarkup = this.calculateAdjustedMarkupArea(totalWorkplaceArea, totalCompensationArea, totalUnadjustedArea) + (this.space.result.areaExclCompensation || 0)
-      return Math.max(compensationAreaInclMarkup, this.space.result.areaExclCompensation || 0)
+      if (this.space.result.areaExclCompensation < 1) {
+        return Math.round(Math.max(compensationAreaInclMarkup, this.space.result.areaExclCompensation))
+      }
+      return Math.ceil(Math.max(compensationAreaInclMarkup, this.space.result.areaExclCompensation))
     }
-    return Math.ceil(this.space.result.areaExclCompensation || 0)
+    if (this.space.result.areaExclCompensation < 1) {
+      return Math.round(this.space.result.areaExclCompensation)
+    }
+    return Math.ceil(this.space.result.areaExclCompensation)
   }
 
   /**
@@ -462,7 +497,7 @@ export default class MainSpace implements ISpaceCalculation {
    * @param {number} areaPerEmployee - The area per employee, optional parameter
    */
   markupPeakArea(areaPerEmployee?: number): number {
-    if (this.divergencePeakWorkstationCapacity() > 0) {
+    if (this.divergencePeakOccupancy() > 0) {
       return this.markupEmployeesAtPeak() * (areaPerEmployee || this.areaPerEmployee())
     }
     return 0

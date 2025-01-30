@@ -30,4 +30,17 @@ export default class Anteroom extends MainSpace {
     }
     return 0
   }
+
+  calculateNumberOfRooms(): number {
+    if (!this.variables.accessToAuditorium && !this.variables.accessToCourseSpace) {
+      return 0
+    }
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
+    }
+    if (this.areaPerFunction() > 0) {
+      return 1
+    }
+    return 0
+  }
 }

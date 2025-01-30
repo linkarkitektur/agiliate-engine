@@ -14,4 +14,20 @@ export default class SharedLounge extends MainSpace {
     }
     return 0
   }
+
+  calculateNumberOfRooms(): number {
+    if (!this.variables.accessToCoworking) {
+      return 0
+    }
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
+    }
+    if (this.space.result.adjustedAreaInclCompensation === undefined) {
+      return 0
+    }
+    if (this.space.result.adjustedAreaInclCompensation > 0) {
+      return Math.round(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
+    }
+    return this.spaceConstants.minimumPersons || 0
+  }
 }

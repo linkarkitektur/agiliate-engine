@@ -182,7 +182,7 @@
               }
             },
             {
-              "name": "mini kitchen lounge",
+              "name": "lounge area – workspace",
               "className": "MiniKitchenLounge",
               "result": {},
               "constants": {
@@ -403,7 +403,7 @@
               "result": {},
               "spaces": [
                 {
-                  "name": "toilet – workspace",
+                  "name": "wc – workspace",
                   "className": "WorkToilet",
                   "result": {},
                   "constants": {
@@ -775,7 +775,7 @@
               "result": {},
               "spaces": [
                 {
-                  "name": "toilet – coworking",
+                  "name": "wc – coworking",
                   "className": "SharedToilet",
                   "result": {},
                   "constants": {
@@ -1096,7 +1096,7 @@
               "result": {},
               "spaces": [
                 {
-                  "name": "toilet – common area",
+                  "name": "wc – common area",
                   "className": "CommonToilet",
                   "result": {},
                   "constants": {

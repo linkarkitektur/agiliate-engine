@@ -49,4 +49,25 @@ export default class WorkMeetingroom extends MainSpace {
       sharedMeetingroom.calculateAreaExclCompensation()
     return meetingRoomAreaTotal
   }
+
+  calculateNotAdjustedAddonPart (totalWorkplaceArea: number, totalCompensationArea: number): number {
+    if (this.spaceConstants.shouldCalculateCompensation && totalWorkplaceArea < this.governmentRequiredArea()) {
+      return (this.governmentRequiredArea() / totalWorkplaceArea) * (this.calculateAreaExclCompensation() / totalCompensationArea)
+    }
+    return 0
+  }
+
+  calculateNumberOfRooms(): number {
+    // =IF(OR(G14=0;I14=0);0;IF(G14>=I14;ROUND(G14/I14;0);ROUNDUP(G14/I14;0)))
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
+    }
+    if (this.space.result.adjustedAreaInclCompensation === undefined || this.space.result.adjustedAreaInclCompensation <= 0 || this.areaPerRoom() <= 0) {
+      return 0
+    }
+    if (this.space.result.adjustedAreaInclCompensation >= this.areaPerRoom()) {
+      return Math.round(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
+    }
+    return Math.ceil(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
+  }
 }

@@ -9,4 +9,14 @@ export default class CommonFitnessRoom extends MainSpace {
   calculateAreaExclCompensation (): number {
     return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor()
   }
+
+  calculateNumberOfRooms(): number {
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
+    }
+    if (this.space.result.adjustedAreaInclCompensation === undefined || this.space.result.adjustedAreaInclCompensation <= 0) {
+      return this.spaceConstants.minimumPersons || 0
+    }
+    return Math.round(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
+  }
 }

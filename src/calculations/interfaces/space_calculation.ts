@@ -8,7 +8,7 @@ export interface ISpaceCalculation {
   calculateEmployeesPerWorkplaceTypeAdjusted: (totalEmployeesPerWorkplaceTypeUnadjusted: number, allEmployeesPerWorkplaceTypeUnadjusted: number[]) => number // Function to calculate the adjusted number of employees per workplace type
   calculateAdjustedAreaInclCompensationWithAdjustmentAndCompensation: () => number // Function to calculate the adjusted area including compensation with adjustment and compensation
   dimensionedAttendance: () => number // Function to calculate the dimensioned attendance
-  calculateNumberOfRooms: () => number // Function to calculate the number of rooms, if applicable
+  calculateNumberOfRooms: (allEmployeesPerWorkplaceTypeUnadjusted: number[], totalEmployeesPerWorkplaceTypeUnadjusted: number) => number // Function to calculate the number of rooms, if applicable
   calculateNumberOfSeats: (allEmployeesPerWorkplaceTypeUnadjusted: number[], totalEmployeesPerWorkplaceTypeUnadjusted: number) => number // Function to calculate the number of seats, if applicable
   areaPerPersonWithoutCompensationFactor: () => number // The area per person excluding the compensation factor
   areaPerFunction: () => number // The area per function

@@ -19,4 +19,23 @@ export default class WorkMultiroom extends MainSpace {
     }
     return touchdownDockinLandscapeSum / 15 * 2 * this.minAreaPerPersonExcludingCorridor()
   }
+
+  calculateNumberOfRooms(): number {
+    // =IF(D13>0;ROUND(MAX(D13/I13;'ROM LISTE'!R11;0);0);0)
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
+    }
+    if (this.space.result.adjustedAreaInclCompensation === undefined) {
+      return 0
+    }
+    // console.log(this.space.result.adjustedAreaInclCompensation)
+    // D13 = adjustedareainclcompensation
+    // I13 = areaperroom
+    // R11 = minpersonsperunit = minimumPersons
+    //
+    if (this.space.result.adjustedAreaInclCompensation > 0) {
+      return Math.round(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
+    }
+    return this.spaceConstants.minimumPersons || 0
+  }
 }

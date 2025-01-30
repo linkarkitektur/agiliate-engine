@@ -13,7 +13,7 @@ import CommonLargeMeetingroom from './meetingroom_large'
 export default class CommonMeetingroom extends MainSpace {
   sharePerWorkspaceType (): number {
     if (this.variables.accessToCommonAreaProjectAndMeetingRooms) {
-      return this.variables.accessToCommonAreaProjectAndMeetingRoomsShare
+      return this.variables.commonAreaProjectAndMeetingRoomsShare
     }
     return 0
   }
@@ -49,5 +49,21 @@ export default class CommonMeetingroom extends MainSpace {
       this.sharePerWorkspaceType() +
       this.markupPeakArea(areaPerEmployee)
     return meetingRoomAreaTotal
+  }
+
+  calculateNumberOfRooms(): number {
+    if (!this.variables.accessToCommonAreaProjectAndMeetingRooms) {
+      return 0
+    }
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
+    }
+    if (this.space.result.adjustedAreaInclCompensation === undefined || this.space.result.adjustedAreaInclCompensation <= 0 || this.areaPerRoom() <= 0) {
+      return 0
+    }
+    if (this.space.result.adjustedAreaInclCompensation >= this.areaPerRoom()) {
+      return Math.round(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
+    }
+    return Math.ceil(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
   }
 }

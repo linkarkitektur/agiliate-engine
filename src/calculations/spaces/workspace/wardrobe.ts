@@ -6,4 +6,14 @@ export default class WorkWardrobe extends MainSpace {
     const sharedWardrobe = new SharedWardrobe(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     return this.dimensionedAttendance() * this.areaPerEmployee() - sharedWardrobe.calculateAreaExclCompensation()
   }
+
+  calculateNumberOfRooms(): number {
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
+    }
+    if (this.areaPerFunction() > 0) {
+      return 1
+    }
+    return 0
+  }
 }

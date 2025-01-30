@@ -260,6 +260,6 @@ export interface IVariable {
    * Share of access to project- & meeting rooms in Common area
    * @is_in_new_excel
    */
-  accessToCommonAreaProjectAndMeetingRoomsShare: number
+  commonAreaProjectAndMeetingRoomsShare: number
 
 }

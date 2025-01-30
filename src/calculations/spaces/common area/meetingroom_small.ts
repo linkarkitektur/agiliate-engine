@@ -4,7 +4,7 @@ import CommonMeetingroom from './meetingroom'
 export default class CommonSmallMeetingroom extends MainSpace {
   sharePerWorkspaceType (): number {
     if (this.variables.accessToCommonAreaProjectAndMeetingRooms) {
-      return this.variables.accessToCommonAreaProjectAndMeetingRoomsShare
+      return this.variables.commonAreaProjectAndMeetingRoomsShare
     }
     return 0
   }
@@ -19,5 +19,10 @@ export default class CommonSmallMeetingroom extends MainSpace {
     const meetingRoomAreaTotal = commonMeetingroom.calculateAreaExclCompensation()
     const totalShare = this.variables.smallMeetingroomShare + this.variables.mediumMeetingroomShare + this.variables.largeMeetingroomShare
     return meetingRoomAreaTotal * this.variables.smallMeetingroomShare / totalShare
+  }
+
+  calculateNumberOfRooms(): number {
+    const commonMeetingroom = new CommonMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants, this.space)
+    return commonMeetingroom.calculateNumberOfRooms()
   }
 }

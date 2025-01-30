@@ -95,4 +95,9 @@ export interface ISpaceConstant {
      * @maximum 1
      */
     markupInternalSpaceShare?: number
+
+    /**
+     * Whether this space has an area per room
+     */
+    hasAreaPerRoom?: boolean
 }

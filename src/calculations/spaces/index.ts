@@ -82,7 +82,7 @@ const getSpace = (spaceName: string): typeof MainSpace => {
   if (spaceName === 'focus room') return Focusroom
   if (spaceName === 'quiet zone') return Quietzone
   if (spaceName === 'coffee station') return CoffeeStation
-  if (spaceName === 'mini kitchen lounge') return MiniKitchenLounge
+  if (spaceName === 'lounge area – workspace') return MiniKitchenLounge
   if (spaceName === 'small meeting room (4-6 people) – coworking') return SharedSmallMeetingroom
   if (spaceName === 'medium meeting room (8-12 people) – coworking') return SharedMediumMeetingroom
   if (spaceName === 'large meeting room (16-30 people) – coworking') return SharedLargeMeetingroom
@@ -105,8 +105,8 @@ const getSpace = (spaceName: string): typeof MainSpace => {
   if (spaceName === 'locker area – coworking') return SharedPersonalStorage
   if (spaceName === 'cloak room area – workspace') return WorkWardrobe
   if (spaceName === 'cloak room area – coworking') return SharedWardrobe
-  if (spaceName === 'toilet – workspace') return WorkToilet
-  if (spaceName === 'toilet – coworking') return SharedToilet
+  if (spaceName === 'wc – workspace') return WorkToilet
+  if (spaceName === 'wc – coworking') return SharedToilet
   if (spaceName === 'hwc – workspace') return WorkHwc
   if (spaceName === 'hwc – coworking') return SharedHwc
   if (spaceName === 'special – workspace') return WorkSpecial
@@ -115,9 +115,9 @@ const getSpace = (spaceName: string): typeof MainSpace => {
   if (spaceName === 'copy & archive – common area') return CommonCopyArchive
   if (spaceName === 'copy & archive – coworking') return SharedCopyArchive
   if (spaceName === 'cleaning – common area') return CommonCleaning
-  if (spaceName === 'toilet – common area') return CommonToilet
+  if (spaceName === 'wc – common area') return CommonToilet
   if (spaceName === 'hwc – common area') return CommonHwc
-  if (spaceName === 'wardrobe – common area') return CommonWardrobe
+  if (spaceName === 'cloak room area – common area') return CommonWardrobe
   if (spaceName === 'fitness room – common area') return CommonFitnessRoom
   if (spaceName === 'special – coworking') return SharedSpecial
   if (spaceName === 'special – common area') return CommonSpecial

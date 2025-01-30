@@ -14,4 +14,9 @@ export default class SharedLargeMeetingroom extends MainSpace {
     const sharedMeetingroom = new SharedMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants, this.space)
     return this.variables.largeMeetingroomShare * sharedMeetingroom.calculateAreaExclCompensation()
   }
+
+  calculateNumberOfRooms(): number {
+    const sharedMeetingroom = new SharedMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants, this.space)
+    return sharedMeetingroom.calculateNumberOfRooms()
+  }
 }

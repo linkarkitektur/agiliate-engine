@@ -18,7 +18,13 @@ export default class CellOffice extends MainSpace {
     if (!this.variables.accessToCellOffice) {
       return 0
     }
-    // console.log(this.calculateEmployeesPerWorkplaceTypeAdjusted(), this.areaPerEmployee())
     return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
+  }
+
+  calculateNumberOfSeats(allEmployeesPerWorkplaceTypeUnadjusted: number[], totalEmployeesPerWorkplaceTypeUnadjusted: number): number {
+    if (!this.variables.accessToCellOffice) {
+      return 0
+    }
+    return super.calculateNumberOfSeats(allEmployeesPerWorkplaceTypeUnadjusted, totalEmployeesPerWorkplaceTypeUnadjusted)
   }
 }

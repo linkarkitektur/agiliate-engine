@@ -6,10 +6,6 @@ import Quietzone from './quietzone'
 import SharedPersonalStorage from '../coworking/personalstorage'
 
 export default class WorkPersonalStorage extends MainSpace {
-  /**
-   * Calculates the area of the personal storage
-   * @returns {number}
-   */
   calculateAreaExclCompensation (): number {
     const workTouchdown = new WorkTouchdown(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const workDockin = new WorkDockin(this.variables, this.config, this.customSpaceConstants, this.customConstants)
@@ -18,5 +14,15 @@ export default class WorkPersonalStorage extends MainSpace {
     const sharedPersonalStorage = new SharedPersonalStorage(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const employeesPerWorkplaceTypeUnadjusted = workTouchdown.calculateEmployeesPerWorkplaceTypeUnadjusted() + workDockin.calculateEmployeesPerWorkplaceTypeUnadjusted() + focusroom.calculateEmployeesPerWorkplaceTypeUnadjusted() + quietzone.calculateEmployeesPerWorkplaceTypeUnadjusted()
     return employeesPerWorkplaceTypeUnadjusted * this.areaPerEmployee() - sharedPersonalStorage.calculateAreaExclCompensation()
+  }
+
+  calculateNumberOfRooms(): number {
+    if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
+      return 0
+    }
+    if (this.areaPerFunction() > 0) {
+      return 1
+    }
+    return 0
   }
 }

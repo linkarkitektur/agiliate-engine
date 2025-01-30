@@ -14,4 +14,9 @@ export default class SharedMediumMeetingroom extends MainSpace {
     const sharedMeetingroom = new SharedMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants, this.space)
     return this.variables.mediumMeetingroomShare * sharedMeetingroom.calculateAreaExclCompensation()
   }
+
+  calculateNumberOfRooms(): number {
+    const sharedMeetingroom = new SharedMeetingroom(this.variables, this.config, this.customSpaceConstants, this.customConstants, this.space)
+    return sharedMeetingroom.calculateNumberOfRooms()
+  }
 }
