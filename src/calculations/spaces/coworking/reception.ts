@@ -28,4 +28,11 @@ export default class SharedReception extends MainSpace {
     }
     return Math.ceil(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
   }
+
+  calculateNonAdjustedRestArea(): number {
+    if (this.space.result.adjustedAreaInclCompensation === undefined || this.space.result.adjustedAreaInclCompensation <= 0 || this.space.result.numberOfRooms === undefined || this.space.result.numberOfRooms <= 0) {
+      return 0
+    }
+    return this.space.result.adjustedAreaInclCompensation - this.areaPerRoom() * this.space.result.numberOfRooms
+  }
 }

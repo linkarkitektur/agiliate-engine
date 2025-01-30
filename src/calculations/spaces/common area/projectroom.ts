@@ -16,4 +16,11 @@ export default class CommonProjectroom extends MainSpace {
     // AI40*AN40
     return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
   }
+
+  calculateNonAdjustedRestArea(): number {
+    if (this.space.result.adjustedAreaInclCompensation === undefined || this.space.result.adjustedAreaInclCompensation <= 0 || this.space.result.numberOfRooms === undefined || this.space.result.numberOfRooms <= 0) {
+      return 0
+    }
+    return this.space.result.adjustedAreaInclCompensation - this.areaPerRoom() * this.space.result.numberOfRooms
+  }
 }

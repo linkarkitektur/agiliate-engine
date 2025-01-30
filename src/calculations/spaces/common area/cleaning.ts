@@ -5,10 +5,6 @@ export default class CommonCleaning extends MainSpace {
     return this.dimensionedAttendance() *  this.areaPerEmployee()
   }
 
-  calculateNonAdjustedRestArea(): number {
-    return (this.space.result.adjustedAreaInclCompensation || 0) - this.areaPerRoom() * (this.space.result.numberOfRooms || 0)
-  }
-
   calculateNumberOfRooms(): number {
     if (!this.spaceConstants.shouldCalculateNumberOfRooms) {
       return 0
@@ -20,5 +16,12 @@ export default class CommonCleaning extends MainSpace {
       return Math.round(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
     }
     return Math.ceil(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
+  }
+
+  calculateNonAdjustedRestArea(): number {
+    if (this.space.result.adjustedAreaInclCompensation === undefined || this.space.result.adjustedAreaInclCompensation <= 0 || this.space.result.numberOfRooms === undefined || this.space.result.numberOfRooms <= 0) {
+      return 0
+    }
+    return this.space.result.adjustedAreaInclCompensation - this.areaPerRoom() * this.space.result.numberOfRooms
   }
 }

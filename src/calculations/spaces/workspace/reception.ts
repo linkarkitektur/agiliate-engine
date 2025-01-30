@@ -22,4 +22,12 @@ export default class WorkReception extends MainSpace {
     }
     return Math.ceil(this.space.result.adjustedAreaInclCompensation / this.areaPerRoom())
   }
+
+  calculateNonAdjustedRestArea(): number {
+    // =SUM(D18)-(I18*N18)
+    if (this.space.result.adjustedAreaInclCompensation === undefined || this.space.result.adjustedAreaInclCompensation <= 0 || this.space.result.numberOfRooms === undefined || this.space.result.numberOfRooms <= 0) {
+      return 0
+    }
+    return this.space.result.adjustedAreaInclCompensation - this.areaPerRoom() * this.space.result.numberOfRooms
+  }
 }
