@@ -9,7 +9,7 @@ export default class Landscape extends MainSpace {
 
   calculateEmployeesPerWorkplaceTypeAdjusted(): number {
     // =IF(AND(AK68<>0; AL9=MAX(AL6:AL66)); ROUND((AC6*AM9)+AK68; 0); ROUND((AC6*AM9); 0))
-    return this.space.result.adjustmentForMissingSquareMeters || 1
+    return this.space.result.adjustmentForMissingSquareMeters || 0
     // return (this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType())
   }
 

@@ -18,7 +18,6 @@ export default class WorkTouchdown extends MainSpace {
 
   /**
    * Calculates the area of touchdown. 0 if there is no need.
-   * @todo Implmenent if addPeakMarkupToWorkstationCapacityShare
    * @returns {number}
    */
   calculateAreaExclCompensation (): number {

@@ -25,7 +25,7 @@ export default class WorkDockin extends MainSpace {
    */
   calculateAreaExclCompensation (): number {
     if (this.variables.addPeakMarkupToWorkstationCapacityShare) {
-      return (this.space.result.employeesPerWorkplaceTypeAdjusted || 0) * this.areaPerEmployee()
+      return this.calculateEmployeesPerWorkplaceTypeAdjusted() * this.areaPerEmployee()
     }
     return this.nonAdjustedWorkstationCapacity() * this.sharePerWorkspaceType() * this.areaPerEmployee()
   }

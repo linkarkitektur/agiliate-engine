@@ -55,9 +55,6 @@ export default class Calculator {
     // Initialize the employee counts
     this.#initializeEmployeeCounts(this.config.spaces)
 
-    // Is this used? @todo
-    // this.#calculateTotalEmployeesPerWorkspaceTypeUnadjusted(this.config.spaces)
-
     // Calculate the results for pre run
     let spaceResults = this.#processSpacesPreRun(this.config.spaces)
     // Get the results for all spaces, first run
@@ -69,7 +66,6 @@ export default class Calculator {
     // Get some aggregate summed results
     this.#calculateTotalWorkplaceArea(spaceResults)
     this.#calculateTotalCompensationArea(spaceResults)
-    // this.#calculateTotalEmployeesPerWorkspaceTypeUnadjusted(spaceResults)
 
     // Get aggregate subspace results, second run
     spaceResults = this.#processSpacesSecond(spaceResults)
@@ -157,7 +153,6 @@ export default class Calculator {
    * @param {number} area - The area
    * @param {ISpace[]} spaceResults - The space results to add to
    * @returns {ISpace[]} The updated space results
-   * @todo This function will be deprecated once we have a better way of handling technical and communication areas
    */
   #addCustomArea (spaceResults: ISpace[], area: number, spaceName: string): ISpace[] {
     const spaceResult: ISpaceResult = {
@@ -496,7 +491,6 @@ export default class Calculator {
    * Calculates the total area that needs compensation
    * @param {ISpace[]} spaces - The spaces to calculate
    * @returns {number} The total work place area
-   * @todo Reimplement
    */
   #calculateTotalCompensationArea (spaces: ISpace[]): number {
     for (const space of spaces) {
@@ -553,23 +547,6 @@ export default class Calculator {
   }
 
   /**
-   * This method gets the employees per workplacetype (unadjusted) sum
-   * @param {ISpace[]} spaces - The spaces to calculate
-   * @returns {number} The total employees per workplace type (unadjusted)
-   */
-  #calculateTotalEmployeesPerWorkspaceTypeUnadjusted (spaces: ISpace[]): number {
-    for (const space of spaces) {
-      // If this space has nested spaces, process those
-      if (space.spaces) {
-        this.totalEmployeesPerWorkplaceTypeUnadjusted = this.#calculateTotalEmployeesPerWorkspaceTypeUnadjusted(space.spaces)
-      } else {
-        this.totalEmployeesPerWorkplaceTypeUnadjusted += space.result.employeesPerWorkplaceTypeUnadjusted ?? 0
-      }
-    }
-    return this.totalEmployeesPerWorkplaceTypeUnadjusted
-  }
-
-  /**
    * Calculates the area of corridors.
    * @param {number} areaInclCompensation - The area including compensation
    * @param {string} spaceName - The name of the space
@@ -597,9 +574,8 @@ export default class Calculator {
   }
 
   /**
-   * Process room calculations after all area calculations are complete
+   * Process room and nonAdjustedRestArea calculations after all area calculations are complete
    * @param {ISpace[]} spaces - The spaces to process
-   * @todo rename
    * @returns {ISpace[]} The processed spaces
    */
   #processRoomCalculations(spaces: ISpace[]): ISpace[] {

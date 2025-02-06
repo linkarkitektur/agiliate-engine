@@ -1,8 +1,14 @@
 {
   "constants": {
     "governmentMinimumSquaremetersPerWorkSpace": 6,
-    "corridorAddonShare": 0.18,
-    "innerwallsAddonShare": 0.09
+    "walkwayShareWorkspace": 0.29,
+    "walkwayShareCoworking": 0.14,
+    "walkwayShareCommonArea": 0.12,
+    "innerwallsAddonShare": 0.08,
+    "usageRatioCommonArea": 0.33,
+    "seatingRatioCommonArea": 0.33,
+    "communicationAreaShare": 0.10,
+    "technicalAreaShare": 0.29
   },
   "spaces": [
     {
@@ -137,7 +143,8 @@
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": false,
                 "requiresAdditionalStorage": true,
-                "shouldCalculateNumberOfRooms": true
+                "shouldCalculateNumberOfRooms": true,
+                "shouldCalculateNumberOfSeats": true
               }
             },
             {
@@ -174,7 +181,7 @@
                 "personRoomWorkstation": "room",
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "shouldCalculateCompensation": true,
+                "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false,
                 "unitsPerPerson": 0.013,
@@ -192,7 +199,9 @@
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             }
           ]
@@ -308,7 +317,8 @@
                     "minimumPersons": 1,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
-                    "adhereToGovernmentMinimum": false
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
                   }
                 },
                 {
@@ -323,7 +333,9 @@
                     "minimumPersons": 1,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
-                    "adhereToGovernmentMinimum": false
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true,
+                    "hasAreaPerRoom": false
                   }
                 }
               ]
@@ -380,7 +392,9 @@
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             },
             {
@@ -395,11 +409,13 @@
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             },
             {
-              "name": "restroom – workspace",
+              "name": "wc area – workspace",
               "result": {},
               "spaces": [
                 {
@@ -527,7 +543,9 @@
                 "minimumPersons": 4,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": true,
-                "adhereToGovernmentMinimum": true
+                "adhereToGovernmentMinimum": true,
+                "shouldCalculateNumberOfRooms": true,
+                "shouldCalculateNumberOfSeats": true
               }
             }
           ]
@@ -562,7 +580,7 @@
                 "personRoomWorkstation": "room",
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "shouldCalculateCompensation": false,
+                "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false,
                 "shouldCalculateNumberOfRooms": true
@@ -634,7 +652,8 @@
                 "countsTowardsWorkspaceArea": true,
                 "adhereToGovernmentMinimum": false,
                 "requiresAdditionalStorage": true,
-                "shouldCalculateNumberOfRooms": true
+                "shouldCalculateNumberOfRooms": true,
+                "shouldCalculateNumberOfSeats": true
               }
             }
           ]
@@ -655,7 +674,8 @@
                 "minimumSquareMeters": 40,
                 "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true
               }
             }
           ]
@@ -680,7 +700,8 @@
                     "minimumPersons": 1,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
-                    "adhereToGovernmentMinimum": false
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
                   }
                 },
                 {
@@ -695,7 +716,9 @@
                     "minimumPersons": 1,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
-                    "adhereToGovernmentMinimum": false
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true,
+                    "hasAreaPerRoom": false
                   }
                 }
               ]
@@ -752,7 +775,9 @@
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             },
             {
@@ -767,7 +792,9 @@
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             },
             {
@@ -920,7 +947,8 @@
                 "minimumSquareMeters": 40,
                 "shouldCalculateCompensation": true,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true
               }
             }
           ]
@@ -939,9 +967,11 @@
                 "personRoomWorkstation": "person",
                 "personsPerType": 1,
                 "minimumPersons": 1,
-                "shouldCalculateCompensation": true,
+                "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             },
             {
@@ -956,7 +986,9 @@
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             }
           ]
@@ -977,7 +1009,9 @@
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             },
             {
@@ -992,7 +1026,8 @@
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true
               }
             },
             {
@@ -1008,7 +1043,9 @@
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "seatAreaPerSpot": 0.40,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true,
+                "hasAreaPerRoom": false
               }
             }
           ]
@@ -1033,7 +1070,8 @@
                     "minimumPersons": 1,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
-                    "adhereToGovernmentMinimum": false
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true
                   }
                 },
                 {
@@ -1048,7 +1086,9 @@
                     "minimumPersons": 1,
                     "shouldCalculateCompensation": false,
                     "countsTowardsWorkspaceArea": false,
-                    "adhereToGovernmentMinimum": false
+                    "adhereToGovernmentMinimum": false,
+                    "shouldCalculateNumberOfRooms": true,
+                    "hasAreaPerRoom": false
                   }
                 }
               ]
@@ -1078,8 +1118,8 @@
                   "className": "CommonCleaning",
                   "result": {},
                   "constants": {
-                    "areaPerFunction": 0.05,
-                    "minimumSquareMeters": 2.0,
+                    "areaPerFunction": 0.02,
+                    "minimumSquareMeters": 5.0,
                     "personRoomWorkstation": "person",
                     "personsPerType": 1,
                     "minimumPersons": 1,
@@ -1132,22 +1172,23 @@
               ]
             },
             {
-              "name": "wardrobe – common area",
+              "name": "cloak room area – common area",
               "className": "CommonWardrobe",
               "result": {},
               "constants": {
-                "areaPerFunction": 0.26,
-                "minimumSquareMeters": 26.0,
+                "areaPerFunction": 0.05,
+                "minimumSquareMeters": 2.0,
                 "personRoomWorkstation": "person",
                 "personsPerType": 1,
                 "minimumPersons": 1,
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
-                "adhereToGovernmentMinimum": false
+                "adhereToGovernmentMinimum": false,
+                "hasAreaPerRoom": false
               }
             },
             {
-              "name": "exercise room – common area",
+              "name": "fitness room – common area",
               "className": "CommonFitnessRoom",
               "result": {},
               "constants": {
@@ -1160,6 +1201,22 @@
                 "shouldCalculateCompensation": false,
                 "countsTowardsWorkspaceArea": false,
                 "adhereToGovernmentMinimum": false
+              }
+            },
+            {
+              "name": "changing room – common area",
+              "className": "CommonChangingRoom",
+              "result": {},
+              "constants": {
+                "areaPerFunction": 0.26,
+                "minimumSquareMeters": 26.0,
+                "personRoomWorkstation": "person",
+                "personsPerType": 1,
+                "minimumPersons": 1,
+                "shouldCalculateCompensation": false,
+                "countsTowardsWorkspaceArea": false,
+                "adhereToGovernmentMinimum": false,
+                "shouldCalculateNumberOfRooms": true
               }
             }
           ]

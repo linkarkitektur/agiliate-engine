@@ -163,7 +163,6 @@ export default class MainSpace implements ISpaceCalculation {
 
   /**
    * This method calculates the dimensioned attendance for this space.
-   * @todo Write detailed description of this method
    * @returns {number}
    * @is_in_new_excel
    */
@@ -233,50 +232,6 @@ export default class MainSpace implements ISpaceCalculation {
   }
 
   /**
-   * Calculates missing adjustment
-   * @todo is this used?
-   * AK6 = IF (AK68!=0 AND AL6 == MAX(AL6:AL66)) THEN (AC6*AM6)+AK68 ELSE AC6*AM6
-   */
-  calculateMissingAdjustment(totalEmployeesPerWorkplaceTypeUnadjusted: number, allEmployeesPerWorkplaceTypeUnadjusted: number[]): number {
-    // Check if this has max employees and needs adjustment
-    const myUnadjustedCount = this.calculateEmployeesPerWorkplaceTypeUnadjusted()
-    const isMaxEmployee = myUnadjustedCount === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)
-    const missingEmployees = totalEmployeesPerWorkplaceTypeUnadjusted - this.dimensionedAttendance()
-    let missingAdjustment = 0
-    if (missingEmployees > 0 && isMaxEmployee) {
-      missingAdjustment = missingEmployees
-    }
-    return missingAdjustment
-  }
-
-  /**
-   * Calculate remainder area for space.
-   * @returns {number}
-   */
-  #remainderArea (): number {
-    if (this.space.result.adjustedAreaInclCompensation === undefined) {
-      return 0
-    }
-    if (this.spaceConstants.personRoomWorkstation === 'person') {
-      return 0
-      // return this.space.result.adjustedAreaInclCompensation - (this.#areaPerSeatUnAdjusted() * this.calculateNumberOfSeats())
-    }
-    if (this.spaceConstants.personRoomWorkstation === 'room') {
-      return this.space.result.adjustedAreaInclCompensation - (this.minimumSquareMeters() * this.calculateNumberOfRooms())
-    }
-    return 0
-  }
-
-  #areaPerSeatUnAdjusted (): number {
-    /*
-    if (this.space.result.adjustedAreaInclCompensation! > 0 && this.calculateNumberOfSeats() > 0) {
-      return Math.round(this.space.result.adjustedAreaInclCompensation! / this.calculateNumberOfSeats() * 10) / 10
-    }
-    */
-    return 0
-  }
-
-  /**
    * Calculates number of rooms
    * @returns {number}
    */
@@ -297,7 +252,6 @@ export default class MainSpace implements ISpaceCalculation {
   /**
    * Calculates adjustment for missing square meters (AK6 in Excel)
    * Formula: IF (AK68!=0 AND AL6 == MAX(AL6:AL66)) THEN (AC6*AM6)+AK68 ELSE AC6*AM6
-   * @todo Spørg Pontus om denne (fejler ved max pt... eller gør den?)
    */
   calculateAdjustmentForMissingSquareMeters(allEmployeesPerWorkplaceTypeUnadjusted: number[], totalEmployeesPerWorkplaceTypeUnadjusted: number): number {
     const myUnadjustedCount = this.calculateEmployeesPerWorkplaceTypeUnadjusted()
@@ -329,7 +283,8 @@ export default class MainSpace implements ISpaceCalculation {
 
     let seatCount: number
     if (this.variables.addPeakMarkupToWorkstationCapacityShare) {
-      seatCount = this.space.result.employeesPerWorkplaceTypeAdjusted || 0
+      // seatCount = this.space.result.employeesPerWorkplaceTypeAdjusted || 0
+      seatCount = this.calculateEmployeesPerWorkplaceTypeAdjusted()
     } else {
       seatCount = this.calculateAdjustmentForMissingSquareMeters(
         allEmployeesPerWorkplaceTypeUnadjusted,
@@ -395,18 +350,10 @@ export default class MainSpace implements ISpaceCalculation {
 
   /**
    * Calculates employees per workplace type, adjusted
-   * @todo wrong now? Does it need Math.ceil to be right?
-   * @param {number} totalEmployeesPerWorkplaceTypeUnadjusted - The total number of employees per workplace type, unadjusted
-   * @todo check if function in touchdown is the correct one generally
    */
-  calculateEmployeesPerWorkplaceTypeAdjusted (totalEmployeesPerWorkplaceTypeUnadjusted: number, allEmployeesPerWorkplaceTypeUnadjusted: number[]): number {
-    if (totalEmployeesPerWorkplaceTypeUnadjusted > this.dimensionedAttendance() && this.calculateEmployeesPerWorkplaceTypeUnadjusted() === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)) {
-      return this.calculateEmployeesPerWorkplaceTypeUnadjusted() - (totalEmployeesPerWorkplaceTypeUnadjusted - this.dimensionedAttendance())
-    }
-    if (totalEmployeesPerWorkplaceTypeUnadjusted < this.dimensionedAttendance() && this.calculateEmployeesPerWorkplaceTypeUnadjusted() === Math.max(...allEmployeesPerWorkplaceTypeUnadjusted)) {
-      return this.calculateEmployeesPerWorkplaceTypeUnadjusted() + (this.dimensionedAttendance() - totalEmployeesPerWorkplaceTypeUnadjusted)
-    }
-    return this.calculateEmployeesPerWorkplaceTypeUnadjusted()
+   // calculateEmployeesPerWorkplaceTypeAdjusted (totalEmployeesPerWorkplaceTypeUnadjusted: number, allEmployeesPerWorkplaceTypeUnadjusted: number[]): number {
+  calculateEmployeesPerWorkplaceTypeAdjusted(): number {
+    return this.space.result.adjustmentForMissingSquareMeters || 0
   }
 
   /**

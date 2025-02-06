@@ -55,12 +55,6 @@ export interface IVariable {
   accessToCoworking: boolean
 
   /**
-   * Whether there is a need for access to a reception.
-   * @deprecated Use accessToCommonAreaReception or accessToTenantReception instead
-   */
-  accessToReception: boolean
-
-  /**
    * Whether there is a need for access to a common area reception.
    */
   accessToCommonAreaReception: boolean

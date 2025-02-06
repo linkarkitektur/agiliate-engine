@@ -5,17 +5,14 @@ import CommonLounge from '../common area/lounge'
 
 export default class MiniKitchenLounge extends MainSpace {
   areaPerPersonExcludingCorridor (): number {
-    // return this.areaPerFunction() / this.spaceConstants.personsPerType
     const coffeeStation = new CoffeeStation(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     return coffeeStation.minAreaPerPersonExcludingCorridor() + this.minAreaPerPersonExcludingCorridor()
   }
 
   calculateAreaExclCompensation (): number {
-    // @todo add compensated area which is very different
     const coffeeStation = new CoffeeStation(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const sharedLounge = new SharedLounge(this.variables, this.config, this.customSpaceConstants, this.customConstants)
     const commonLounge = new CommonLounge(this.variables, this.config, this.customSpaceConstants, this.customConstants)
-    // return this.dimensionedAttendance() * this.minAreaPerPersonExcludingCorridor() + this.addedPeakArea()
     // Sum of area for mini kitchen lounge and coffee station
     // =SUM(AB6*AN13)+(T13)-(M31)-(M42)
     // AB6 = dimensionedAttendance

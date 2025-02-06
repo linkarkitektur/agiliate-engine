@@ -1,5 +1,5 @@
 import MainSpace from '../main_space_class'
-import SharedReception from '../coworking/reception' // TODO: Remmon area/reception'
+import SharedReception from '../coworking/reception'
 
 export default class WorkReception extends MainSpace {
   calculateAreaExclCompensation (): number {
